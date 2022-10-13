@@ -17,12 +17,12 @@
 * width
 * height
 * urls
- * full
+  * full
 * likes
 * user
- * name
- * bio
- * profile_image
+  * name
+  * bio
+  * profile_image
 ***
 
 ### Entities
