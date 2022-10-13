@@ -1,7 +1,7 @@
 # SOA-project Github API Client
-***
 
 ###### Project to gather useful information from unsplash
+
 ***
 ### Resources
 ***
@@ -14,6 +14,15 @@
 
 ### Elements
 ***
+* width
+* height
+* urls
+ * full
+* likes
+* user
+ * name
+ * bio
+ * profile_image
 ***
 
 ### Entities
