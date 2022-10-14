@@ -34,10 +34,10 @@ unsplash_results['likes'] = mushroom_photo['likes']
 # not sure originals 34 maybe changed
 unsplash_results['uesrname'] = mushroom_photo['user']['name']
 # Marek Piwnicki
-unsplash_results['uesrbio'] = mushroom_photo['user']['bio']
+unsplash_results['uesr_bio'] = mushroom_photo['user']['bio']
 # "If you want to use my pics you need to: a) Respect the nature! b) Become vege! c) Be aware!  d) Stop polluting!\r\n(Just kidding. Thanks for using them in any form 👍) 🐷💰 > PayPal > ❤️🌍🌄🖥️🙌"
 
-unsplash_results['uesr_image'] = mushroom_photo['user']['profile_image']['large']
+unsplash_results['uesr_photo'] = mushroom_photo['user']['profile_image']['large']
 
 # https://api.unsplash.com/topics/wallpapers/?client_id=key
 
@@ -54,6 +54,10 @@ unsplash_results['topic_url'] = topic_wallpapers['links']['html']
 # https://unsplash.com/t/wallpapers
 unsplash_results['owner_name'] = topic_wallpapers['owners'][0]['name']
 # Unsplash
+
+unsplash_bad_url = unsplash_api_path('people/000')
+unsplash_response[unsplash_bad_url] = call_unsplash_url(config, unsplash_bad_url)
+unsplash_response[unsplash_bad_url].parse
 
 output_path = File.expand_path('../spec/fixtures/unsplash_results.yml', __dir__)
 File.write(output_path, unsplash_results.to_yaml)
