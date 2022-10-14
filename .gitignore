@@ -1,4 +1,4 @@
-config/serects.yml
+config/secrets.yml
 spec/fixtures/
 .DS_Store
 lib/.DS_Store
