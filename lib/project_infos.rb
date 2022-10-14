@@ -34,10 +34,10 @@ unsplash_results['likes'] = mushroom_photo['likes']
 # not sure originals 34 maybe changed
 unsplash_results['uesrname'] = mushroom_photo['user']['name']
 # Marek Piwnicki
-unsplash_results['uesrbio'] = mushroom_photo['user']['bio']
+unsplash_results['uesr_bio'] = mushroom_photo['user']['bio']
 # "If you want to use my pics you need to: a) Respect the nature! b) Become vege! c) Be aware!  d) Stop polluting!\r\n(Just kidding. Thanks for using them in any form 👍) 🐷💰 > PayPal > ❤️🌍🌄🖥️🙌"
 
-unsplash_results['uesr_image'] = mushroom_photo['user']['profile_image']['large']
+unsplash_results['uesr_photo'] = mushroom_photo['user']['profile_image']['large']
 
 # https://api.unsplash.com/topics/wallpapers/?client_id=key
 
