@@ -55,5 +55,9 @@ unsplash_results['topic_url'] = topic_wallpapers['links']['html']
 unsplash_results['owner_name'] = topic_wallpapers['owners'][0]['name']
 # Unsplash
 
+unsplash_bad_url = unsplash_api_path('people/000')
+unsplash_response[unsplash_bad_url] = call_unsplash_url(config, unsplash_bad_url)
+unsplash_response[unsplash_bad_url].parse
+
 output_path = File.expand_path('../spec/fixtures/unsplash_results.yml', __dir__)
 File.write(output_path, unsplash_results.to_yaml)
