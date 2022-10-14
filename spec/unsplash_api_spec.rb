@@ -9,9 +9,9 @@ RESOURCE_ONE = 'photos'
 ID = 'WPXxp36tkHQ'
 RESOURCE_TWO = 'topics'
 CATEGORY = 'wallpapers'
-CONFIG = YAML.safe_load(File.read('../config/secrets.yml'))
+CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
 UNSPLAH_TOKEN = CONFIG['UNSPLASH_SECRETS_KEY']
-CORRECT = YAML.safe_load(File.read('fixtures/unsplash_results.yml'))
+CORRECT = YAML.safe_load(File.read('spec/fixtures/unsplash_results.yml'))
 
 describe 'Tests Unsplash API library' do
   describe 'Photos information' do
@@ -36,9 +36,23 @@ describe 'Tests Unsplash API library' do
   end
 
   describe 'Topics information' do
+    before do
+      @photo = CodePraise::UnsplashApi.new(UNSPLAH_TOKEN)
+                                      .photo(ID)
+    end
+
+    it 'HAPPY: should recognize owner' do
+      _(@photo.owner).must_be_kind_of CodePraise::Photo
+    end
+
+    it 'HAPPY: should identify owner' do
+      _(@photo.owner.name).wont_be_nil
+      _(@photo.owner.name).must_equal CORRECT[uesrname]
+    end
     it 'HAPPY: should provide correct topic attributes' do
-      topic = CodePraise::UnsplashApi.new(UNSPLAH_TOKEN)
-                                     .topic(CATEGORY)
+    # topic = CodePraise::UnsplashApi.new(UNSPLAH_TOKEN)
+    #                               .topic(CATEGORY)
+      topic = @photo.topic
       _(topic.title).must_equal CORRECT['title']
       _(topic.description).must_equal CORRECT['description']
     end
