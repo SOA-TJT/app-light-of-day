@@ -7,10 +7,22 @@ require_relative 'topic'
 module CodePraise
   # Library for Unsplash API
   class UnsplashApi
+
+    module Errors
+      class NotFound < StandardError; end
+      class Unauthorized < StandardError; end
+    end
+
+    HTTP_ERROR = {
+      401 => Errors::Unauthorized,
+      404 => Errors::NotFound
+    }.freeze
+
+
     def initialize(token)
       @unsplash_token = token
     end
-
+    
     def photo(id)
       unsplash_picture_url = unsplash_api_path("photos/#{id}")
       photo_data = call_unsplash_url(unsplash_picture_url).parse
@@ -20,7 +32,7 @@ module CodePraise
     def topic(slug)
       unsplash_topic_url = unsplash_api_path("topics/#{slug}")
       topic_data = call_unsplash_url(unsplash_topic_url).parse
-      Photo.new(topic_data, self)
+      Topic.new(topic_data, self)
     end
 
     def unsplash_api_path(path)

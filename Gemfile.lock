@@ -27,6 +27,9 @@ GEM
     llhttp-ffi (0.4.0)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
+    minitest (5.16.3)
+    minitest-rg (5.2.0)
+      minitest (~> 5.0)
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
@@ -68,6 +71,8 @@ PLATFORMS
 DEPENDENCIES
   flog
   http (~> 5)
+  minitest (~> 5)
+  minitest-rg (~> 5)
   reek
   rubocop
 
