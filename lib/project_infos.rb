@@ -20,28 +20,32 @@ def call_unsplash_url(config, url)
 end
 unsplash_response = {}
 unsplash_results = {}
-mushroom_picture_url = unsplash_api_path('photos/DMyTcadDGog')
+mushroom_picture_url = unsplash_api_path('photos/WPXxp36tkHQ')
 unsplash_response[mushroom_picture_url] = call_unsplash_url(config, mushroom_picture_url)
 mushroom_photo = unsplash_response[mushroom_picture_url].parse
 
 unsplash_results['width'] = mushroom_photo['width']
-# width = 5198
+# width= 4021
+
 unsplash_results['height'] = mushroom_photo['height']
-# height = 3465
+# height= 2262
 unsplash_results['urls'] = mushroom_photo['urls']['raw']
-# urls = https://images.unsplash.com/photo-1665513325776-c6bbe99b1a79?ixid=MnwzNzE2OTd8MHwxfGFsbHx8fHx8fHx8fDE2NjU3MTIzODk&ixlib=rb-1.2.1
+# urls = https://images.unsplash.com/photo-1617925109341-2b99305cdee2?ixid=MnwzNzE2OTd8MHwxfGFsbHx8fHx8fHx8fDE2NjU3MzU5NjU&ixlib=rb-1.2.1
 unsplash_results['likes'] = mushroom_photo['likes']
-# not sure originals 34 maybe changed
+# not sure originals 439 maybe changed
 unsplash_results['uesrname'] = mushroom_photo['user']['name']
-# Marek Piwnicki
+# Gabriel Dizzi
 unsplash_results['uesr_bio'] = mushroom_photo['user']['bio']
-# "If you want to use my pics you need to: a) Respect the nature! b) Become vege! c) Be aware!  d) Stop polluting!\r\n(Just kidding. Thanks for using them in any form 👍) 🐷💰 > PayPal > ❤️🌍🌄🖥️🙌"
+# "Hello, my name is Gabriel Vinicius and I'm a Brazilian photographer. I'm seventeen years old and for more images of my work you can see it on my instagram @ogabrieldizzi"
 
 unsplash_results['uesr_photo'] = mushroom_photo['user']['profile_image']['large']
 
+unsplash_results['topics'] = mushroom_photo['topic_submissions'].keys.first
+# topics wallpapers
+
 # https://api.unsplash.com/topics/wallpapers/?client_id=key
 
-topic_wallpapers_url = unsplash_api_path('topics/wallpapers')
+topic_wallpapers_url = unsplash_api_path("topics/#{unsplash_results['topics']}")
 unsplash_response[topic_wallpapers_url] = call_unsplash_url(config, topic_wallpapers_url)
 
 topic_wallpapers = unsplash_response[topic_wallpapers_url].parse
