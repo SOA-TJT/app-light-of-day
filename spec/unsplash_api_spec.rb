@@ -6,7 +6,7 @@ require 'yaml'
 require_relative '../lib/unslapsh_api'
 
 RESOURCE_ONE = 'photos'
-ID = 'DMyTcadDGog'
+ID = 'WPXxp36tkHQ'
 RESOURCE_TWO = 'topics'
 CATEGORY = 'wallpapers'
 CONFIG = YAML.safe_load(File.read('../config/secrets.yml'))

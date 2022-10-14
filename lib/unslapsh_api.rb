@@ -32,7 +32,7 @@ module CodePraise
     def topic(slug)
       unsplash_topic_url = unsplash_api_path("topics/#{slug}")
       topic_data = call_unsplash_url(unsplash_topic_url).parse
-      Topic.new(topic_data, self)
+      Topic.new(topic_data)
     end
 
     def unsplash_api_path(path)

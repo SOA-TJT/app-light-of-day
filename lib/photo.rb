@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require_relative 'user'
+require_relative 'topic'
 
 module CodePraise
   # Model for Photo
@@ -19,7 +20,11 @@ module CodePraise
     end
 
     def owner
-      @owner ||= User.new(@photo['owner'])
+      @owner = User.new(@photo['owner'])
+    end
+
+    def topic
+      @topics = @data_source.topic(@photo['topic_submissions'].keys.first)
     end
   end
 end

@@ -7,9 +7,8 @@ module CodePraise
   class Topic
     attr_accessor :title, :description
 
-    def initialize(topic_data, data_source)
+    def initialize(topic_data)
       @topic = topic_data
-      @data_source = data_source
       @title = @topic['title']
       @description = @topic['description']
     end
