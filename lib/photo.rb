@@ -20,11 +20,11 @@ module CodePraise
     end
 
     def owner
-      @owner = User.new(@photo['owner'])
+      @owner = User.new(@photo['user'])
     end
 
     def topic
-      @topics = @data_source.topic(@photo['topic_submissions'].keys.first)
+      @topics ||= @data_source.topic(@photo['topic_submissions'].keys.first)
     end
   end
 end
