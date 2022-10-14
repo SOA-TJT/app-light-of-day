@@ -7,7 +7,6 @@ require_relative 'topic'
 module CodePraise
   # Library for Unsplash API
   class UnsplashApi
-
     module Errors
       class NotFound < StandardError; end
       class Unauthorized < StandardError; end
@@ -17,7 +16,6 @@ module CodePraise
       401 => Errors::Unauthorized,
       404 => Errors::NotFound
     }.freeze
-
 
     def initialize(token)
       @unsplash_token = token

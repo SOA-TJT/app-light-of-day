@@ -33,7 +33,7 @@ unsplash_results['urls'] = mushroom_photo['urls']['raw']
 # urls = https://images.unsplash.com/photo-1617925109341-2b99305cdee2?ixid=MnwzNzE2OTd8MHwxfGFsbHx8fHx8fHx8fDE2NjU3MzU5NjU&ixlib=rb-1.2.1
 unsplash_results['likes'] = mushroom_photo['likes']
 # not sure originals 439 maybe changed
-unsplash_results['uesrname'] = mushroom_photo['user']['name']
+unsplash_results['name'] = mushroom_photo['user']['name']
 # Gabriel Dizzi
 unsplash_results['uesr_bio'] = mushroom_photo['user']['bio']
 # "Hello, my name is Gabriel Vinicius and I'm a Brazilian photographer. I'm seventeen years old and for more images of my work you can see it on my instagram @ogabrieldizzi"

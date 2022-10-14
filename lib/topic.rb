@@ -3,7 +3,7 @@
 require_relative 'user'
 
 module CodePraise
-  # Provides access to contributor data
+  # Provides access to Topic data
   class Topic
     attr_accessor :title, :description
 

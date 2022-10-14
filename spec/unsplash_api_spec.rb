@@ -42,12 +42,12 @@ describe 'Tests Unsplash API library' do
     end
 
     it 'HAPPY: should recognize owner' do
-      _(@photo.owner).must_be_kind_of CodePraise::Photo
+      _(@photo.owner).must_be_kind_of CodePraise::User
     end
 
     it 'HAPPY: should identify owner' do
       _(@photo.owner.name).wont_be_nil
-      _(@photo.owner.name).must_equal CORRECT[uesrname]
+      _(@photo.owner.name).must_equal CORRECT['name']
     end
     it 'HAPPY: should provide correct topic attributes' do
     # topic = CodePraise::UnsplashApi.new(UNSPLAH_TOKEN)
