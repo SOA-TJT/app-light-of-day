@@ -7,7 +7,7 @@ key_path = File.expand_path('../config/secrets.yml', __dir__)
 config = YAML.safe_load(File.read(key_path))
 puts config['UNSPLASH_SECRETS_KEY']
 
-# 'https://api.unsplash.com/photos/DMyTcadDGog/?client_id=key'
+# 'https://api.unsplash.com/photos/WPXxp36tkHQ/?client_id=key'
 def unsplash_api_path(path)
   "https://api.unsplash.com/#{path}"
 end
