@@ -24,6 +24,7 @@
     * name
     * bio
     * profile_image
+  * topics
 * Topics
   * title
   * description
