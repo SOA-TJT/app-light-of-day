@@ -14,15 +14,23 @@
 
 ### Elements
 ***
-* width
-* height
-* urls
-  * full
-* likes
-* user
-  * name
-  * bio
-  * profile_image
+* Photo
+  * width
+  * height
+  * urls
+    * full
+  * likes
+  * user
+    * name
+    * bio
+    * profile_image
+* Topics
+  * title
+  * description
+  * links
+    * url
+  * owners
+    * name 
 ***
 
 ### Entities
