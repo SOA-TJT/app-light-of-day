@@ -24,13 +24,13 @@ describe 'Tests Unsplash API library' do
 
     it 'SAD: should raise exception on incorrect photo' do
       _(proc do
-        CodePraise::UnsplashApi.new(UNSPLAH_TOKEN).photo('anyID') # can change foobar to another name?
+        CodePraise::UnsplashApi.new(UNSPLAH_TOKEN).photo('anyID')
       end).must_raise CodePraise::UnsplashApi::Errors::NotFound
     end
 
     it 'SAD: should raise exception when unauthorized' do
       _(proc do
-        CodePraise::UnsplashApi.new('BAD_TOKEN').photo('anyID') # 'BAD_TOKEN'??
+        CodePraise::UnsplashApi.new('BAD_TOKEN').photo('anyID') 
       end).must_raise CodePraise::UnsplashApi::Errors::Unauthorized
     end
   end
@@ -50,15 +50,13 @@ describe 'Tests Unsplash API library' do
       _(@photo.owner.name).must_equal CORRECT['name']
     end
     it 'HAPPY: should provide correct topic attributes' do
-    # topic = CodePraise::UnsplashApi.new(UNSPLAH_TOKEN)
-    #                               .topic(CATEGORY)
       topic = @photo.topic
       _(topic.title).must_equal CORRECT['title']
       _(topic.description).must_equal CORRECT['description']
     end
     it 'SAD: should raise exception on incorrect photo' do
       _(proc do
-        CodePraise::UnsplashApi.new(UNSPLAH_TOKEN).topic('anyCATEGORY') # can change foobar to another name?
+        CodePraise::UnsplashApi.new(UNSPLAH_TOKEN).topic('anyCATEGORY')
       end).must_raise CodePraise::UnsplashApi::Errors::NotFound
     end
   end
