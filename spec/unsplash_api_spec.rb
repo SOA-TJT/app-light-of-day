@@ -9,9 +9,13 @@ RESOURCE_ONE = 'photos'
 ID = 'WPXxp36tkHQ'
 RESOURCE_TWO = 'topics'
 CATEGORY = 'wallpapers'
-CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
+key_path = File.expand_path('../config/secrets.yml', __dir__)
+CONFIG = YAML.safe_load(File.read(key_path))
+# CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
 UNSPLAH_TOKEN = CONFIG['UNSPLASH_SECRETS_KEY']
-CORRECT = YAML.safe_load(File.read('spec/fixtures/unsplash_results.yml'))
+output_path = File.expand_path('../spec/fixtures/unsplash_results.yml', __dir__)
+CORRECT = YAML.safe_load(File.read(output_path))
+# CORRECT = YAML.safe_load(File.read('spec/fixtures/unsplash_results.yml'))
 
 describe 'Tests Unsplash API library' do
   describe 'Photos information' do
@@ -30,7 +34,7 @@ describe 'Tests Unsplash API library' do
 
     it 'SAD: should raise exception when unauthorized' do
       _(proc do
-        CodePraise::UnsplashApi.new('BAD_TOKEN').photo('anyID') 
+        CodePraise::UnsplashApi.new('BAD_TOKEN').photo('anyID')
       end).must_raise CodePraise::UnsplashApi::Errors::Unauthorized
     end
   end

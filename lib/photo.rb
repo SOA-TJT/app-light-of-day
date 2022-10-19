@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'user'
 require_relative 'topic'
 
@@ -24,7 +25,7 @@ module CodePraise
     end
 
     def topic
-      @topics ||= @data_source.topic(@photo['topic_submissions'].keys.first)
+      @topics ||= @data_source.topic(@photo['topic_submissions'].keys.join(','))
     end
   end
 end

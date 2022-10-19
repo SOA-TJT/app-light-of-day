@@ -40,7 +40,7 @@ unsplash_results['uesr_bio'] = mushroom_photo['user']['bio']
 # "Hello, my name is Gabriel Vinicius and I'm a Brazilian photographer. I'm seventeen years old and for more images of my work you can see it on my instagram @ogabrieldizzi"
 unsplash_results['uesr_photo'] = mushroom_photo['user']['profile_image']['large']
 
-unsplash_results['topics'] = mushroom_photo['topic_submissions'].keys.first
+unsplash_results['topics'] = mushroom_photo['topic_submissions'].keys.join(',')
 # topics wallpapers
 
 # https://api.unsplash.com/topics/wallpapers/?client_id=key
