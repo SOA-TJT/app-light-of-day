@@ -20,50 +20,63 @@ describe 'Tests Unsplash API library' do
   after do
     VCR.eject_cassette
   end
+
   describe 'Photos information' do
-    it 'HAPPY: should provide correct photo attributes' do
-      photo = LightofDay::UnsplashApi.new(UNSPLAH_TOKEN)
-                                     .photo(ID)
-      _(photo.width).must_equal CORRECT['width']
-      _(photo.height).must_equal CORRECT['height']
+    it '😃: should provide correct view attributes' do
+      view = LightofDay::UnsplashApi.new(UNSPLAH_TOKEN).view(ID)
+      _(view.width).must_equal CORRECT['view']['width']
+      _(view.height).must_equal CORRECT['view']['height']
+      _(view.urls).must_equal CORRECT['view']['urls']
     end
 
-    it 'SAD: should raise exception on incorrect photo' do
+    it '😭: should raise exception on incorrect view ID' do
       _(proc do
-        LightofDay::UnsplashApi.new(UNSPLAH_TOKEN).photo('anyID')
+        LightofDay::UnsplashApi.new(UNSPLAH_TOKEN).view('anyID')
       end).must_raise LightofDay::UnsplashApi::Response::NotFound
     end
 
-    it 'SAD: should raise exception when unauthorized' do
+    it '😭: should raise exception when unauthorized' do
       _(proc do
-        LightofDay::UnsplashApi.new('BAD_TOKEN').photo('anyID')
+        LightofDay::UnsplashApi.new('BAD_TOKEN').view(ID)
       end).must_raise LightofDay::UnsplashApi::Response::Unauthorized
+    end
+  end
+
+  describe 'Creater information' do
+    before do
+      @view = LightofDay::UnsplashApi.new(UNSPLAH_TOKEN).view(ID)
+    end
+
+    it '😃: should get creator' do
+      _(@view.creator).must_be_kind_of LightofDay::Creator
+    end
+
+    it '😃: should identify creator' do
+      _(@view.creator.name).must_equal CORRECT['view']['creator'][:name]
+      _(@view.creator.bio).must_equal CORRECT['view']['creator'][:bio]
+      _(@view.creator.uesr_image).must_equal CORRECT['view']['creator'][:photo]
     end
   end
 
   describe 'Topics information' do
     before do
-      @photo = LightofDay::UnsplashApi.new(UNSPLAH_TOKEN)
-                                      .photo(ID)
+      @view = LightofDay::UnsplashApi.new(UNSPLAH_TOKEN).view(ID)
     end
 
-    it 'HAPPY: should recognize owner' do
-      _(@photo.owner).must_be_kind_of LightofDay::Creator
-    end
+    it '😃: should identify topics' do
+      topics = @view.topics
+      _(topics.count).must_equal CORRECT['view']['topics'].count
 
-    it 'HAPPY: should identify owner' do
-      _(@photo.owner.name).wont_be_nil
-      _(@photo.owner.name).must_equal CORRECT['name']
-    end
-    it 'HAPPY: should provide correct topic attributes' do
-      topic = @photo.topic
-      _(topic.title).must_equal CORRECT['title']
-      _(topic.description).must_equal CORRECT['description']
-    end
-    it 'SAD: should raise exception on incorrect photo' do
-      _(proc do
-        LightofDay::UnsplashApi.new(UNSPLAH_TOKEN).topic('anyCATEGORY')
-      end).must_raise LightofDay::UnsplashApi::Response::NotFound
+      keys = ['title', 'description', 'topic_url']
+      keys.each do |key|
+        titles = topics.map(&key.to_sym)
+        correct_titles = join_value(CORRECT['view']['topics'], key)
+        _(titles).must_equal correct_titles
+      end
     end
   end
+end
+
+def join_value(obj, key)
+  obj.map{ |item| item[key] }
 end

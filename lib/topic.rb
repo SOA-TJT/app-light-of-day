@@ -16,9 +16,5 @@ module LightofDay
     def topic_url
       @topic['links']['html']
     end
-
-    def owner
-      @owner ||= Creator.new(@topic['owners'][0]['name'])
-    end
   end
 end

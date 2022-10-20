@@ -13,16 +13,15 @@ module LightofDay
       @token = token
     end
 
-    def photo(photo_id)
-      photo_response = Requset.new(UNSPLASH_PATH, @token).get_unsplash_data("photos/#{photo_id}").parse
-      View.new(photo_response, self)
+    def view(id)
+      view_response = Requset.new(UNSPLASH_PATH, @token).get_unsplash_data("photos/#{id}").parse
+      View.new(view_response, self)
     end
 
-    def topic(slug)
-      topic_data = Requset.new(UNSPLASH_PATH, @token).get_unsplash_data("topics/#{slug}").parse
-      # unsplash_topic_url = unsplash_api_path("topics/#{slug}")
-      # topic_data = call_unsplash_url(unsplash_topic_url).parse
-      Topic.new(topic_data)
+    def topics(slugs)
+      slugs.map { |slug| Topic.new(Requset.new(UNSPLASH_PATH, @token).get_unsplash_data("topics/#{slug}").parse)}
+      # topic_data = Requset.new(UNSPLASH_PATH, @token).get_unsplash_data("topics/#{slug}").parse
+      # Topic.new(topic_data)
     end
 
     # Get the response from the api
