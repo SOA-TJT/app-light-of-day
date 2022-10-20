@@ -3,9 +3,9 @@
 require_relative 'user'
 require_relative 'topic'
 
-module CodePraise
+module LightofDay
   # Model for Photo
-  class Photo
+  class View
     attr_accessor :width, :height, :likes
 
     def initialize(photo_data, data_source)
@@ -21,7 +21,7 @@ module CodePraise
     end
 
     def owner
-      @owner = User.new(@photo['user'])
+      @owner = Creator.new(@photo['user'])
     end
 
     def topic
