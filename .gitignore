@@ -2,4 +2,6 @@ config/secrets.yml
 .DS_Store
 lib/.DS_Store
 spec/coverage/*
+coverage/*
 !spec/coverage/.resultset.json
+!/coverage/.resultset.json
