@@ -20,7 +20,7 @@ CORRECT = YAML.safe_load(File.read(output_path))
 describe 'Tests Unsplash API library' do
   describe 'Photos information' do
     it 'HAPPY: should provide correct photo attributes' do
-      photo = CodePraise::UnsplashApi.new(UNSPLAH_TOKEN)
+      photo = LightofDay::UnsplashApi.new(UNSPLAH_TOKEN)
                                      .photo(ID)
       _(photo.width).must_equal CORRECT['width']
       _(photo.height).must_equal CORRECT['height']
@@ -28,25 +28,25 @@ describe 'Tests Unsplash API library' do
 
     it 'SAD: should raise exception on incorrect photo' do
       _(proc do
-        CodePraise::UnsplashApi.new(UNSPLAH_TOKEN).photo('anyID')
-      end).must_raise CodePraise::UnsplashApi::Errors::NotFound
+        LightofDay::UnsplashApi.new(UNSPLAH_TOKEN).photo('anyID')
+      end).must_raise LightofDay::UnsplashApi::Errors::NotFound
     end
 
     it 'SAD: should raise exception when unauthorized' do
       _(proc do
-        CodePraise::UnsplashApi.new('BAD_TOKEN').photo('anyID')
-      end).must_raise CodePraise::UnsplashApi::Errors::Unauthorized
+        LightofDay::UnsplashApi.new('BAD_TOKEN').photo('anyID')
+      end).must_raise LightofDay::UnsplashApi::Errors::Unauthorized
     end
   end
 
   describe 'Topics information' do
     before do
-      @photo = CodePraise::UnsplashApi.new(UNSPLAH_TOKEN)
+      @photo = LightofDay::UnsplashApi.new(UNSPLAH_TOKEN)
                                       .photo(ID)
     end
 
     it 'HAPPY: should recognize owner' do
-      _(@photo.owner).must_be_kind_of CodePraise::User
+      _(@photo.owner).must_be_kind_of LightofDay::Creator
     end
 
     it 'HAPPY: should identify owner' do
@@ -60,8 +60,8 @@ describe 'Tests Unsplash API library' do
     end
     it 'SAD: should raise exception on incorrect photo' do
       _(proc do
-        CodePraise::UnsplashApi.new(UNSPLAH_TOKEN).topic('anyCATEGORY')
-      end).must_raise CodePraise::UnsplashApi::Errors::NotFound
+        LightofDay::UnsplashApi.new(UNSPLAH_TOKEN).topic('anyCATEGORY')
+      end).must_raise LightofDay::UnsplashApi::Errors::NotFound
     end
   end
 end
