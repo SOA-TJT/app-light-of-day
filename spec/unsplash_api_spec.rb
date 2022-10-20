@@ -7,8 +7,8 @@ describe 'Tests Unsplash API library' do
     c.cassette_library_dir = CASSETTES_FOLDER
     c.hook_into :webmock
 
-    c.filter_sensitive_data('<UNSPLASH_SECRETS_KEY>') { UNSPLASH_SECRETS_KEY }
-    c.filter_sensitive_data('<UNSPLASH_SECRETS_KEY_ESC>') { CGI.escape(UNSPLASH_SECRETS_KEY) }
+    c.filter_sensitive_data('<UNSPLAH_TOKEN>') { UNSPLAH_TOKEN }
+    c.filter_sensitive_data('<UNSPLAH_TOKEN_ESC>') { CGI.escape(UNSPLAH_TOKEN) }
   end
 
   before do
