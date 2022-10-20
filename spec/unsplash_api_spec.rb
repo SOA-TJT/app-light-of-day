@@ -1,21 +1,6 @@
 # frozen_string_literal: true
 
-require 'minitest/autorun'
-require 'minitest/rg'
-require 'yaml'
-require_relative '../lib/unslapsh_api'
-
-RESOURCE_ONE = 'photos'
-ID = 'WPXxp36tkHQ'
-RESOURCE_TWO = 'topics'
-CATEGORY = 'wallpapers'
-key_path = File.expand_path('../config/secrets.yml', __dir__)
-CONFIG = YAML.safe_load(File.read(key_path))
-# CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
-UNSPLAH_TOKEN = CONFIG['UNSPLASH_SECRETS_KEY']
-output_path = File.expand_path('../spec/fixtures/unsplash_results.yml', __dir__)
-CORRECT = YAML.safe_load(File.read(output_path))
-# CORRECT = YAML.safe_load(File.read('spec/fixtures/unsplash_results.yml'))
+require_relative 'spec_helper'
 
 describe 'Tests Unsplash API library' do
   describe 'Photos information' do
