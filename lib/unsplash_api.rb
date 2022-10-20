@@ -19,7 +19,7 @@ module LightofDay
     end
 
     def topics(slugs)
-      slugs.map { |slug| Topic.new(Requset.new(UNSPLASH_PATH, @token).get_unsplash_data("topics/#{slug}").parse)}
+      slugs.map { |slug| Topic.new(Requset.new(UNSPLASH_PATH, @token).get_unsplash_data("topics/#{slug}").parse) }
       # topic_data = Requset.new(UNSPLASH_PATH, @token).get_unsplash_data("topics/#{slug}").parse
       # Topic.new(topic_data)
     end

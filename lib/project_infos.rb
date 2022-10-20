@@ -49,7 +49,8 @@ photo_results['urls'] = mushroom_photo['urls']['raw']
 # urls = https://images.unsplash.com/photo-1617925109341-2b99305cdee2?ixid=MnwzNzE2OTd8MHwxfGFsbHx8fHx8fHx8fDE2NjU3MzU5NjU&ixlib=rb-1.2.1
 photo_results['creator'] = {
   name: mushroom_photo['user']['name'], # Gabriel Dizzi
-  bio: mushroom_photo['user']['bio'], # "Hello, my name is Gabriel Vinicius and I'm a Brazilian photographer. I'm seventeen years old and for more images of my work you can see it on my instagram @ogabrieldizzi"
+  bio: mushroom_photo['user']['bio'], # "Hello, my name is Gabriel Vinicius and I'm a Brazilian photographer.
+  # I'm seventeen years old and for more images of my work you can see it on my instagram @ogabrieldizzi"
   photo: mushroom_photo['user']['profile_image']['large'] # https://images.unsplash.com/profile-1649848634149-2787772c4ae8?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128
 }
 photo_results['topics'] = mushroom_photo['topic_submissions'].keys.map { |topic| call_unsplash_topic(config, topic) }
