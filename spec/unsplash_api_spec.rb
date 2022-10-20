@@ -3,6 +3,23 @@
 require_relative 'spec_helper'
 
 describe 'Tests Unsplash API library' do
+  VCR.configure do |c|
+    c.cassette_library_dir = CASSETTES_FOLDER
+    c.hook_into :webmock
+
+    c.filter_sensitive_data('<UNSPLASH_SECRETS_KEY>') { UNSPLASH_SECRETS_KEY }
+    c.filter_sensitive_data('<UNSPLASH_SECRETS_KEY_ESC>') { CGI.escape(UNSPLASH_SECRETS_KEY) }
+  end
+
+  before do
+    VCR.insert_cassette CASSETTE_FILE,
+                        record: :new_episodes,
+                        match_requests_on: %i[method uri headers]
+  end
+
+  after do
+    VCR.eject_cassette
+  end
   describe 'Photos information' do
     it 'HAPPY: should provide correct photo attributes' do
       photo = LightofDay::UnsplashApi.new(UNSPLAH_TOKEN)
