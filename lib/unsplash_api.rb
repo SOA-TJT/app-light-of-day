@@ -27,7 +27,9 @@ module LightofDay
 
     # Get the response from the api
     class Response < SimpleDelegator
+      # Error Code number for Unauthorized
       Unauthorized = Class.new(StandardError)
+      # Error Code number for NotFound
       NotFound = Class.new(StandardError)
 
       HTTP_ERROR = {

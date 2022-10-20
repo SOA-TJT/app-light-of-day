@@ -6,7 +6,7 @@ require_relative 'topic'
 module LightofDay
   # Model for Photo
   class View
-    attr_accessor :width, :height, :likes
+    attr_reader :width, :height, :likes
 
     def initialize(photo_data, data_source)
       @photo = photo_data
