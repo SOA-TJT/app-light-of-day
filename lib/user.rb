@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module CodePraise
+module LightofDay
   # Provides access to User data
-  class User
+  class Creator
     attr_reader :name, :bio
 
     def initialize(user_data)

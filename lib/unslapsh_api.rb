@@ -4,7 +4,7 @@ require 'http'
 require_relative 'photo'
 require_relative 'topic'
 
-module CodePraise
+module LightofDay
   # Library for Unsplash API
   class UnsplashApi
     module Errors
@@ -24,7 +24,7 @@ module CodePraise
     def photo(id)
       unsplash_picture_url = unsplash_api_path("photos/#{id}")
       photo_data = call_unsplash_url(unsplash_picture_url).parse
-      Photo.new(photo_data, self)
+      View.new(photo_data, self)
     end
 
     def topic(slug)

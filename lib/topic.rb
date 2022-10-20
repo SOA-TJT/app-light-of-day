@@ -2,7 +2,7 @@
 
 require_relative 'user'
 
-module CodePraise
+module LightofDay
   # Provides access to Topic data
   class Topic
     attr_accessor :title, :description
@@ -18,7 +18,7 @@ module CodePraise
     end
 
     def owner
-      @owner ||= User.new(@topic['owners'][0]['name'])
+      @owner ||= Creator.new(@topic['owners'][0]['name'])
     end
   end
 end
