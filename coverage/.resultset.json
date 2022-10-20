@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/hsuan/Desktop/SOA/light-of-day/lib/unsplash_api.rb": {
+      "/Users/jerry/Desktop/ruby/SOA-project/lib/unsplash_api.rb": {
         "lines": [
           null,
           null,
@@ -57,7 +57,7 @@
           null
         ]
       },
-      "/Users/hsuan/Desktop/SOA/light-of-day/lib/photo.rb": {
+      "/Users/jerry/Desktop/ruby/SOA-project/lib/photo.rb": {
         "lines": [
           null,
           null,
@@ -92,7 +92,7 @@
           null
         ]
       },
-      "/Users/hsuan/Desktop/SOA/light-of-day/lib/user.rb": {
+      "/Users/jerry/Desktop/ruby/SOA-project/lib/user.rb": {
         "lines": [
           null,
           null,
@@ -114,7 +114,7 @@
           null
         ]
       },
-      "/Users/hsuan/Desktop/SOA/light-of-day/lib/topic.rb": {
+      "/Users/jerry/Desktop/ruby/SOA-project/lib/topic.rb": {
         "lines": [
           null,
           null,
@@ -143,6 +143,6 @@
         ]
       }
     },
-    "timestamp": 1666233282
+    "timestamp": 1666246748
   }
 }
