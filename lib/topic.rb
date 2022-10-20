@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'user'
+require_relative 'creator'
 
 module LightofDay
   # Provides access to Topic data
   class Topic
-    attr_accessor :title, :description
+    attr_reader :title, :description
 
     def initialize(topic_data)
       @topic = topic_data

@@ -2,6 +2,7 @@
 
 require 'simplecov'
 SimpleCov.start
+SimpleCov.root('../')
 
 require 'yaml'
 

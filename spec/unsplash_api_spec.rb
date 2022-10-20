@@ -31,13 +31,13 @@ describe 'Tests Unsplash API library' do
     it 'SAD: should raise exception on incorrect photo' do
       _(proc do
         LightofDay::UnsplashApi.new(UNSPLAH_TOKEN).photo('anyID')
-      end).must_raise LightofDay::UnsplashApi::Errors::NotFound
+      end).must_raise LightofDay::UnsplashApi::Response::NotFound
     end
 
     it 'SAD: should raise exception when unauthorized' do
       _(proc do
         LightofDay::UnsplashApi.new('BAD_TOKEN').photo('anyID')
-      end).must_raise LightofDay::UnsplashApi::Errors::Unauthorized
+      end).must_raise LightofDay::UnsplashApi::Response::Unauthorized
     end
   end
 
@@ -63,7 +63,7 @@ describe 'Tests Unsplash API library' do
     it 'SAD: should raise exception on incorrect photo' do
       _(proc do
         LightofDay::UnsplashApi.new(UNSPLAH_TOKEN).topic('anyCATEGORY')
-      end).must_raise LightofDay::UnsplashApi::Errors::NotFound
+      end).must_raise LightofDay::UnsplashApi::Response::NotFound
     end
   end
 end
