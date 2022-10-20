@@ -2,12 +2,11 @@
 
 require 'delegate'
 require 'http'
-require_relative 'photo'
+require_relative 'view'
 require_relative 'topic'
 
 module LightofDay
   # Library for Unsplash API
-
   class UnsplashApi
     UNSPLASH_PATH = 'https://api.unsplash.com/'
     def initialize(token)

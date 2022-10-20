@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'user'
+require_relative 'creator'
 
 module LightofDay
   # Provides access to Topic data
