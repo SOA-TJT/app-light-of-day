@@ -33,7 +33,7 @@ def call_unsplash_topic(config, topic)
   # From epic drone shots to inspiring moments in nature — submit your best desktop and mobile backgrounds.\r\n\r\n
   topic_results['topic_url'] = topic_wallpapers['links']['html']
   # https://unsplash.com/t/wallpapers
-  return topic_results
+  topic_results
 end
 
 mushroom_picture_url = unsplash_api_path('photos/-PcrXRjoP-A')
@@ -50,9 +50,9 @@ photo_results['urls'] = mushroom_photo['urls']['raw']
 photo_results['creator'] = {
   name: mushroom_photo['user']['name'], # Gabriel Dizzi
   bio: mushroom_photo['user']['bio'], # "Hello, my name is Gabriel Vinicius and I'm a Brazilian photographer. I'm seventeen years old and for more images of my work you can see it on my instagram @ogabrieldizzi"
-  photo: mushroom_photo['user']['profile_image']['large'] #https://images.unsplash.com/profile-1649848634149-2787772c4ae8?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128
+  photo: mushroom_photo['user']['profile_image']['large'] # https://images.unsplash.com/profile-1649848634149-2787772c4ae8?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128
 }
-photo_results['topics'] = mushroom_photo['topic_submissions'].keys.map{|topic| call_unsplash_topic(config, topic)}
+photo_results['topics'] = mushroom_photo['topic_submissions'].keys.map { |topic| call_unsplash_topic(config, topic) }
 
 # topics wallpapers
 unsplash_results['view'] = photo_results

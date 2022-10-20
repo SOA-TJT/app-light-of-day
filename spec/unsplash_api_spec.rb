@@ -67,16 +67,13 @@ describe 'Tests Unsplash API library' do
       topics = @view.topics
       _(topics.count).must_equal CORRECT['view']['topics'].count
 
-      keys = ['title', 'description', 'topic_url']
+      keys = %w[title description topic_url]
       keys.each do |key|
         titles = topics.map(&key.to_sym)
-        correct_titles = join_value(CORRECT['view']['topics'], key)
+        # correct_titles = join_value(CORRECT['view']['topics'], key)
+        correct_titles = CORRECT['view']['topics'].map { |item| item[key] }
         _(titles).must_equal correct_titles
       end
     end
   end
-end
-
-def join_value(obj, key)
-  obj.map{ |item| item[key] }
 end
