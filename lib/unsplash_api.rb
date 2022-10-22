@@ -8,18 +8,18 @@ require_relative 'topic'
 module LightofDay
   # Library for Unsplash API
   class UnsplashApi
-    UNSPLASH_PATH = 'https://api.unsplash.com/'
+    API_VIEWDATA_ROOT = 'https://api.unsplash.com/'
     def initialize(token)
       @token = token
     end
 
     def view(id)
-      view_response = Requset.new(UNSPLASH_PATH, @token).get_unsplash_data("photos/#{id}").parse
+      view_response = Requset.new(API_VIEWDATA_ROOT, @token).get_unsplash_data("photos/#{id}").parse
       View.new(view_response, self)
     end
 
     def topics(slugs)
-      slugs.map { |slug| Topic.new(Requset.new(UNSPLASH_PATH, @token).get_unsplash_data("topics/#{slug}").parse) }
+      slugs.map { |slug| Topic.new(Requset.new(API_VIEWDATA_ROOT, @token).get_unsplash_data("topics/#{slug}").parse) }
       # topic_data = Requset.new(UNSPLASH_PATH, @token).get_unsplash_data("topics/#{slug}").parse
       # Topic.new(topic_data)
     end
@@ -53,7 +53,7 @@ module LightofDay
       end
 
       def get_unsplash_data(url_path)
-        http_get("#{UNSPLASH_PATH}#{url_path}")
+        http_get("#{API_VIEWDATA_ROOT}#{url_path}")
       end
 
       def http_get(url)
