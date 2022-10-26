@@ -12,10 +12,6 @@ module LightofDay
       def quote_data
         Requset.new(nil).get_without_authorized(@path).parse
       end
-
-      def tests
-        puts 'hello'
-      end
     end
   end
 end

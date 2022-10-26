@@ -9,17 +9,15 @@ module LightofDay
     class InspirationMapper
       def initialize(gateway_class = FavQs::Api)
         @token = nil
-        @gateway_class = gateway_class
+        @gateway_class = gateway_class.new('https://favqs.com/api/qotd')
       end
 
       def find_random
-        puts @gateway_class.instance_methods
-        # data = @gateway_class.quote_data
-        # build_entity(data)
+        data = @gateway_class.quote_data
+        build_entity(data)
       end
 
       def build_entity(data)
-        # puts data
         DataMapper.new(data).build_entity
       end
 
@@ -30,7 +28,7 @@ module LightofDay
         end
 
         def build_entity
-          LightofDay::Entity::Inspiration.new(
+          LightofDay::FavQs::Entity::Inspiration.new(
             topics:,
             author:,
             quote:
@@ -53,6 +51,7 @@ module LightofDay
   end
 end
 
+# test_code
 project = LightofDay::FavQs::InspirationMapper
           .new.find_random
 puts project.topics
