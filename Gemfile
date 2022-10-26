@@ -18,3 +18,7 @@ gem 'webmock', '~> 3'
 
 # Utility Tools
 gem 'rake'
+
+# Validation
+gem 'dry-struct'
+gem 'dry-types'
