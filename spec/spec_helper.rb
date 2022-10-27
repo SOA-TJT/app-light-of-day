@@ -11,7 +11,9 @@ require 'minitest/rg'
 require 'vcr'
 require 'webmock'
 
-require_relative '../lib/unsplash_api'
+# require_relative '../lib/unsplash_api'
+require_relative '../require_app'
+require_app
 
 ID = '-PcrXRjoP-A'
 key_path = File.expand_path('../config/secrets.yml', __dir__)
