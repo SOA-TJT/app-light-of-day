@@ -7,17 +7,20 @@ module LightofDay
     # FavQs api to get Data
     class Api < GeneralApi
       
-      # UNSPLAH_TOKEN = 'VJ8XVHxL1FdA_qYgFP2REOu1FBoLnfEeTuaJ3qIGhaE'
-      # UNSPLASH_PATH = 'https://api.unsplash.com/'
       # def initialize(path)
       #   super(path)
       # end
+      def photo_data
+        Requset.new(@token).get_with_authorized(@path, 'Client-ID').parse
+      end
+=begin
       def topic_data
         Requset.new(@token).get_with_authorized(@path, 'Client-ID').parse
       end
       def view_data
         Requset.new(@token).get_with_authorized(@path, 'Client-ID').parse
       end
+=end
     end
   end
 end
