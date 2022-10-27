@@ -15,24 +15,20 @@ module LightofDay
       end
 
       def find_a_photo
-        # @gateway.photo_data.map do |data|
-        #    TopicMapper.build_entity(data)
-        # end
         data = @gateway.photo_data
         build_entity(data)
       end
 
-      def self.build_entity(data)
+      def build_entity(data)
         DataMapper.new(data, @token).build_entity
       end
 
-      # Distribute the data into Inspiration Entity
+      # Distribute the data into View Entity
       class DataMapper
         def initialize(data, token)
           @data = data
-          TopicMapper.new(@token).find_all_topics
-          @view_mapper = ViewMapper.new(
-            token,
+          @topic_mapper = TopicMapper.new(
+            token
           )
         end
 
@@ -84,5 +80,4 @@ end
 
 # test_code
 
-LightofDay::Unsplash::TopicMapper
-  .new(UNSPLASH_SECRETS_KEY).find_all_topics
+# LightofDay::Unsplash::ViewMapper.new(UNSPLASH_SECRETS_KEY, 'xjPR4hlkBGA')

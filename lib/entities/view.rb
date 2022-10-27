@@ -11,7 +11,7 @@ module LightofDay
 
         attribute :width, Strict::Integer
         attribute :height, Strict::Integer
-        attribute :topic, Strict::Arrsay.of(String)
+        attribute :topic, Strict::Array.of(String)
         attribute :urls, Strict::String
       end
     end
