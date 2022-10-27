@@ -27,7 +27,7 @@ def call_unsplash_topic(config)
   topic_wallpapers = call_unsplash_url(config, topic_wallpapers_url).parse
 
   topic_results = {}
-  for i in 0..23
+  topic_wallpapers.length.times do |i|
     per_topic_results = {}
     per_topic_results['topic_id'] = topic_wallpapers[i]['id']
     per_topic_results['title'] = topic_wallpapers[i]['title']
@@ -36,7 +36,7 @@ def call_unsplash_topic(config)
     # From epic drone shots to inspiring moments in nature — submit your best desktop and mobile backgrounds.\r\n\r\n
     per_topic_results['topic_url'] = topic_wallpapers[i]['links']['html']
     # https://unsplash.com/t/wallpapers
-    topic_results[i+1] = per_topic_results
+    topic_results[i + 1] = per_topic_results
   end
   topic_results
 end
@@ -61,7 +61,7 @@ photo_results['creator'] = {
   photo: mushroom_photo['user']['profile_image']['large'] # https://images.unsplash.com/profile-1649848634149-2787772c4ae8?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128
 }
 photo_results['topics'] = mushroom_photo['topic_submissions']
-#photo_results['topics'] = mushroom_photo['topic_submissions'].keys.map { |topic| call_unsplash_topic(config, topic) }
+# photo_results['topics'] = mushroom_photo['topic_submissions'].keys.map { |topic| call_unsplash_topic(config, topic) }
 
 # topics wallpapers
 unsplash_results['view'] = photo_results
@@ -71,9 +71,5 @@ unsplash_bad_url = unsplash_api_path('people/000')
 unsplash_response[unsplash_bad_url] = call_unsplash_url(config, unsplash_bad_url)
 unsplash_response[unsplash_bad_url].parse
 
-
 output_path = File.expand_path('../spec/fixtures/unsplash_results.yml', __dir__)
 File.write(output_path, unsplash_results.to_yaml)
-
-
-# puts call_unsplash_topic(config)

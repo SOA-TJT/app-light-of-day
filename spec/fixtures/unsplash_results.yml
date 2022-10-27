@@ -1,19 +1,16 @@
 ---
 view:
-  width: 6122
-  height: 4084
-  urls: https://images.unsplash.com/photo-1600424804969-3fce0c50da35?ixid=MnwzNzE2OTd8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NjY4NjM5MjI&ixlib=rb-4.0.3
+  width: 4129
+  height: 2385
+  urls: https://images.unsplash.com/photo-1666475877076-85f1d002c34f?ixid=MnwzNzE2OTd8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NjY4NjQxNTc&ixlib=rb-4.0.3
   creator:
-    :name: Kadir Celep
+    :name: Seval Torun
     :bio:
-    :photo: https://images.unsplash.com/profile-1564389848280-622279d1e303?ixlib=rb-1.2.1&crop=faces&fit=crop&w=128&h=128
+    :photo: https://images.unsplash.com/profile-1661101844510-7a8c6d58affeimage?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128
   topics:
     food-drink:
       status: approved
-      approved_on: '2020-09-28T11:40:11Z'
-    interiors:
-      status: approved
-      approved_on: '2020-09-24T07:32:21Z'
+      approved_on: '2022-10-26T14:23:57Z'
 topics:
   1:
     topic_id: xjPR4hlkBGA
