@@ -9,7 +9,7 @@ module LightofDay
       class Topic < Dry::Struct
         include Dry.Types
 
-        attribute :topics_id, Strict::String
+        attribute :topic_id, Strict::String
         attribute :title, Strict::String
         attribute :description, Strict::String
         attribute :topic_url, Strict::String

@@ -11,7 +11,7 @@ module LightofDay
       #   super(path)
       # end
       def photo_data
-        Requset.new(@token).get_with_authorized(@path, 'Client-ID').parse
+        Requset.new(UNSPLASH_SECRETS_KEY).get_with_authorized(@path, 'Client-ID').parse
       end
 =begin
       def topic_data
@@ -26,5 +26,5 @@ module LightofDay
 end
 
 # test
-# teat_data = LightofDay::Unsplash::Api.new('https://api.unsplash.com/photos/random/?topics=xjPR4hlkBGA&orientation=landscape').topic_data
+# teat_data = LightofDay::Unsplash::Api.new('https://api.unsplash.com/topics/?per_page=30').photo_data
 # puts teat_data
