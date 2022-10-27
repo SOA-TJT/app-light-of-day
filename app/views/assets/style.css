@@ -110,11 +110,11 @@ body{
 .topic-description{
   font-weight: 500;
   font-size: 12px;
-  line-height: 20px;
-  display: flex;
-  align-items: center;
-  display: inline-block;
+  line-height: 1.6;
   padding: 10px 20px;
+  overflow: hidden;
+  max-height: 20vh;
+  min-height: 20vh;
 }
 .topic-link{
   text-decoration: none;
