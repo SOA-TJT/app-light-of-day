@@ -9,9 +9,9 @@ module LightofDay
   module Unsplash
     # Distribute the Data From the Quote Api
     class ViewMapper
-      def initialize(un_token, topicID, gateway_class = Unsplash::Api)
+      def initialize(un_token, topicid, gateway_class = Unsplash::Api)
         @token = un_token
-        @gateway = gateway_class.new('https://api.unsplash.com/photos/random/?topics=#{topicID}&orientation=landscape')
+        @gateway = gateway_class.new("https://api.unsplash.com/photos/random/?topics=#{topicid}&orientation=landscape")
       end
 
       def find_a_photo
@@ -32,7 +32,7 @@ module LightofDay
           @data = data
           TopicMapper.new(@token).find_all_topics
           @view_mapper = ViewMapper.new(
-            token, 
+            token,
           )
         end
 
@@ -65,19 +65,18 @@ module LightofDay
         def urls
           @data['urls']['raw']
         end
-        
+
         def name
-            @data['user']['name']
+          @data['user']['name']
         end
 
         def bio
-            @data['user']['bio']
+          @data['user']['bio']
         end
 
         def image
-            @data['user']['profile_image']['large']
+          @data['user']['profile_image']['large']
         end
-
       end
     end
   end
@@ -86,11 +85,4 @@ end
 # test_code
 
 LightofDay::Unsplash::TopicMapper
-          .new(UNSPLASH_SECRETS_KEY).find_all_topics
-
-=begin
-puts project.topic_id
-puts project.title
-puts project.description
-puts project.topic_url
-=end
+  .new(UNSPLASH_SECRETS_KEY).find_all_topics

@@ -6,7 +6,7 @@ require 'dry-struct'
 module LightofDay
   module Unsplash
     module Entity
-      class Topic < Dry::Struct
+      class Creator < Dry::Struct
         include Dry.Types
 
         attribute :name, Strict::String
