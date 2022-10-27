@@ -14,7 +14,7 @@ module LightofDay
 
       def find_all_topics
         @gateway.photo_data.map do |data|
-            TopicMapper.build_entity(data)
+          TopicMapper.build_entity(data)
         end
         # data = @gateway.photo_data
         # build_entity(data)
@@ -65,7 +65,7 @@ end
 # test_code
 
 LightofDay::Unsplash::TopicMapper
-          .new(UNSPLASH_SECRETS_KEY).find_all_topics
+  .new(UNSPLASH_SECRETS_KEY).find_all_topics
 
 =begin
 puts project.topic_id
