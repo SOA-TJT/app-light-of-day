@@ -1,7 +1,7 @@
 # frozen_string_literal: false
 
-require_relative '../entities/inspiration'
-require_relative '../gateways/favqs_api'
+require_relative '../entities/topic'
+require_relative '../gateways/unsplash_api'
 
 module LightofDay
   module Unsplash
