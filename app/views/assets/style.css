@@ -17,30 +17,41 @@ body{
   font-weight: bold;
   font-size: 24px;
   font-size: 1rem;
-  margin-top: 80px;
+  margin: auto;
+  margin-top: 60px;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  /* top: 50%;   */
+  left: 50%;
+  transform: translate(-50%, 0);
+  /* width: 20%; */
+  
 }
 .service-logo{
   /* opacity: 0.9; */
   margin: 0;
   padding: 0;
-  display: inline-block;
-  background: #fff;
+  display: block;
+  /* background: #fff; */
   border-radius: 5px;
   overflow: hidden;
+  /* position: relative; */
   position: absolute;
-  left: 0;
+  left: 10px;
+  top: 20px;
 }
 .sv-light,
 .sv-of,
 .sv-day{
   margin: 0;
   display: inline-block;
-  padding: 5px 8px;
+  padding: 5px 12px;
   /* padding-top: 15px;
   padding-bottom: 15px; */
   font-size: 20px;
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: 1%;
   line-height: 1.6;
   
   /* color: rgb(235, 212, 4); */
@@ -61,21 +72,26 @@ body{
   /* padding:0 5px; */
   
 }
-.header,.container{
+.header,.container-fluid{
   width: 90%;
   margin: auto;
   padding: 0;
+  display: block;
   /* background: #000; */
 }
-
+/* .container-fluid{
+  background: rgb(0, 26, 255);
+} */
 .header{
-  padding:20px 10px;
+  padding: 20px 10px;
   position: relative;
-  display: flex;
+  /* display: flex; */
   /* background: #000; */
-  justify-content: center;
+  
+  /* width: 100%; */
+  /* justify-content: center; */
 }
-.container{
+.container-fluid{
   margin-bottom: 80px;
 }
 .topic-section{
@@ -84,14 +100,15 @@ body{
   padding: 0;
   /* background: rgb(72, 0, 255); */
   display: flex;
-  /* justify-content: center; */
+  justify-content: flex-start;
+  /* justify-content: space-between; */
   /* flex-wrap: wrap; */
 }
 .topic-card{
   background-color: #fff;
   /* width: 30%; */
   padding: 0;
-  margin: 10px 20px 0px 0px;
+  margin: 20px 10px 0px 10px;
   /* margin-top: 20px; */
   /* max-width: 30%; */
   position: relative;
@@ -125,13 +142,15 @@ body{
   float: right;
   letter-spacing: 0.01em;
   color: #FFFFFF;
+ 
   font-weight: bold;
 }
 .topic-link a:visited,a:link{
    color: #FFFFFF;
 }
 .choose-topic{
-  margin: 20px 0;
+  position: relative;
+  margin: 20px 10px;
 }
 .send-topic{
   background: #50885D;
@@ -141,6 +160,7 @@ body{
   float: right;
   color: #FFFFFF;
   font-weight: bold;
+  
 }
 .clear{
   clear: both;
