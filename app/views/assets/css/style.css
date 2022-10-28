@@ -9,7 +9,12 @@ body{
   height: 100%;
   background:  #F1EBEB;;
 }
-
+.error-card{
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  right: 20%;
+}
 .topic-choose-title{
   background: #FFFFFF;
   border-radius: 5px;
