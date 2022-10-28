@@ -4,7 +4,7 @@
     .sv-of of
     .sv-day Day 
   .topic-choose-title Pick a Topic
-.container
+.container-fluid
   form role="form" action="/light-of-day" method="post" 
     .row.row-cols-auto.row-cols-md-2.row-cols-lg-3.topic-section
       - topics.each_with_index do |topic, idx|
@@ -22,3 +22,4 @@
   .copyright 
     img.company-logo src="https://github.com/SOA-TJT/Team-Logo/blob/SOA-TJT-patch-1/Logo.png?raw=true"
     .company TJT@2022.Insipiration
+
