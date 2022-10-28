@@ -178,6 +178,21 @@ body{
   top: 20px;
   opacity: .9;
 }
+.quote-card{
+  position: absolute;
+  left: 5%;
+  top: 15%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 90%;
+}
+.quote-title{
+  font-size: 24px;
+}
+/* .quote-author{
+
+} */
 
 .poa-footer{
   position: absolute;

@@ -13,6 +13,14 @@ task :spec do
   sh 'ruby spec/unsplash_api_spec.rb'
 end
 
+task :run do
+  sh 'bundle exec puma'
+end
+
+task :rerun do
+  sh "rerun -c --ignore 'coverage/*' -- bundle exec puma"
+end
+
 namespace :vcr do
   desc 'delete cassette fixtures'
   task :wipe do

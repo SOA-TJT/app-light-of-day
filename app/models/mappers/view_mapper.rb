@@ -1,7 +1,6 @@
 # frozen_string_literal: false
 
 require_relative '../entities/view'
-require_relative '../entities/creator'
 require_relative '../gateways/unsplash_api'
 require_relative 'topic_mapper'
 
@@ -11,7 +10,7 @@ module LightofDay
     class ViewMapper
       def initialize(un_token, topicid, gateway_class = Unsplash::Api)
         @token = un_token
-        @gateway = gateway_class.new("https://api.unsplash.com/photos/random/?topics=#{topicid}&orientation=landscape")
+        @gateway = gateway_class.new("https://api.unsplash.com/photos/random/?topics=#{topicid}&orientation=landscape", @token)
       end
 
       def find_a_photo
@@ -34,12 +33,10 @@ module LightofDay
 
         def build_entity
           LightofDay::Unsplash::Entity::View.new(
-            topic_id:,
-            title:,
-            description:,
-            topic_url:
-          )
-          LightofDay::Unsplash::Entity::Creator.new(
+            topic:,
+            width:,
+            height:,
+            urls:,
             name:,
             bio:,
             image:
@@ -67,7 +64,7 @@ module LightofDay
         end
 
         def bio
-          @data['user']['bio']
+          @data['user']['bio'] ? @data['user']['bio'] : ''
         end
 
         def image

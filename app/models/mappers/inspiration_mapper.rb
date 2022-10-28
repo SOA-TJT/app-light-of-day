@@ -54,6 +54,6 @@ end
 # test_code
 project = LightofDay::FavQs::InspirationMapper
           .new.find_random
-puts project.topics
-puts project.author
-puts project.quote
+# puts project.topics
+# puts project.author
+# puts project.quote

@@ -1,14 +1,18 @@
 .view-pic 
-  img src="https://images.pling.com/img/00/00/62/84/47/1737508/beautiful-scenery-tree-sea-sunset-hd-wallpaper-3842-1920x1080.jpg"
+  img src="#{view.urls}"
+.quote-card
+  .quote-title #{inspiration.quote}
+  .quote-author #{inspiration.author}
 .service-logo.poa-header
   .sv-light Light 
   .sv-of of 
-  .sv-day Day 
+  .sv-day Day
+
 .view-info-card 
-  .view-creator Creator： Jerry
-  .view-topics Topics： Scenery
+  .view-creator Creator： #{view.name}
+  .view-topics Topics： #{view.topic.join(', ')}
   .view-url
-    a href="#" View 
+    a href="#{view.urls}" View 
 .footer.poa-footer 
   .copyright 
     img.company-logo src="https://github.com/SOA-TJT/Team-Logo/blob/SOA-TJT-patch-1/Logo.png?raw=true" 

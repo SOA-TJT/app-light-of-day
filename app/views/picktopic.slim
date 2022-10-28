@@ -7,20 +7,13 @@
 .container
   form role="form" action="/light-of-day" method="post" 
     .row.row-cols-auto.row-cols-md-2.row-cols-lg-3.topic-section
-      .col 
-        .topic-card
-          input type="radio" name="topic" id="topic1"
-          .topic-title Food & Drink
-          .topic-description Warning: don’t look at this topic if you’re hungry Welcome to the world of culinary photography — with shots of ice-cold beverages, home-cooked meals and more.\r\n\r\n
-          .topic-link 
-            a herf="https://google.com" Link
-      .col 
-        .topic-card
-          input type="radio" name="topic" id="topic1"
-          .topic-title Food & Drink
-          .topic-description Warning: don’t look at this topic if you’re hungry Welcome to the world of culinary photography — with shots of ice-cold beverages, home-cooked meals and more.\r\n\r\n
-          .topic-link 
-            a herf="https://google.com" Link
+      - topics.each_with_index do |topic, idx|
+        .col 
+          .topic-card
+            input type="radio" name="topic_id" id="topic#{idx}" value="#{topic.topic_id}"
+            .topic-title #{topic.title}
+            .topic-description #{topic.description}
+            a.topic-link href="#{topic.topic_url}" target="blank" Link
     .choose-topic
       .send-topic 
         input type="submit" value="Next Step"

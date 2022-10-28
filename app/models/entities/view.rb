@@ -13,6 +13,9 @@ module LightofDay
         attribute :height, Strict::Integer
         attribute :topic, Strict::Array.of(String)
         attribute :urls, Strict::String
+        attribute :name, Strict::String
+        attribute :bio, Strict::String
+        attribute :image, Strict::String
       end
     end
   end
