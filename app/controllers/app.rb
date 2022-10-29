@@ -10,6 +10,11 @@ module LightofDay
     plugin :assets, css: 'style.css', path: 'app/views/assets/'
     plugin :common_logger, $stderr
     plugin :halt
+    plugin :status_handler
+
+    status_handler(404) do
+      view('404')
+    end
 
     route do |routing|
       routing.assets # load CSS
@@ -26,16 +31,18 @@ module LightofDay
           # POST /light-of-day/
           routing.post do
             topic_id = routing.params['topic_id']
-            routing.halt 400 unless topic_id
-            routing.redirect "light-of-day/#{topic_id}"
+            topic = topics_data.find { |t| t.topic_id == topic_id }
+            routing.halt 404 unless topic
+            routing.redirect "light-of-day/#{topic.slug}"
           end
         end
 
-        routing.on String do |topic_id|
+        routing.on String do |topic_slug|
           # GET /light-of-day/{topic}
           routing.get do
-            routing.halt 400 unless topic_id
-            view_data = LightofDay::Unsplash::ViewMapper.new(UNSPLAH_TOKEN, topic_id).find_a_photo
+            topic = topics_data.find { |t| t.slug == topic_slug }
+            routing.halt 404 unless topic
+            view_data = LightofDay::Unsplash::ViewMapper.new(UNSPLAH_TOKEN, topic.topic_id).find_a_photo
             inspiration_data = LightofDay::FavQs::InspirationMapper.new.find_random
             view 'view', locals: { view: view_data, inspiration: inspiration_data }
           end

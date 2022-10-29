@@ -32,6 +32,7 @@ module LightofDay
           LightofDay::Unsplash::Entity::Topic.new(
             topic_id:,
             title:,
+            slug:,
             description:,
             topic_url:
           )
@@ -43,6 +44,10 @@ module LightofDay
 
         def title
           @data['title']
+        end
+
+        def slug
+          @data['slug']
         end
 
         def description

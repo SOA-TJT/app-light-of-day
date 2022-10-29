@@ -11,6 +11,7 @@ module LightofDay
 
         attribute :topic_id, Strict::String
         attribute :title, Strict::String
+        attribute :slug, Strict::String
         attribute :description, Strict::String
         attribute :topic_url, Strict::String
       end

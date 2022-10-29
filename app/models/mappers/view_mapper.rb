@@ -56,7 +56,7 @@ module LightofDay
         end
 
         def urls
-          @data['urls']['raw']
+          @data['urls']['full']
         end
 
         def name
