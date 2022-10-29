@@ -9,6 +9,8 @@ module LightofDay
       @path = path
     end
 
+    private
+
     def get(token_acces_variable = '', token = '')
       http_response = HTTP.headers(
         'Accept' => 'application/json',
