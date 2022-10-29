@@ -30,16 +30,8 @@ describe 'Tests Unsplash API library' do
       _(view.width).wont_be_nil
       _(view.height).wont_be_nil
       _(view.urls).wont_be_nil
-      _(view.name).wont_be_nil
+      _(view.creator).wont_be_nil
     end
-
-    # it '😭: should raise exception on incorrect view ID' do
-      # _(proc do
-        # LightofDay::Unsplash::ViewMapper
-          # .new(UNSPLAH_TOKEN, 'BAD_TOPIC_ID')
-          # .find_a_photo
-      # end).must_raise LightofDay::Unsplash::Api::Response::NotFound
-    # end
 
     it '😭: should raise exception when unauthorized' do
       _(proc do

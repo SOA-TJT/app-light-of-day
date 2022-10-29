@@ -14,10 +14,6 @@ module LightofDay
 
       def find_random
         data = @gateway_class.quote_data
-        build_entity(data)
-      end
-
-      def build_entity(data)
         DataMapper.new(data).build_entity
       end
 
@@ -50,10 +46,3 @@ module LightofDay
     end
   end
 end
-
-# test_code
-project = LightofDay::FavQs::InspirationMapper
-          .new.find_random
-# puts project.topics
-# puts project.author
-# puts project.quote

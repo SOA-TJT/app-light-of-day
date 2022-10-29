@@ -31,18 +31,18 @@ module LightofDay
           # POST /light-of-day/
           routing.post do
             topic_id = routing.params['topic_id']
-            topic = topics_data.find { |t| t.topic_id == topic_id }
-            routing.halt 404 unless topic
-            routing.redirect "light-of-day/#{topic.slug}"
+            topic_data = topics_data.find { |topic| topic.topic_id == topic_id }
+            routing.halt 404 unless topic_data
+            routing.redirect "light-of-day/#{topic_data.slug}"
           end
         end
 
         routing.on String do |topic_slug|
           # GET /light-of-day/{topic}
           routing.get do
-            topic = topics_data.find { |t| t.slug == topic_slug }
-            routing.halt 404 unless topic
-            view_data = LightofDay::Unsplash::ViewMapper.new(UNSPLAH_TOKEN, topic.topic_id).find_a_photo
+            topic_data = topics_data.find { |topic| topic.slug == topic_slug }
+            routing.halt 404 unless topic_data
+            view_data = LightofDay::Unsplash::ViewMapper.new(UNSPLAH_TOKEN, topic_data.topic_id).find_a_photo
             inspiration_data = LightofDay::FavQs::InspirationMapper.new.find_random
             view 'view', locals: { view: view_data, inspiration: inspiration_data }
           end
