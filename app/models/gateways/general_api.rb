@@ -63,8 +63,8 @@ module LightofDay
       NotFound = Class.new(StandardError)
 
       HTTP_ERROR = {
-        401 => 'Unauthorized',
-        404 => 'Not Found'
+        401 => Unauthorized,
+        404 => NotFound
       }.freeze
 
       def successful?
