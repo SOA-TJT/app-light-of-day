@@ -10,7 +10,7 @@
       - topics.each_with_index do |topic, idx|
         .col 
           .topic-card
-            input type="radio" name="topic_id" id="topic#{idx}" value="#{topic.topic_id}"
+            input type="radio" required="required" name="topic_id" id="topic#{idx}" value="#{topic.topic_id}"
             .topic-title #{topic.title}
             .topic-description #{topic.description}
             a.topic-link href="#{topic.topic_url}" target="blank" Link
