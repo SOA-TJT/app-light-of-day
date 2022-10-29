@@ -58,11 +58,15 @@ GEM
     minitest (5.16.3)
     minitest-rg (5.2.0)
       minitest (~> 5.0)
+    nio4r (2.5.8)
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
     path_expander (1.1.1)
     public_suffix (5.0.0)
+    puma (5.6.5)
+      nio4r (~> 2.0)
+    rack (3.0.0)
     rainbow (3.1.1)
     rake (13.0.6)
     reek (6.1.1)
@@ -71,6 +75,8 @@ GEM
       rainbow (>= 2.0, < 4.0)
     regexp_parser (2.6.0)
     rexml (3.2.5)
+    roda (3.61.0)
+      rack
     rubocop (1.36.0)
       json (~> 2.3)
       parallel (~> 1.10)
@@ -93,6 +99,11 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
+    slim (4.1.0)
+      temple (>= 0.7.6, < 0.9)
+      tilt (>= 2.0.6, < 2.1)
+    temple (0.8.2)
+    tilt (2.0.11)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8.2)
@@ -116,10 +127,13 @@ DEPENDENCIES
   http (~> 5)
   minitest (~> 5)
   minitest-rg (~> 5)
+  puma (~> 5)
   rake
   reek
+  roda (~> 3)
   rubocop
   simplecov (~> 0)
+  slim (~> 4)
   vcr (~> 6)
   webmock (~> 3)
 
