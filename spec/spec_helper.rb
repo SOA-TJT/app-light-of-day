@@ -15,7 +15,7 @@ require 'webmock'
 require_relative '../require_app'
 require_app
 
-ID = '-PcrXRjoP-A'
+TOPIC_ID = 'xjPR4hlkBGA'
 key_path = File.expand_path('../config/secrets.yml', __dir__)
 CONFIG = YAML.safe_load(File.read(key_path))
 UNSPLAH_TOKEN = CONFIG['UNSPLASH_SECRETS_KEY']
