@@ -1,43 +1,26 @@
-# SOA-project Github API Client
+# Light of Day
 
-###### Project to gather useful information from unsplash
+Get a daily inspirational photo and quote on the website, and you will feel that today is a wonderful day!
 
-***
-### Resources
-***
+## Product  Language
 
-* Photos
-* Search
-* Collections
-* Topics
-***
+- Codepraise -> LightofDay
+- Photo -> View
+- Topic ->  Topic
+- User -> Creator
 
-### Elements
-***
-* Photo
-  * width
-  * height
-  * urls
-    * full
-  * likes
-  * user
-    * name
-    * bio
-    * profile_image
-  * topics
-* Topics
-  * title
-  * description
-  * links
-    * url
-  * owners
-    * name 
-***
+## Overview
 
-### Entities
-***
+- You can save the pictures(with words) you like.
+- The system will recommend pictures according to your collections categories.
+- Subscribe to enjoy sharing pictures on telegram.
+- The design of Pomodoro Timer and some small functions such as to-do list is applied to the website.
 
-###### These are objects that are important to the project, following my own naming conventions
+## Short-term usability goals
 
-* Photos
-* Topics
+- Get images from Unsplash API, and quotes from FavQs API
+- Display a View that combines photo and elegant quote.
+
+## Long-term goals
+
+- Analyze the View Data ( Unsplash API) and Inspirations( FavQs API ) to match the Topic

@@ -1,63 +1,70 @@
 # frozen_string_literal: true
 
-require 'minitest/autorun'
-require 'minitest/rg'
-require 'yaml'
-require_relative '../lib/unslapsh_api'
-
-RESOURCE_ONE = 'photos'
-ID = 'WPXxp36tkHQ'
-RESOURCE_TWO = 'topics'
-CATEGORY = 'wallpapers'
-CONFIG = YAML.safe_load(File.read('config/secrets.yml'))
-UNSPLAH_TOKEN = CONFIG['UNSPLASH_SECRETS_KEY']
-CORRECT = YAML.safe_load(File.read('spec/fixtures/unsplash_results.yml'))
+require_relative 'spec_helper'
 
 describe 'Tests Unsplash API library' do
+  VCR.configure do |c|
+    c.cassette_library_dir = CASSETTES_FOLDER
+    c.hook_into :webmock
+
+    c.filter_sensitive_data('<UNSPLAH_TOKEN>') { UNSPLAH_TOKEN }
+    c.filter_sensitive_data('<UNSPLAH_TOKEN_ESC>') { CGI.escape(UNSPLAH_TOKEN) }
+  end
+
+  before do
+    VCR.insert_cassette CASSETTE_FILE,
+                        record: :new_episodes,
+                        match_requests_on: %i[method uri headers]
+  end
+
+  after do
+    VCR.eject_cassette
+  end
+
   describe 'Photos information' do
-    it 'HAPPY: should provide correct photo attributes' do
-      photo = CodePraise::UnsplashApi.new(UNSPLAH_TOKEN)
-                                     .photo(ID)
-      _(photo.width).must_equal CORRECT['width']
-      _(photo.height).must_equal CORRECT['height']
+    it '😃: should provide view attributes' do
+      view =
+        LightofDay::Unsplash::ViewMapper
+        .new(UNSPLAH_TOKEN, TOPIC_ID)
+        .find_a_photo
+      _(view.width).wont_be_nil
+      _(view.height).wont_be_nil
+      _(view.urls).wont_be_nil
+      _(view.name).wont_be_nil
     end
 
-    it 'SAD: should raise exception on incorrect photo' do
-      _(proc do
-        CodePraise::UnsplashApi.new(UNSPLAH_TOKEN).photo('anyID')
-      end).must_raise CodePraise::UnsplashApi::Errors::NotFound
-    end
+    # it '😭: should raise exception on incorrect view ID' do
+      # _(proc do
+        # LightofDay::Unsplash::ViewMapper
+          # .new(UNSPLAH_TOKEN, 'BAD_TOPIC_ID')
+          # .find_a_photo
+      # end).must_raise LightofDay::Unsplash::Api::Response::NotFound
+    # end
 
-    it 'SAD: should raise exception when unauthorized' do
+    it '😭: should raise exception when unauthorized' do
       _(proc do
-        CodePraise::UnsplashApi.new('BAD_TOKEN').photo('anyID') 
-      end).must_raise CodePraise::UnsplashApi::Errors::Unauthorized
+        LightofDay::Unsplash::ViewMapper
+        .new('BAD_TOKEN', TOPIC_ID)
+        .find_a_photo
+      end).must_raise LightofDay::Unsplash::Api::Response::Unauthorized
     end
   end
 
   describe 'Topics information' do
-    before do
-      @photo = CodePraise::UnsplashApi.new(UNSPLAH_TOKEN)
-                                      .photo(ID)
+    it '😃: should identify topics' do
+      topics = LightofDay::Unsplash::TopicMapper
+               .new(UNSPLAH_TOKEN)
+               .find_all_topics
+      _(topics.count).must_equal CORRECT['topics'].count
+      _(topics.first.topic_id).must_equal CORRECT['topics'][1]['topic_id']
+      _(topics.last.topic_id).must_equal CORRECT['topics'][24]['topic_id']
     end
-
-    it 'HAPPY: should recognize owner' do
-      _(@photo.owner).must_be_kind_of CodePraise::User
-    end
-
-    it 'HAPPY: should identify owner' do
-      _(@photo.owner.name).wont_be_nil
-      _(@photo.owner.name).must_equal CORRECT['name']
-    end
-    it 'HAPPY: should provide correct topic attributes' do
-      topic = @photo.topic
-      _(topic.title).must_equal CORRECT['title']
-      _(topic.description).must_equal CORRECT['description']
-    end
-    it 'SAD: should raise exception on incorrect photo' do
+    it '😭: should raise exception when unauthorized' do
       _(proc do
-        CodePraise::UnsplashApi.new(UNSPLAH_TOKEN).topic('anyCATEGORY')
-      end).must_raise CodePraise::UnsplashApi::Errors::NotFound
+        LightofDay::Unsplash::TopicMapper
+        .new('BAD_TOKEN')
+        .find_all_topics
+      end).must_raise LightofDay::Unsplash::Api::Response::Unauthorized
     end
   end
 end

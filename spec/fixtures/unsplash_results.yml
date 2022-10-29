@@ -1,0 +1,173 @@
+---
+view:
+  width: 4129
+  height: 2385
+  urls: https://images.unsplash.com/photo-1666475877076-85f1d002c34f?ixid=MnwzNzE2OTd8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NjY4NjQxNTc&ixlib=rb-4.0.3
+  creator:
+    :name: Seval Torun
+    :bio:
+    :photo: https://images.unsplash.com/profile-1661101844510-7a8c6d58affeimage?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128
+  topics:
+    food-drink:
+      status: approved
+      approved_on: '2022-10-26T14:23:57Z'
+topics:
+  1:
+    topic_id: xjPR4hlkBGA
+    title: Food & Drink
+    description: "Warning: don’t look at this topic if you’re hungry! Welcome to the
+      world of culinary photography — with shots of ice-cold beverages, home-cooked
+      meals and more.\r\n\r\n<p>Learn more <a href=\"https://unsplash.com/blog/unsplash-x-boxed-water/\">here</a>.
+      </p>"
+    topic_url: https://unsplash.com/t/food-drink
+  2:
+    topic_id: BJJMtteDJA4
+    title: Current Events
+    description: 'Covering the latest important events, news-worthy moments and movements
+      from around the world — from political protests to cultural celebrations. When
+      submitting, please provide a photo description so we understand the full context
+      of the image. '
+    topic_url: https://unsplash.com/t/current-events
+  3:
+    topic_id: bo8jQKTaE0Y
+    title: Wallpapers
+    description: "From epic drone shots to inspiring moments in nature — submit your
+      best desktop and mobile backgrounds.\r\n\r\n"
+    topic_url: https://unsplash.com/t/wallpapers
+  4:
+    topic_id: CDwuwXJAbEw
+    title: 3D Renders
+    description: Submit your 3-dimensional images of any category, designed in the
+      software of your choice, rendered into JPEG images.
+    topic_url: https://unsplash.com/t/3d-renders
+  5:
+    topic_id: iUIsnVtjB0Y
+    title: Textures & Patterns
+    description: Whether you’re looking for stunning macro-photography or shots of
+      complex architectural shapes — you’ve come to the right place.
+    topic_url: https://unsplash.com/t/textures-patterns
+  6:
+    topic_id: qPYsDzvJOYc
+    title: Experimental
+    description: Through the use of unlikely textures, intriguing subject matter,
+      and new formats — photography has the power to challenge our perspectives and
+      push creativity forward.
+    topic_url: https://unsplash.com/t/experimental
+  7:
+    topic_id: rnSKDHwwYUk
+    title: Architecture
+    description: 'Explore exteriors from around the world — from brutalist buildings
+      to minimalist structures that will give you a new appreciation for the art of
+      architecture. '
+    topic_url: https://unsplash.com/t/architecture
+  8:
+    topic_id: 6sMVjTLSkeQ
+    title: Nature
+    description: Let’s celebrate the magic of Mother Earth — with images of everything
+      our planet has to offer, from stunning seascapes, starry skies, and everything
+      in between.
+    topic_url: https://unsplash.com/t/nature
+  9:
+    topic_id: aeu6rL-j6ew
+    title: Business & Work
+    description: Reflecting the realities of the modern workplace in their many forms
+      — from images of remote working and start-ups to shots of engineers and artists
+      at work.
+    topic_url: https://unsplash.com/t/business-work
+  10:
+    topic_id: S4MKLAsBB74
+    title: Fashion
+    description: From street-style shots to editorial photography — find the latest
+      trends in beauty and fashion.
+    topic_url: https://unsplash.com/t/fashion
+  11:
+    topic_id: hmenvQhUmxM
+    title: Film
+    description: "Beautiful analog photography from the past and present day — featuring
+      polaroids, black and white images, grainy portraits, and more.\r\n"
+    topic_url: https://unsplash.com/t/film
+  12:
+    topic_id: _hb-dl4Q-4U
+    title: Health & Wellness
+    description: 'Celebrate a healthy mind, body and soul with photographs that showcase
+      everything from new medical discoveries and alternative medicines, to healthy
+      eating and meditation. '
+    topic_url: https://unsplash.com/t/health
+  13:
+    topic_id: towJZFskpGg
+    title: People
+    description: 'Real people, captured. Photography has the power to reflect the
+      world around us, give voice to individuals and groups within our communities
+      — and most importantly — tell their story. '
+    topic_url: https://unsplash.com/t/people
+  14:
+    topic_id: R_Fyn-Gwtlw
+    title: Interiors
+    description: 'Whether it’s a peaceful bedroom or a cluttered kitchen — photographs
+      of our spaces tell the story of who we are. '
+    topic_url: https://unsplash.com/t/interiors
+  15:
+    topic_id: xHxYTMHLgOc
+    title: Street Photography
+    description: 'From early morning commutes to neon-tinted nights, our streets have
+      become the fabric of our shared history. This category encompasses street photography
+      in every form. '
+    topic_url: https://unsplash.com/t/street-photography
+  16:
+    topic_id: Jpg6Kidl-Hk
+    title: Animals
+    description: Exotic wildlife, pet kittens — and everything in between. Uncover
+      the beauty of the animal kingdom through your screen.
+    topic_url: https://unsplash.com/t/animals
+  17:
+    topic_id: _8zFHuhRhyo
+    title: Spirituality
+    description: Photography has the ability to examine life’s big questions, by exploring
+      themes of love, loss, healing and human connection.
+    topic_url: https://unsplash.com/t/spirituality
+  18:
+    topic_id: Fzo3zuOHN6w
+    title: Travel
+    description: 'Discover hidden wonders and inspiring destinations around the world
+      from the comfort of your own home. '
+    topic_url: https://unsplash.com/t/travel
+  19:
+    topic_id: bDo48cUhwnY
+    title: Arts & Culture
+    description: Your daily dose of culture — with photography showcasing the best
+      in art, music and literature from around the world.
+    topic_url: https://unsplash.com/t/arts-culture
+  20:
+    topic_id: dijpbw99kQQ
+    title: History
+    description: 'Powerful photographs from the past — exploring monumental moments
+      throughout our shared history. '
+    topic_url: https://unsplash.com/t/history
+  21:
+    topic_id: Bn-DjrcBrwo
+    title: Athletics
+    description: Ready, set, snap. Capturing action in the every day — from the tough
+      gym workouts to the tense basketball games out on the court.
+    topic_url: https://unsplash.com/t/athletics
+  22:
+    topic_id: FY4YHxYhY-4
+    title: Digital Screens
+    description: "Submit images of your digital screens — from desktops and laptops,
+      to tablets and smartphones. Images of phones and computers are some of the most
+      used images on Unsplash, and a great way to gain visibility — but taking a good
+      photo of your digital screens can be trickier than it may seem.\r\n\r\n<p>Learn
+      how to shoot screens <a href=\"https://unsplash.com/blog/back-to-basics-how-to-shoot-screens/\">here</a>.</p>"
+    topic_url: https://unsplash.com/t/digital-screens
+  23:
+    topic_id: c7USHrQ0Ljw
+    title: COVID-19
+    description: 'Together, we’re building a library of visuals that reflect our new
+      reality due to the COVID-19 pandemic — from from shots empty public spaces to
+      handmade face masks. '
+    topic_url: https://unsplash.com/t/covid-19
+  24:
+    topic_id: M8jVbLbTRws
+    title: Architecture & Interiors
+    description: From towering skyscrapers to minimalist home decor, this category
+      showcases the best of architectures and interiors.
+    topic_url: https://unsplash.com/t/architecture-interior

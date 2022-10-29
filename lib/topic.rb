@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'user'
+require_relative 'creator'
 
-module CodePraise
+module LightofDay
   # Provides access to Topic data
   class Topic
-    attr_accessor :title, :description
+    attr_reader :title, :description
 
     def initialize(topic_data)
       @topic = topic_data
@@ -15,10 +15,6 @@ module CodePraise
 
     def topic_url
       @topic['links']['html']
-    end
-
-    def owner
-      @owner ||= User.new(@topic['owners'][0]['name'])
     end
   end
 end

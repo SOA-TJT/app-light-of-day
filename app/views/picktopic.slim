@@ -1,0 +1,25 @@
+.header 
+  .service-logo 
+    .sv-light Light
+    .sv-of of
+    .sv-day Day 
+  .topic-choose-title Pick a Topic
+.container-fluid
+  form role="form" action="/light-of-day" method="post" 
+    .row.row-cols-auto.row-cols-md-2.row-cols-lg-3.topic-section
+      - topics.each_with_index do |topic, idx|
+        .col 
+          .topic-card
+            input type="radio" name="topic_id" id="topic#{idx}" value="#{topic.topic_id}"
+            .topic-title #{topic.title}
+            .topic-description #{topic.description}
+            a.topic-link href="#{topic.topic_url}" target="blank" Link
+    .choose-topic
+      .send-topic 
+        input type="submit" value="Next Step"
+      .clear
+.footer
+  .copyright 
+    img.company-logo src="https://github.com/SOA-TJT/Team-Logo/blob/SOA-TJT-patch-1/Logo.png?raw=true"
+    .company TJT@2022.Insipiration
+
