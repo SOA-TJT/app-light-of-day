@@ -5,25 +5,17 @@ require 'http'
 module LightofDay
   # Create general Purpose API Connection
   class GeneralApi
-    def initialize(path, token = '')
+    def initialize(path)
       @path = path
-      @token = token
     end
 
-    # Send request to url
-    class Requset
-      def initialize(token)
-        @token = token
-      end
-
-      def get(url, token_acces_variable = '')
-        http_response = HTTP.headers(
-          'Accept' => 'application/json',
-          'Authorization' => "#{token_acces_variable} #{@token}"
-        ).get(url)
-        Response.new(http_response).tap do |response|
-          raise(response.error) unless response.successful?
-        end
+    def get(token_acces_variable = '', token = '')
+      http_response = HTTP.headers(
+        'Accept' => 'application/json',
+        'Authorization' => "#{token_acces_variable} #{token}"
+      ).get(@path)
+      Response.new(http_response).tap do |response|
+        raise(response.error) unless response.successful?
       end
     end
 

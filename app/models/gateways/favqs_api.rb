@@ -7,7 +7,7 @@ module LightofDay
     # FavQs api to get Data
     class Api < GeneralApi
       def quote_data
-        Requset.new(nil).get(@path).parse
+        get.parse
       end
     end
   end

@@ -11,6 +11,7 @@ module LightofDay
       def initialize(un_token, topicid, gateway_class = Unsplash::Api)
         @token = un_token
         @gateway = gateway_class.new("https://api.unsplash.com/photos/random/?topics=#{topicid}&orientation=landscape",
+                                     'Client-ID',
                                      @token)
       end
 
@@ -61,7 +62,3 @@ module LightofDay
     end
   end
 end
-
-# test_code
-
-# LightofDay::Unsplash::ViewMapper.new(UNSPLASH_SECRETS_KEY, 'xjPR4hlkBGA')

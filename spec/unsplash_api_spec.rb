@@ -38,7 +38,7 @@ describe 'Tests Unsplash API library' do
         LightofDay::Unsplash::ViewMapper
         .new('BAD_TOKEN', TOPIC_ID)
         .find_a_photo
-      end).must_raise LightofDay::Unsplash::Api::Response::Unauthorized
+      end).must_raise LightofDay::GeneralApi::Response::Unauthorized
     end
   end
 
@@ -56,7 +56,7 @@ describe 'Tests Unsplash API library' do
         LightofDay::Unsplash::TopicMapper
         .new('BAD_TOKEN')
         .find_all_topics
-      end).must_raise LightofDay::Unsplash::Api::Response::Unauthorized
+      end).must_raise LightofDay::GeneralApi::Response::Unauthorized
     end
   end
 end
