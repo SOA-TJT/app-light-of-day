@@ -22,58 +22,49 @@ describe 'Tests Unsplash API library' do
   end
 
   describe 'Photos information' do
-    it '😃: should provide correct view attributes' do
-      view = LightofDay::UnsplashApi.new(UNSPLAH_TOKEN).view(ID)
-      _(view.width).must_equal CORRECT['view']['width']
-      _(view.height).must_equal CORRECT['view']['height']
-      _(view.urls).must_equal CORRECT['view']['urls']
+    it '😃: should provide view attributes' do
+      view =
+        LightofDay::Unsplash::ViewMapper
+        .new(UNSPLAH_TOKEN, TOPIC_ID)
+        .find_a_photo
+      _(view.width).wont_be_nil
+      _(view.height).wont_be_nil
+      _(view.urls).wont_be_nil
+      _(view.name).wont_be_nil
     end
 
-    it '😭: should raise exception on incorrect view ID' do
-      _(proc do
-        LightofDay::UnsplashApi.new(UNSPLAH_TOKEN).view('anyID')
-      end).must_raise LightofDay::UnsplashApi::Response::NotFound
-    end
+    # it '😭: should raise exception on incorrect view ID' do
+      # _(proc do
+        # LightofDay::Unsplash::ViewMapper
+          # .new(UNSPLAH_TOKEN, 'BAD_TOPIC_ID')
+          # .find_a_photo
+      # end).must_raise LightofDay::Unsplash::Api::Response::NotFound
+    # end
 
     it '😭: should raise exception when unauthorized' do
       _(proc do
-        LightofDay::UnsplashApi.new('BAD_TOKEN').view(ID)
-      end).must_raise LightofDay::UnsplashApi::Response::Unauthorized
-    end
-  end
-
-  describe 'Creater information' do
-    before do
-      @view = LightofDay::UnsplashApi.new(UNSPLAH_TOKEN).view(ID)
-    end
-
-    it '😃: should get creator' do
-      _(@view.creator).must_be_kind_of LightofDay::Creator
-    end
-
-    it '😃: should identify creator' do
-      _(@view.creator.name).must_equal CORRECT['view']['creator'][:name]
-      _(@view.creator.bio).must_equal CORRECT['view']['creator'][:bio]
-      _(@view.creator.uesr_image).must_equal CORRECT['view']['creator'][:photo]
+        LightofDay::Unsplash::ViewMapper
+        .new('BAD_TOKEN', TOPIC_ID)
+        .find_a_photo
+      end).must_raise LightofDay::Unsplash::Api::Response::Unauthorized
     end
   end
 
   describe 'Topics information' do
-    before do
-      @view = LightofDay::UnsplashApi.new(UNSPLAH_TOKEN).view(ID)
-    end
-
     it '😃: should identify topics' do
-      topics = @view.topics
-      _(topics.count).must_equal CORRECT['view']['topics'].count
-
-      keys = %w[title description topic_url]
-      keys.each do |key|
-        titles = topics.map(&key.to_sym)
-        # correct_titles = join_value(CORRECT['view']['topics'], key)
-        correct_titles = CORRECT['view']['topics'].map { |item| item[key] }
-        _(titles).must_equal correct_titles
-      end
+      topics = LightofDay::Unsplash::TopicMapper
+               .new(UNSPLAH_TOKEN)
+               .find_all_topics
+      _(topics.count).must_equal CORRECT['topics'].count
+      _(topics.first.topic_id).must_equal CORRECT['topics'][1]['topic_id']
+      _(topics.last.topic_id).must_equal CORRECT['topics'][24]['topic_id']
+    end
+    it '😭: should raise exception when unauthorized' do
+      _(proc do
+        LightofDay::Unsplash::TopicMapper
+        .new('BAD_TOKEN')
+        .find_all_topics
+      end).must_raise LightofDay::Unsplash::Api::Response::Unauthorized
     end
   end
 end
