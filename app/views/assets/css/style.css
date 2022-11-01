@@ -135,10 +135,11 @@ body{
   font-weight: 500;
   font-size: 12px;
   line-height: 1.6;
-  padding: 10px 20px;
+  padding: 10px 20px 10px 30px;
   overflow: hidden;
   max-height: 20vh;
   min-height: 20vh;
+  /* background: #000; */
 }
 .topic-link{
   text-decoration: none;
@@ -149,7 +150,10 @@ body{
   float: right;
   letter-spacing: 0.01em;
   color: #FFFFFF;
- 
+  z-index: 10;
+  position: absolute;
+  right: 0;
+  bottom: 0;
   font-weight: bold;
 }
 .topic-link a:visited,a:link{
@@ -180,6 +184,7 @@ body{
   display: inline-block;
 }
 .footer{
+  z-index: 100;
   position: fixed;
   background: #fff;
   font-size: 10px;
@@ -271,6 +276,7 @@ input[type="radio"]{
 }
 input[type="radio"]:checked{
     border: 4px solid #A1B79E;
+    /* transform: scale(1.05); */
 }
 input[type="submit"]{
     background: transparent;
