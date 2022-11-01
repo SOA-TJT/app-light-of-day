@@ -6,9 +6,9 @@ require 'dry-struct'
 module LightofDay
   module Unsplash
     module Entity
+      # entity for image topic
       class Topic < Dry::Struct
         include Dry.Types
-
         attribute :topic_id, Strict::String
         attribute :title, Strict::String
         attribute :slug, Strict::String
