@@ -1,3 +1,6 @@
+- if !is_saved
+  form(action='/light-of-day/favorite' method='post')
+    input(type='submit' name='favorite' value='favorite')
 .view-pic 
   img src="#{view.urls}"
 .quote-card
@@ -8,7 +11,6 @@
     .sv-light Light 
     .sv-of of 
     .sv-day Day
-
 .view-info-card 
   .view-creator Creator： #{view.creator['name']}
   .view-topics Topics： #{view.topic.join(', ')}
