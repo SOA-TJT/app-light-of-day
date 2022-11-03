@@ -2,6 +2,10 @@
 
 source 'https://rubygems.org'
 
+# Configuration and Utilities
+gem 'figaro', '~> 1.2'
+gem 'rake'
+
 # Web Application
 gem 'puma', '~> 5'
 gem 'roda', '~> 3'
@@ -21,9 +25,6 @@ gem 'minitest-rg', '~> 5'
 gem 'simplecov', '~> 0'
 gem 'vcr', '~> 6'
 gem 'webmock', '~> 3'
-
-# Utility Tools
-gem 'rake'
 
 # Validation
 gem 'dry-struct'
