@@ -4,9 +4,9 @@
 module DatabaseHelper
   def self.wipe_database
     # Ignore foreign key constraints when wiping tables
-    CodePraise::App.DB.run('PRAGMA foreign_keys = OFF')
-    CodePraise::Database::MemberOrm.map(&:destroy)
-    CodePraise::Database::ProjectOrm.map(&:destroy)
-    CodePraise::App.DB.run('PRAGMA foreign_keys = ON')
+    LightofDay::App.DB.run('PRAGMA foreign_keys = OFF')
+    LightofDay::Database::MemberOrm.map(&:destroy)
+    LightofDay::Database::ProjectOrm.map(&:destroy)
+    LightofDay::App.DB.run('PRAGMA foreign_keys = ON')
   end
 end
