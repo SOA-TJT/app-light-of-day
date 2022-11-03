@@ -35,6 +35,7 @@ module LightofDay
             width:,
             height:,
             urls:,
+            urls_small:,
             creator:
           )
         end
@@ -53,6 +54,10 @@ module LightofDay
 
         def urls
           @data['urls']['full']
+        end
+
+        def urls_small
+          @data['urls']['small']
         end
 
         def creator

@@ -13,6 +13,7 @@ module LightofDay
         attribute :height, Strict::Integer
         attribute :topic, Strict::Array.of(String)
         attribute :urls, Strict::String
+        attribute :urls_small, Strict::String
         attribute :creator, Strict::Hash
       end
     end
