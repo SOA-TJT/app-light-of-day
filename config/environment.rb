@@ -11,7 +11,6 @@ module LightofDay
     # UNSPLAH_TOKEN = CONFIG['UNSPLASH_SECRETS_KEY']
     plugin :environments
 
-    # rubocop:disable Lint/ConstantDefinitionInBlock
     configure do
       # Environment variables setup
       Figaro.application = Figaro::Application.new(
