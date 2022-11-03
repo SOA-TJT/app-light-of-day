@@ -4,7 +4,7 @@ require 'sequel'
 
 Sequel.migration do
   change do
-    create_table(:projects) do
+    create_table(:views) do
       primary_key :id
       foreign_key :inspiration_id, :inspirations
 
