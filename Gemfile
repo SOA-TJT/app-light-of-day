@@ -14,6 +14,15 @@ gem 'slim', '~> 4'
 # Networking
 gem 'http', '~> 5'
 
+# Database
+gem 'hirb', '~> 0'
+gem 'hirb-unicode', '~> 0'
+gem 'sequel', '~> 5.49'
+
+group :development, :test do
+  gem 'sqlite3', '~> 1.4'
+end
+
 # Coding Style
 gem 'flog'
 gem 'reek'
