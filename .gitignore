@@ -5,3 +5,4 @@ spec/coverage/*
 coverage/*
 !spec/coverage/.resultset.json
 !/coverage/.resultset.json
+*.db
