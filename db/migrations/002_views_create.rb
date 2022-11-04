@@ -16,6 +16,7 @@ Sequel.migration do
       String      :name
       String      :bio
       String      :image
+      String      :small_urls
 
       DateTime :created_time
       DateTime :updated_time
