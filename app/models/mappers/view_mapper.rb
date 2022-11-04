@@ -37,10 +37,10 @@ module LightofDay
             height:,
             urls:,
             urls_small:,
-            # creator:
             creator_name:,
             creator_bio:,
-            creator_image:
+            creator_image:,
+            inspiration: nil
           )
         end
 
