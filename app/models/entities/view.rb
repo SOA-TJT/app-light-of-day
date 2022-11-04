@@ -9,8 +9,7 @@ module LightofDay
       # entity for image
       class View < Dry::Struct
         include Dry.Types
-        attribute :id,            Integer.optional
-        # attribute :origin_id,     Strict::Integer
+        attribute :id, Integer.optional
         attribute :width, Strict::Integer
         attribute :height, Strict::Integer
         attribute :topic, Strict::Array.of(String)

@@ -31,15 +31,16 @@ module LightofDay
 
         def build_entity
           LightofDay::Unsplash::Entity::View.new(
+            id: nil,
             topic:,
             width:,
             height:,
             urls:,
             urls_small:,
-            # creator:
             creator_name:,
             creator_bio:,
-            creator_image:
+            creator_image:,
+            inspiration: nil
           )
         end
 

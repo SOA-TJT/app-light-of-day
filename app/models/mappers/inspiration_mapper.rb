@@ -25,6 +25,7 @@ module LightofDay
 
         def build_entity
           LightofDay::FavQs::Entity::Inspiration.new(
+            id: nil,
             topics:,
             author:,
             quote:
