@@ -3,8 +3,7 @@
 require 'yaml'
 puts 'test'
 require_relative 'require_app'
-# require_app
-
+require_app(%w[infrastructure models])
 # TOPIC_ID = 'xjPR4hlkBGA'
 # key_path = File.expand_path('../config/secrets.yml', __dir__)
 # CONFIG = YAML.safe_load(File.read(key_path))

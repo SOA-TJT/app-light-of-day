@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
+require_relative 'views'
+require_relative 'inspirations'
+
 module LightofDay
   module Repository
     # Distbute mappers into correct mapper
     module For
       ENTITY_REPOSITORY = {
-        Entity::View => Views,
-        Entity::Inspiration => Inspirations
+        LightofDay::Unsplash::Entity::View => Views,
+        LightofDay::FavQs::Entity::Inspiration => Inspirations
       }.freeze
       def self.klass(entity_klass)
         ENTITY_REPOSITORY[entity_klass]

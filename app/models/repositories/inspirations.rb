@@ -3,7 +3,7 @@
 module LightofDay
   module Repository
     # mapping from Dbs Data from orms
-    class Inspiration
+    class Inspirations
       def self.find_id(id)
         rebuild_entity Database::InspirationOrm.first(id:)
       end
