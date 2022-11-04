@@ -1,16 +1,31 @@
-.header 
-  .service-logo 
-    a href="/"
-      .sv-light Light
-      .sv-of of
-      .sv-day Day 
-.container
-  # TODO: TY-你先塞假資料，之後有list data我再串
-  # 可用<a>, 每個項目點擊後連到的網址形式是'light-of-day/favorite/view_id'
-  .list 
-    a href="/light-of-day/favorite/view_id" hihi
+.header
+  .service-logo
+    a href="/" 
+    .sv-light Light
+    .sv-of of
+    .sv-day Day
+  .menu
+    .menuitem
+      a href="/"  topic
+    .menuitem.active
+      a href="/favorite-list"  favorite
+  .clear
+
+.favorite-lists.container
+  .favorite-item.row
+    .left-pic.col-md-6.col-sm-12
+      img alt="" src="" srcset="" /
+    .right-inspiration.col-md-6.col-sm-12
+      .favorite-item-quote
+        | "Tell me and I forget. Teach me and I remember. Involve me and I
+        | learn."
+      .favorite-inspiration-author By Jerry
+      .favorite-item-creater Tiffany
+      .favorite-item-creater-link
+        a href="/light-of-day/favorite/view_id"  View
 .footer
-  .copyright 
-    img.company-logo src="https://github.com/SOA-TJT/Team-Logo/blob/SOA-TJT-patch-1/Logo.png?raw=true"
+  .copyright
+    img.company-logo src="https://github.com/SOA-TJT/Team-Logo/blob/SOA-TJT-patch-1/Logo.png?raw=true" /
     .company TJT@2022.Insipiration
+
 
