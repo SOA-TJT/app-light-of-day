@@ -9,12 +9,20 @@ module LightofDay
       # entity for image
       class View < Dry::Struct
         include Dry.Types
+        attribute :id,            Integer.optional
+        attribute :origin_id,     Strict::Integer
         attribute :width, Strict::Integer
         attribute :height, Strict::Integer
         attribute :topic, Strict::Array.of(String)
         attribute :urls, Strict::String
         attribute :urls_small, Strict::String
-        attribute :creator, Strict::Hash
+        attribute :creator_name, Strict::String
+        attribute :creator_bio, Strict::String
+        attribute :creator_image, Strict::String
+        # attribute :creator, Strict::Hash
+        def to_attr_hash
+          to_hash.except(:topic)
+        end
       end
     end
   end

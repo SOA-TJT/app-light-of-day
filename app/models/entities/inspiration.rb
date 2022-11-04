@@ -10,6 +10,7 @@ module LightofDay
       class Inspiration < Dry::Struct
         include Dry.Types
         attribute :id, Integer.optional
+        attribute :origin_id, Strict::Integer
         attribute :topics, Strict::Array.of(String)
         attribute :author, Strict::String
         attribute :quote, Strict::String

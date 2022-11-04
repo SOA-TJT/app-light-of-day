@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 module LightofDay
   module Repository
+    # Distbute mappers into correct mapper
     module For
       ENTITY_REPOSITORY = {
         Entity::View => Views,
