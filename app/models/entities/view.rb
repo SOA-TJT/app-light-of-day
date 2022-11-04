@@ -10,7 +10,7 @@ module LightofDay
       class View < Dry::Struct
         include Dry.Types
         attribute :id,            Integer.optional
-        attribute :origin_id,     Strict::Integer
+        # attribute :origin_id,     Strict::Integer
         attribute :width, Strict::Integer
         attribute :height, Strict::Integer
         attribute :topic, Strict::Array.of(String)

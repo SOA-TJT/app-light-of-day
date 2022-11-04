@@ -38,10 +38,9 @@ module LightofDay
 
         Entity.view.new(
           id: db_record.id,
-          # creator: db_record.creator,
           urls: db_record.urls,
           small_urls: db_record.small_urls,
-          topics: db_record.topics.split(','),
+          topic: db_record.topics.split(','),
           creator_bio: db_record.bio,
           creator_name: db_record.name,
           creator_image: db_record.image,
@@ -61,7 +60,7 @@ module LightofDay
             topic: @entity.topic.join(',')
           )
         end
-
+        # not sure this function is required
         # def call
         #   Inspirations.db_find_or_create(@entity.)
         # end
