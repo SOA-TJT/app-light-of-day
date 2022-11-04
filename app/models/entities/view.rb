@@ -19,9 +19,10 @@ module LightofDay
         attribute :creator_name, Strict::String
         attribute :creator_bio, Strict::String
         attribute :creator_image, Strict::String
+        attribute :inspiration, Inspiration
         # attribute :creator, Strict::Hash
         def to_attr_hash
-          to_hash.except(:topic)
+          to_hash.except(:topic, :inspiration)
         end
       end
     end

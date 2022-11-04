@@ -4,7 +4,7 @@ require_relative 'inspirations'
 
 module LightofDay
   module Repository
-    # hhh
+    # Repository for Views
     class Views
       def self.all
         Database::Views.all.map { |db_view| rebuild_entity(db_view) }
@@ -29,23 +29,18 @@ module LightofDay
       def self.create(entity)
         raise 'Views has already exists' if find(entity)
 
-        db_view = PersistView.new(entity).create_view
+        db_view = PersistView.new(entity).create_view.call
         rebuild_entity(db_view)
       end
 
       def rebuild_entity(db_record)
         return nil unless db_record
 
-        Entity.view.new(
-          id: db_record.id,
-          urls: db_record.urls,
-          small_urls: db_record.small_urls,
-          topic: db_record.topics.split(','),
-          creator_bio: db_record.bio,
-          creator_name: db_record.name,
-          creator_image: db_record.image,
-          height: db_record.height,
-          width: db_record.width
+        Entity::View.new(
+          db_record.to_hash.except(:topics).merge(
+            inspiration: Inspirations.rebuild_entity(db_record.inspiration),
+            topic: db_record.topics.split(',')
+          )
         )
       end
 
@@ -60,10 +55,14 @@ module LightofDay
             topic: @entity.topic.join(',')
           )
         end
+
         # not sure this function is required
-        # def call
-        #   Inspirations.db_find_or_create(@entity.)
-        # end
+        def call
+          inspiration = Inspirations.db_create(@entity.inspiration)
+          create_view.tap do |db_view|
+            db_view.update(inspiration:)
+          end
+        end
       end
     end
   end
