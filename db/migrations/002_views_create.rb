@@ -8,7 +8,6 @@ Sequel.migration do
       primary_key :id
       foreign_key :inspiration_id, :inspirations
 
-      Integer     :origin_id, unique: true
       Integer     :height
       String      :width
       String      :topics
