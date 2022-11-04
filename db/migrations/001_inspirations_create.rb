@@ -7,7 +7,6 @@ Sequel.migration do
     create_table(:inspirations) do
       primary_key :id
 
-      Integer     :origin_id, unique: true
       String      :topics
       String      :author
       String      :quote
