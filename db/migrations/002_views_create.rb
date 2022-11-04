@@ -7,15 +7,15 @@ Sequel.migration do
     create_table(:views) do
       primary_key :id
       foreign_key :inspiration_id, :inspirations
-
+      String      :origin_id
       Integer     :height
       String      :width
       String      :topics
       String      :urls
-      String      :name
-      String      :bio
-      String      :image
-      String      :small_urls
+      String      :creator_name
+      String      :creator_bio
+      String      :creator_image
+      String      :urls_small
 
       DateTime :created_time
       DateTime :updated_time

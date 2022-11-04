@@ -17,27 +17,27 @@ module LightofDay
       end
 
       def self.find_origin_id(origin_id)
-        db_record = Database::ViewsOrm.first(origin_id:)
+        db_record = Database::ViewOrm.first(origin_id:)
         rebuild_entity(db_record)
       end
 
       def self.find_id(id)
-        db_record = Database::ViewsOrm.first(id:)
+        db_record = Database::ViewOrm.first(id:)
         rebuild_entity(db_record)
       end
 
-      def self.create(entity, inspiration)
+      def self.create(entity)
         raise 'Views has already exists' if find(entity)
 
-        db_view = PersistView.new(entity, inspiration).create_view.call
-        rebuild_entity(db_view)
+        # db_view = PersistView.new(entity).create_view.call
+        # rebuild_entity(db_view)
       end
 
-      def rebuild_entity(db_record)
+      def self.rebuild_entity(db_record)
         return nil unless db_record
 
         Entity::View.new(
-          db_record.to_hash.except(:topics).merge(
+          db_record.to_hash.merge(
             inspiration: Inspirations.rebuild_entity(db_record.inspiration),
             topic: db_record.topics.split(',')
           )
@@ -45,16 +45,14 @@ module LightofDay
       end
 
       # help to upload the data to the Viewdatabase
-      class PersistViewAndInspiration
-        def initialize(entity, inspiration)
+      class PersistView
+        def initialize(entity)
           @entity = entity
-          @inspiration = inspiration
+          # @inspiration = inspiration
         end
 
         def create_view
-          Database::ViewsOrm.create(@entity.to_attr_hash).merge(
-            topic: @entity.topic.join(',')
-          )
+          Database::ViewOrm.create(@entity.to_attr_hash)
         end
 
         # not sure this function is required

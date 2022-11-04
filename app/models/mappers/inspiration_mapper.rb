@@ -25,10 +25,15 @@ module LightofDay
 
         def build_entity
           LightofDay::FavQs::Entity::Inspiration.new(
+            id:,
             topics:,
             author:,
             quote:
           )
+        end
+
+        def id
+          @data['quote']['id']
         end
 
         def topics

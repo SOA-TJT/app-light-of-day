@@ -31,6 +31,7 @@ module LightofDay
 
         def build_entity
           LightofDay::Unsplash::Entity::View.new(
+            origin_id:,
             topic:,
             width:,
             height:,
@@ -41,6 +42,10 @@ module LightofDay
             creator_bio:,
             creator_image:
           )
+        end
+
+        def origin_id
+          @data['id']
         end
 
         def width
@@ -72,7 +77,7 @@ module LightofDay
         end
 
         def creator_bio
-          @data['user']['bio']
+          @data['user']['bio'] ? @data['user']['bio'] : ''
         end
 
         def creator_image
