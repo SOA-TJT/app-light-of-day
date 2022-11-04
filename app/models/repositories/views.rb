@@ -26,10 +26,10 @@ module LightofDay
         rebuild_entity(db_record)
       end
 
-      def self.create(entity)
+      def self.create(entity, inspiration)
         raise 'Views has already exists' if find(entity)
 
-        db_view = PersistView.new(entity).create_view.call
+        db_view = PersistView.new(entity, inspiration).create_view.call
         rebuild_entity(db_view)
       end
 
@@ -45,9 +45,10 @@ module LightofDay
       end
 
       # help to upload the data to the Viewdatabase
-      class PersistView
-        def initialize(entity)
+      class PersistViewAndInspiration
+        def initialize(entity, inspiration)
           @entity = entity
+          @inspiration = inspiration
         end
 
         def create_view
@@ -58,7 +59,7 @@ module LightofDay
 
         # not sure this function is required
         def call
-          inspiration = Inspirations.db_create(@entity.inspiration)
+          inspiration = Inspirations.db_create(@inspiration)
           create_view.tap do |db_view|
             db_view.update(inspiration:)
           end

@@ -66,7 +66,7 @@ module LightofDay
               routing.redirect "favorite/#{view_id}"
             end
           end
-          routing.on String do |view_id|
+          routing.on String do |_view_id|
             # GET /light-of-day/favorite/{view_id}
             routing.get do
               # TODO: Jerry
