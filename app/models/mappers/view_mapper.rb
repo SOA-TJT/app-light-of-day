@@ -36,7 +36,10 @@ module LightofDay
             height:,
             urls:,
             urls_small:,
-            creator:
+            # creator:
+            creator_name:,
+            creator_bio:,
+            creator_image:
           )
         end
 
@@ -60,8 +63,20 @@ module LightofDay
           @data['urls']['small']
         end
 
-        def creator
-          @data['user']
+        # def creator
+        #   @data['user']
+        # end
+
+        def creator_name
+          @data['user']['name']
+        end
+
+        def creator_bio
+          @data['user']['bio']
+        end
+
+        def creator_image
+          @data['user']['profile_image']['small']
         end
       end
     end
