@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'spec_helper'
 require_relative 'helpers/vcr_helper'
 require_relative 'helpers/database_helper'
+require_relative 'spec_helper'
 
 describe 'Intergration Test of Unsplash API , FavQs API and database ' do
   VcrHelper.setup_vcr
@@ -22,8 +22,8 @@ describe 'Intergration Test of Unsplash API , FavQs API and database ' do
       view = LightofDay::Unsplash::ViewMapper
              .new(UNSPLAH_TOKEN, TOPIC_ID)
              .find_a_photo
-      inspiration = LightofDay::FavQs::InspirationMapper.new.find_random
-      rebuilt = LightofDay::Repository::For.entity(view).create(view, inspiration)
+      # inspiration = LightofDay::FavQs::InspirationMapper.new.find_random
+      rebuilt = LightofDay::Repository::For.entity(view).create(view)
 
       _(rebuilt.width).must_equal(project.width)
       _(rebuilt.height).must_equal(project.height)
