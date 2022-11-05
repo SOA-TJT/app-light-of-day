@@ -13,4 +13,4 @@ def require_app(folders = %w[infrastructure models views controllers])
   end
 end
 
-require_app
+# require_app
