@@ -1120,4 +1120,70 @@ http_interactions:
       encoding: UTF-8
       string: '{"errors":["OAuth error: The access token is invalid"]}'
   recorded_at: Sat, 29 Oct 2022 07:59:23 GMT
+- request:
+    method: get
+    uri: https://favqs.com/api/qotd
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Authorization:
+      - " "
+      Connection:
+      - close
+      Host:
+      - favqs.com
+      User-Agent:
+      - http.rb/5.1.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.18.0 (Ubuntu)
+      Date:
+      - Sat, 05 Nov 2022 03:05:55 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Rate-Limit-Remaining:
+      - '29'
+      Etag:
+      - W/"272a91a3519a040ed2baf4e5468d6b0a"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - c356cb05-6de8-4100-8e4a-fe4df5837eea
+      X-Runtime:
+      - '0.029087'
+      Vary:
+      - Origin
+      X-Backend-Server:
+      - ip-10-0-1-10
+      Strict-Transport-Security:
+      - max-age=31540000
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"qotd_date":"2022-11-06T00:00:00.000+00:00","quote":{"id":29703,"dialogue":false,"private":false,"tags":["great","inspirational"],"url":"https://favqs.com/quotes/friedrich-schiller/29703-mankind-is-ma-","favorites_count":0,"upvotes_count":2,"downvotes_count":0,"author":"Friedrich
+        Schiller","author_permalink":"friedrich-schiller","body":"Mankind is made
+        great or little by its own will."}}'
+  recorded_at: Sat, 05 Nov 2022 03:05:56 GMT
 recorded_with: VCR 6.1.0
