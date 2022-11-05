@@ -23,27 +23,13 @@ module LightofDay
         )
       end
 
-      # not sure this function is required
+      # not sure this function is required: 要他要，記得刪註解
       def self.db_find_or_create(entity)
-        Database::InspirationOrm.find_or_create(entity)
+        db_hash = entity.to_attr_hash
+        db_hash['topics'] = entity.topics.join(',')
+        Database::InspirationOrm.find_or_create(db_hash)
       end
 
-      def self.db_create(entity)
-        PersistInspiration.create_inspiration(entity)
-      end
-
-      # help to upload the data to the Inspirationdatabase
-      class PersistInspiration
-        def initialize(entity)
-          @entity = entity
-        end
-
-        def create_inspiration
-          Database::InspirationOrm.create(@entity.to_attr_hash).merge(
-            topics: @entity.topics.join(',')
-          )
-        end
-      end
     end
   end
 end

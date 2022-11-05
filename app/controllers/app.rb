@@ -29,7 +29,8 @@ module LightofDay
       routing.on 'favorite-list' do
         routing.is do
           # favorite_list = [] # TODO: Jerry
-          favorite_list = Repository::For.klass(Entity::View).all
+          favorite_list = Repository::For.klass(Unsplash::Entity::View).all
+          puts favorite_list
           view 'favoritelist', locals: { favoriteList: favorite_list }
         end
       end
@@ -51,9 +52,8 @@ module LightofDay
             topic_data = topics_data.find { |topic| topic.slug == topic_slug }
             routing.halt 404 unless topic_data
             view_data = LightofDay::Unsplash::ViewMapper.new(App.config.UNSPLASH_SECRETS_KEY, topic_data.topic_id).find_a_photo
-            inspiration_data = LightofDay::FavQs::InspirationMapper.new.find_random
             Repository::For.entity(view_data).create(view_data)
-            view 'view', locals: { view: view_data, inspiration: inspiration_data, is_saved: false }
+            view 'view', locals: { view: view_data, is_saved: false }
           end
         end
 
@@ -72,7 +72,7 @@ module LightofDay
               routing.redirect "favorite/#{view_id}"
             end
           end
-          routing.on String do |_view_id|
+          routing.on String do |view_id|
             # GET /light-of-day/favorite/{view_id}
             routing.get do
               # TODO: Jerry

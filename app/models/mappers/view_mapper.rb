@@ -2,7 +2,7 @@
 
 require_relative '../entities/view'
 require_relative '../gateways/unsplash_api'
-require_relative 'topic_mapper'
+require_relative 'inspiration_mapper'
 
 module LightofDay
   module Unsplash
@@ -24,9 +24,7 @@ module LightofDay
       class DataMapper
         def initialize(data, token)
           @data = data
-          @topic_mapper = TopicMapper.new(
-            token
-          )
+          @inspiration_mapper = FavQs::InspirationMapper.new
         end
 
         def build_entity
@@ -40,7 +38,7 @@ module LightofDay
             creator_name:,
             creator_bio:,
             creator_image:,
-            inspiration: nil
+            inspiration:
           )
         end
 
@@ -82,6 +80,11 @@ module LightofDay
 
         def creator_image
           @data['user']['profile_image']['small']
+        end
+
+        def inspiration
+          @inspiration_mapper.find_random
+          # InspirationMapper.build_entity
         end
       end
     end

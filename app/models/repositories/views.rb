@@ -7,7 +7,7 @@ module LightofDay
     # Repository for Views
     class Views
       def self.all
-        Database::Views.all.map { |db_view| rebuild_entity(db_view) }
+        Database::ViewOrm.all.map { |db_view| rebuild_entity(db_view) }
       end
 
       def self.find_creator; end
@@ -29,17 +29,18 @@ module LightofDay
       def self.create(entity)
         raise 'Views has already exists' if find(entity)
 
-        # db_view = PersistView.new(entity).create_view.call
-        # rebuild_entity(db_view)
+        db_view = PersistView.new(entity).call
+        # db_view = PersistView.new(entity).create_view
+        rebuild_entity(db_view)
       end
 
       def self.rebuild_entity(db_record)
         return nil unless db_record
 
+        puts db_record
         Entity::View.new(
           db_record.to_hash.merge(
-            inspiration: Inspirations.rebuild_entity(db_record.inspiration),
-            topic: db_record.topics.split(',')
+            inspiration: Inspirations.rebuild_entity(db_record.inspiration)
           )
         )
       end
@@ -52,13 +53,16 @@ module LightofDay
         end
 
         def create_view
-          Database::ViewOrm.create(@entity.to_attr_hash)
+          db_view = @entity.to_attr_hash
+          db_view['topics'] = @entity.topic.join(',')
+          Database::ViewOrm.create(db_view)
         end
 
         # not sure this function is required
         def call
-          inspiration = Inspirations.db_create(@inspiration)
+          inspiration = Inspirations.db_find_or_create(@entity.inspiration)
           create_view.tap do |db_view|
+            puts inspiration
             db_view.update(inspiration:)
           end
         end

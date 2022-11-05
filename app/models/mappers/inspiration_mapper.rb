@@ -40,6 +40,10 @@ module LightofDay
           @data['quote']['tags']
         end
 
+        def flat_topics
+          @data['quote']['tags'].join(',')
+        end
+
         def author
           @data['quote']['author']
         end
