@@ -18,6 +18,13 @@ module LightofDay
         def to_attr_hash
           to_hash.except(:id)
         end
+
+        def to_json(*_args)
+          arr = instance_variables.map do |attribute|
+            { attribute => instance_variable_get(attribute) }
+          end
+          arr[0].to_json
+        end
       end
     end
   end

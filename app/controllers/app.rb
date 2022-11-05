@@ -2,6 +2,7 @@
 
 require 'roda'
 require 'slim'
+require 'json'
 
 module LightofDay
   # Web App
@@ -49,8 +50,12 @@ module LightofDay
           routing.get do
             topic_data = topics_data.find { |topic| topic.slug == topic_slug }
             routing.halt 404 unless topic_data
-            view_data = LightofDay::Unsplash::ViewMapper.new(App.config.UNSPLASH_SECRETS_KEY, topic_data.topic_id).find_a_photo
-            Repository::For.entity(view_data).create(view_data)
+            view_data = LightofDay::Unsplash::ViewMapper.new(App.config.UNSPLASH_SECRETS_KEY,
+                                                             topic_data.topic_id).find_a_photo
+            puts view_data.instance_variables
+            # @wait_data << view_data
+            # puts @wait_data.length
+            # Repository::For.entity(view_data).create(view_data)
             view 'view', locals: { view: view_data, is_saved: false }
           end
         end
@@ -66,6 +71,31 @@ module LightofDay
               # Repository::For.entity(view_data).create(view_data)
 
               # Redirect viewer to favorite page
+              # above is jerry
+              fin = JSON.parse(routing.params['favorite'])
+              ins_record = LightofDay::FavQs::Entity::Inspiration.new(
+                id: fin['@attributes']['inspiration']['@attributes']['id'],
+                origin_id: fin['@attributes']['inspiration']['@attributes']['origin_id'],
+                topics: fin['@attributes']['inspiration']['@attributes']['topics'],
+                author: fin['@attributes']['inspiration']['@attributes']['author'],
+                quote: fin['@attributes']['inspiration']['@attributes']['quote']
+              )
+
+              view_record = LightofDay::Unsplash::Entity::View.new(
+                id: fin['@attributes']['id'],
+                origin_id: fin['@attributes']['origin_id'],
+                topics: fin['@attributes']['topics'],
+                width: fin['@attributes']['width'],
+                height: fin['@attributes']['height'],
+                urls: fin['@attributes']['urls'],
+                urls_small: fin['@attributes']['urls_small'],
+                creator_name: fin['@attributes']['creator_name'],
+                creator_bio: fin['@attributes']['creator_bio'],
+                creator_image: fin['@attributes']['creator_image'],
+                inspiration: ins_record
+              )
+              Repository::For.entity(view_record).create(view_record)
+              view_id = routing.params['view_data']
               routing.halt 404 unless view_id
               routing.redirect "favorite/#{view_id}"
             end
