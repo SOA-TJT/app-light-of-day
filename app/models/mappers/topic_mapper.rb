@@ -9,11 +9,11 @@ module LightofDay
     class TopicMapper
       def initialize(un_token, gateway_class = Unsplash::Api)
         @token = un_token
-        @gateway = gateway_class.new('https://api.unsplash.com/topics/?per_page=30', 'Client-ID', @token)
+        @gateway = gateway_class.new('Client-ID', @token)
       end
 
       def find_all_topics
-        @gateway.photo_data.map do |data|
+        @gateway.topic_data.map do |data|
           TopicMapper.build_entity(data)
         end
       end
@@ -37,6 +37,8 @@ module LightofDay
             topic_url:
           )
         end
+
+        private
 
         def topic_id
           @data['id']

@@ -8,8 +8,11 @@ module LightofDay
     # Distribute the Data From the Quote Api
     class InspirationMapper
       def initialize(gateway_class = FavQs::Api)
-        @token = nil
-        @gateway_class = gateway_class.new('https://favqs.com/api/qotd')
+        # @token = nil
+        # original
+        # @gateway_class = gateway_class.new('https://favqs.com/api/qotd')
+        # modify
+        @gateway_class = gateway_class.new
       end
 
       def find_random

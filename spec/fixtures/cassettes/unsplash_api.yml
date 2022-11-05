@@ -1186,4 +1186,154 @@ http_interactions:
         Schiller","author_permalink":"friedrich-schiller","body":"Mankind is made
         great or little by its own will."}}'
   recorded_at: Sat, 05 Nov 2022 03:05:56 GMT
+- request:
+    method: get
+    uri: https://api.unsplash.com/photos/random/?orientation=landscape&topics=
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Authorization:
+      - Client-ID <UNSPLAH_TOKEN>
+      Connection:
+      - close
+      Host:
+      - api.unsplash.com
+      User-Agent:
+      - http.rb/5.1.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - close
+      Server:
+      - Cowboy
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Request-Method:
+      - "*"
+      Access-Control-Allow-Headers:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Link,X-Total,X-Per-Page,X-RateLimit-Limit,X-RateLimit-Remaining
+      Cache-Control:
+      - private,max-age=0,stale-if-error=3600,stale-while-revalidate=0
+      X-Unsplash-Version:
+      - v1
+      Content-Language:
+      - en
+      Etag:
+      - W/"ced0b87681ec8fe644166df9ef31c68a"
+      X-Ratelimit-Limit:
+      - '50'
+      X-Ratelimit-Remaining:
+      - '47'
+      X-Request-Id:
+      - 29f07a5a-80ad-4447-9575-30df49020778
+      X-Runtime:
+      - '0.080083'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Via:
+      - 1.1 vegur, 1.1 varnish, 1.1 varnish
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Sat, 05 Nov 2022 15:44:37 GMT
+      X-Served-By:
+      - cache-iad-kcgs7200044-IAD, cache-qpg1274-QPG
+      X-Cache:
+      - MISS, MISS
+      X-Cache-Hits:
+      - 0, 0
+      X-Timer:
+      - S1667663077.926690,VS0,VE335
+      Vary:
+      - Accept-Encoding, Origin,Authorization,Accept-Language,Accept
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: "{\"id\":\"QRBuN0wNm-8\",\"created_at\":\"2022-10-23T19:26:26Z\",\"updated_at\":\"2022-11-05T01:18:31Z\",\"promoted_at\":\"2022-10-24T22:48:01Z\",\"width\":6240,\"height\":4160,\"color\":\"#c04026\",\"blur_hash\":\"LAJzrh^5$i0}wKWXADSfSeR+$j$j\",\"description\":null,\"alt_description\":null,\"urls\":{\"raw\":\"https://images.unsplash.com/photo-1666552982368-dd0e2bb96993?ixid=MnwzNzE2OTd8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc2NjMwNzc\\u0026ixlib=rb-4.0.3\",\"full\":\"https://images.unsplash.com/photo-1666552982368-dd0e2bb96993?crop=entropy\\u0026cs=tinysrgb\\u0026fm=jpg\\u0026ixid=MnwzNzE2OTd8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc2NjMwNzc\\u0026ixlib=rb-4.0.3\\u0026q=80\",\"regular\":\"https://images.unsplash.com/photo-1666552982368-dd0e2bb96993?crop=entropy\\u0026cs=tinysrgb\\u0026fit=max\\u0026fm=jpg\\u0026ixid=MnwzNzE2OTd8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc2NjMwNzc\\u0026ixlib=rb-4.0.3\\u0026q=80\\u0026w=1080\",\"small\":\"https://images.unsplash.com/photo-1666552982368-dd0e2bb96993?crop=entropy\\u0026cs=tinysrgb\\u0026fit=max\\u0026fm=jpg\\u0026ixid=MnwzNzE2OTd8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc2NjMwNzc\\u0026ixlib=rb-4.0.3\\u0026q=80\\u0026w=400\",\"thumb\":\"https://images.unsplash.com/photo-1666552982368-dd0e2bb96993?crop=entropy\\u0026cs=tinysrgb\\u0026fit=max\\u0026fm=jpg\\u0026ixid=MnwzNzE2OTd8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc2NjMwNzc\\u0026ixlib=rb-4.0.3\\u0026q=80\\u0026w=200\",\"small_s3\":\"https://s3.us-west-2.amazonaws.com/images.unsplash.com/small/photo-1666552982368-dd0e2bb96993\"},\"links\":{\"self\":\"https://api.unsplash.com/photos/QRBuN0wNm-8\",\"html\":\"https://unsplash.com/photos/QRBuN0wNm-8\",\"download\":\"https://unsplash.com/photos/QRBuN0wNm-8/download?ixid=MnwzNzE2OTd8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc2NjMwNzc\",\"download_location\":\"https://api.unsplash.com/photos/QRBuN0wNm-8/download?ixid=MnwzNzE2OTd8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc2NjMwNzc\"},\"likes\":35,\"liked_by_user\":false,\"current_user_collections\":[],\"sponsorship\":null,\"topic_submissions\":{},\"user\":{\"id\":\"YdsTagGWsuU\",\"updated_at\":\"2022-11-04T02:31:18Z\",\"username\":\"matreding\",\"name\":\"Mathias
+        Reding\",\"first_name\":\"Mathias\",\"last_name\":\"Reding\",\"twitter_username\":\"matreding\",\"portfolio_url\":\"https://www.matreding.com/\",\"bio\":\"\U0001F1EB\U0001F1F7
+        Fujifilm X Photographer\\r\\ncontact@matreding.com\",\"location\":\"Paris\",\"links\":{\"self\":\"https://api.unsplash.com/users/matreding\",\"html\":\"https://unsplash.com/@matreding\",\"photos\":\"https://api.unsplash.com/users/matreding/photos\",\"likes\":\"https://api.unsplash.com/users/matreding/likes\",\"portfolio\":\"https://api.unsplash.com/users/matreding/portfolio\",\"following\":\"https://api.unsplash.com/users/matreding/following\",\"followers\":\"https://api.unsplash.com/users/matreding/followers\"},\"profile_image\":{\"small\":\"https://images.unsplash.com/profile-1651135387076-50d0c541fc05image?ixlib=rb-4.0.3\\u0026crop=faces\\u0026fit=crop\\u0026w=32\\u0026h=32\",\"medium\":\"https://images.unsplash.com/profile-1651135387076-50d0c541fc05image?ixlib=rb-4.0.3\\u0026crop=faces\\u0026fit=crop\\u0026w=64\\u0026h=64\",\"large\":\"https://images.unsplash.com/profile-1651135387076-50d0c541fc05image?ixlib=rb-4.0.3\\u0026crop=faces\\u0026fit=crop\\u0026w=128\\u0026h=128\"},\"instagram_username\":\"matreding\",\"total_collections\":3,\"total_likes\":16902,\"total_photos\":9695,\"accepted_tos\":true,\"for_hire\":true,\"social\":{\"instagram_username\":\"matreding\",\"portfolio_url\":\"https://www.matreding.com/\",\"twitter_username\":\"matreding\",\"paypal_email\":null}},\"exif\":{\"make\":\"FUJIFILM\",\"model\":\"X-T4\",\"name\":\"FUJIFILM,
+        X-T4\",\"exposure_time\":\"1/160\",\"aperture\":\"9.0\",\"focal_length\":\"35.0\",\"iso\":3200},\"location\":{\"name\":\"France\",\"city\":null,\"country\":null,\"position\":{\"latitude\":null,\"longitude\":null}},\"meta\":{\"index\":true},\"public_domain\":false,\"tags\":[{\"type\":\"search\",\"title\":\"france\"}],\"tags_preview\":[{\"type\":\"search\",\"title\":\"france\"}],\"views\":259281,\"downloads\":1822,\"topics\":[]}"
+  recorded_at: Sat, 05 Nov 2022 15:44:37 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Authorization:
+      - " "
+      Connection:
+      - close
+      Host:
+      - api.github.com
+      User-Agent:
+      - http.rb/5.1.0
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Sat, 05 Nov 2022 15:44:37 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '74'
+      X-Github-Media-Type:
+      - github.v3
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '59'
+      X-Ratelimit-Reset:
+      - '1667666677'
+      X-Ratelimit-Used:
+      - '1'
+      X-Ratelimit-Resource:
+      - core
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      X-Github-Request-Id:
+      - C65F:6A7A:3FCCC:B364E:636684E5
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"message":"Not Found","documentation_url":"https://docs.github.com/rest"}'
+  recorded_at: Sat, 05 Nov 2022 15:44:37 GMT
 recorded_with: VCR 6.1.0

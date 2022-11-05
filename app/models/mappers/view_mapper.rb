@@ -10,19 +10,25 @@ module LightofDay
     class ViewMapper
       def initialize(un_token, topicid, gateway_class = Unsplash::Api)
         @token = un_token
-        @gateway = gateway_class.new("https://api.unsplash.com/photos/random/?topics=#{topicid}&orientation=landscape",
-                                     'Client-ID',
-                                     @token)
+        @topicid = topicid
+        # "https://api.unsplash.com/photos/random/?topics=#{topicid}&orientation=landscape",
+        @gateway = gateway_class.new(
+          'Client-ID',
+          @token
+        )
+        # @gateway = gateway_class.new("https://api.unsplash.com/photos/random/?topics=#{topicid}&orientation=landscape",
+        #                              'Client-ID',
+        #                              @token)
       end
 
       def find_a_photo
-        data = @gateway.photo_data
+        data = @gateway.photo_data(@topicid)
         DataMapper.new(data, @token).build_entity
       end
 
       # Distribute the data into View Entity
       class DataMapper
-        def initialize(data, token)
+        def initialize(data, _token)
           @data = data
           @inspiration_mapper = FavQs::InspirationMapper.new
         end
@@ -42,6 +48,8 @@ module LightofDay
             inspiration:
           )
         end
+
+        private
 
         def origin_id
           @data['id']
@@ -76,7 +84,7 @@ module LightofDay
         end
 
         def creator_bio
-          @data['user']['bio'] ? @data['user']['bio'] : ''
+          @data['user']['bio'] || ''
         end
 
         def creator_image
