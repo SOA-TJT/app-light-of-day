@@ -5,10 +5,6 @@ require 'http'
 module LightofDay
   # Create general Purpose API Connection
   class GeneralApi
-    # def initialize(path)
-    #   @path = path
-    # end
-
     private
 
     def get(path, token_acces_variable = '', token = '')

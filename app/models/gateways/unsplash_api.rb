@@ -20,17 +20,12 @@ module LightofDay
       end
 
       def photo_data(topicid)
-        # puts topic_photo_path(topicid)
         get(topic_photo_path(topicid), @token_acces_variable, @token).parse
       end
 
       def topic_photo_path(topicid)
         "#{PHOTO_PATH}photos/random/?topics=#{topicid}&orientation=landscape"
       end
-
-      # def photo_data
-      #   get(@token_acces_variable, @token).parse
-      # end
     end
   end
 end

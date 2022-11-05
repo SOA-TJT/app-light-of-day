@@ -11,14 +11,10 @@ module LightofDay
       def initialize(un_token, topicid, gateway_class = Unsplash::Api)
         @token = un_token
         @topicid = topicid
-        # "https://api.unsplash.com/photos/random/?topics=#{topicid}&orientation=landscape",
         @gateway = gateway_class.new(
           'Client-ID',
           @token
         )
-        # @gateway = gateway_class.new("https://api.unsplash.com/photos/random/?topics=#{topicid}&orientation=landscape",
-        #                              'Client-ID',
-        #                              @token)
       end
 
       def find_a_photo

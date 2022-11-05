@@ -8,7 +8,6 @@ module LightofDay
     class Api < GeneralApi
       QUOTE_PATH = 'https://favqs.com/api/qotd'
       def quote_data
-        # get.parse
         get(QUOTE_PATH, '', '').parse
       end
     end
