@@ -14,5 +14,5 @@ UNSPLAH_TOKEN = CONFIG['development']['UNSPLASH_SECRETS_KEY']
 view = LightofDay::Unsplash::ViewMapper
        .new(UNSPLAH_TOKEN, TOPIC_ID)
        .find_a_photo
-# inspiration = LightofDay::FavQs::InspirationMapper.new.find_random
-# rebuilt = LightofDay::Repository::For.entity(view).create(view, inspiration)
+inspiration = LightofDay::FavQs::InspirationMapper.new.find_random
+rebuilt = LightofDay::Repository::For.entity(view).create(view, inspiration)

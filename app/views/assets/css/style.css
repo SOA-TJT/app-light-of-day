@@ -388,6 +388,43 @@ input[type="submit"]{
 
 }
 
+.favorite{
+  position: relative;
+  border: #000 2px solid;
+  display: inline-block;
+  margin:0 10px ;
+  transition: .8s;
+  padding: 4px 4px;
+}
+.favorite span{
+  padding: 0 2px;
+  font-weight: bold;
+  font-size: .8rem;
+  vertical-align: middle;
+}
+.favorite input[type="submit"]{
+    position: absolute;
+    color: transparent;
+    width: 100%;
+    height: 100%;
+    border: unset;
+    left: 0;
+    top: 0;
+    /* background: #000; */
+}
+.favorite img{
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+.favorite input[type="submit"]:active{
+  background-color: rgba(250, 189, 189, 0.3);
+}
+.favorite input[type="submit"]:hover{
+  background-color: rgba(250, 189, 189, 0.3);
+
+}
+
 @media (max-width: 768px) {
   .favorite-item-quote{
   white-space: unset;
