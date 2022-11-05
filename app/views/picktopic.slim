@@ -4,8 +4,16 @@
       .sv-light Light
       .sv-of of
       .sv-day Day 
+  .menu
+    .menuitem.active
+      a href="/"  topic
+    .menuitem
+      a href="/favorite-list"  favorite
+    .clear
   .topic-choose-title Pick a Topic
-  a.btn.btn-warning(href='/favorite-list') Favorite List
+
+
+  / a.btn.btn-warning(href='/favorite-list') Favorite List
 .container-fluid
   form role="form" action="/light-of-day" method="post" 
     .row.row-cols-auto.row-cols-md-2.row-cols-lg-3.topic-section
