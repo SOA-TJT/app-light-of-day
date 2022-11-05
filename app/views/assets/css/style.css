@@ -424,6 +424,9 @@ input[type="submit"]{
   background-color: rgba(250, 189, 189, 0.3);
 
 }
+.favorite input[type="radio"]{
+    display: none;
+}
 
 @media (max-width: 768px) {
   .favorite-item-quote{

@@ -34,6 +34,7 @@ module LightofDay
       end
 
       routing.on 'light-of-day' do
+        # @wait_data = []
         routing.is do
           # POST /light-of-day/
           routing.post do
@@ -49,7 +50,10 @@ module LightofDay
           routing.get do
             topic_data = topics_data.find { |topic| topic.slug == topic_slug }
             routing.halt 404 unless topic_data
-            view_data = LightofDay::Unsplash::ViewMapper.new(App.config.UNSPLASH_SECRETS_KEY, topic_data.topic_id).find_a_photo
+            view_data = LightofDay::Unsplash::ViewMapper.new(App.config.UNSPLASH_SECRETS_KEY,
+                                                             topic_data.topic_id).find_a_photo
+            # @wait_data << view_data
+            # puts @wait_data.length
             Repository::For.entity(view_data).create(view_data)
             view 'view', locals: { view: view_data, is_saved: false }
           end
@@ -65,6 +69,16 @@ module LightofDay
               # # Add project to database
               # Repository::For.entity(view_data).create(view_data)
 
+              # Redirect viewer to favorite page
+              # above is jerry
+              # puts routing.params
+              view_id = routing.params['view_data']
+              # puts view_id
+              # puts @wait_data.length
+              # puts @wait_data[-1].class.name
+              # Repository::For.entity(@wait_data[-1]).create(@wait_data[-1])
+              # @wait_data.clear
+              # test end
               # Redirect viewer to favorite page
               routing.halt 404 unless view_id
               routing.redirect "favorite/#{view_id}"
