@@ -10,8 +10,6 @@ module LightofDay
         Database::ViewOrm.all.map { |db_view| rebuild_entity(db_view) }
       end
 
-      def self.find_creator; end
-
       def self.find(entity)
         find_origin_id(entity.origin_id)
       end
@@ -37,8 +35,7 @@ module LightofDay
       def self.rebuild_entity(db_record)
         return nil unless db_record
 
-        puts db_record
-        Entity::View.new(
+        Unsplash::Entity::View.new(
           db_record.to_hash.merge(
             inspiration: Inspirations.rebuild_entity(db_record.inspiration)
           )
@@ -49,20 +46,16 @@ module LightofDay
       class PersistView
         def initialize(entity)
           @entity = entity
-          # @inspiration = inspiration
         end
 
         def create_view
-          db_view = @entity.to_attr_hash
-          db_view['topics'] = @entity.topic.join(',')
-          Database::ViewOrm.create(db_view)
+          Database::ViewOrm.create(@entity.to_attr_hash)
         end
 
         # not sure this function is required
         def call
           inspiration = Inspirations.db_find_or_create(@entity.inspiration)
           create_view.tap do |db_view|
-            puts inspiration
             db_view.update(inspiration:)
           end
         end

@@ -15,9 +15,10 @@ module LightofDay
       def self.rebuild_entity(db_record)
         return nil unless db_record
 
-        Entity::Inspiration.new(
+        FavQs::Entity::Inspiration.new(
           id: db_record.id,
-          topics: db_record.topics.split(','),
+          origin_id: db_record.origin_id,
+          topics: db_record.topics,
           quote: db_record.quote,
           author: db_record.author
         )
@@ -25,11 +26,8 @@ module LightofDay
 
       # not sure this function is required: 要他要，記得刪註解
       def self.db_find_or_create(entity)
-        db_hash = entity.to_attr_hash
-        db_hash['topics'] = entity.topics.join(',')
-        Database::InspirationOrm.find_or_create(db_hash)
+        Database::InspirationOrm.find_or_create(entity.to_attr_hash)
       end
-
     end
   end
 end

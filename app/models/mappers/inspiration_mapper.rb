@@ -25,6 +25,7 @@ module LightofDay
 
         def build_entity
           LightofDay::FavQs::Entity::Inspiration.new(
+            id: nil,
             origin_id:,
             topics:,
             author:,
@@ -37,10 +38,6 @@ module LightofDay
         end
 
         def topics
-          @data['quote']['tags']
-        end
-
-        def flat_topics
           @data['quote']['tags'].join(',')
         end
 

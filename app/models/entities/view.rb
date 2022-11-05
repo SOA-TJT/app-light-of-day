@@ -9,10 +9,11 @@ module LightofDay
       # entity for image
       class View < Dry::Struct
         include Dry.Types
+        attribute :id,        Integer.optional
         attribute :origin_id, String.optional
         attribute :width, Strict::Integer
         attribute :height, Strict::Integer
-        attribute :topic, Strict::Array.of(String)
+        attribute :topics, Strict::String
         attribute :urls, Strict::String
         attribute :urls_small, Strict::String
         attribute :creator_name, Strict::String
@@ -21,7 +22,7 @@ module LightofDay
         attribute :inspiration, LightofDay::FavQs::Entity::Inspiration
         # attribute :creator, Strict::Hash
         def to_attr_hash
-          to_hash.except(:topic, :inspiration)
+          to_hash.except(:id, :inspiration)
         end
       end
     end

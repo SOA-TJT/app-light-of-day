@@ -29,8 +29,9 @@ module LightofDay
 
         def build_entity
           LightofDay::Unsplash::Entity::View.new(
+            id: nil,
             origin_id:,
-            topic:,
+            topics:,
             width:,
             height:,
             urls:,
@@ -54,8 +55,8 @@ module LightofDay
           @data['height']
         end
 
-        def topic
-          @data['topic_submissions'].keys
+        def topics
+          @data['topic_submissions'].keys.join(',')
         end
 
         def urls

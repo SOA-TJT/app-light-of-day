@@ -9,7 +9,7 @@ Sequel.migration do
       foreign_key :inspiration_id, :inspirations
       String      :origin_id
       Integer     :height
-      String      :width
+      Integer     :width
       String      :topics
       String      :urls
       String      :creator_name

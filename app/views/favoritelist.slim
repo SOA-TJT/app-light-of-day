@@ -12,17 +12,17 @@
   .clear
 
 .favorite-lists.container
-  .favorite-item.row
-    .left-pic.col-md-6.col-sm-12
-      img alt="" src="" srcset="" /
-    .right-inspiration.col-md-6.col-sm-12
-      .favorite-item-quote
-        | "Tell me and I forget. Teach me and I remember. Involve me and I
-        | learn."
-      .favorite-inspiration-author By Jerry
-      .favorite-item-creater Tiffany
-      .favorite-item-creater-link
-        a href="/light-of-day/favorite/view_id"  View
+  - favoriteList.each_with_index do |lightofday, idx|
+    .favorite-item.row
+      .left-pic.col-md-6.col-sm-12
+        img alt="" src="#{lightofday.urls_small}" srcset="" /
+      .right-inspiration.col-md-6.col-sm-12
+        .favorite-item-quote
+          | #{lightofday.inspiration.quote}
+        .favorite-inspiration-author By #{lightofday.inspiration.author}
+        .favorite-item-creater #{lightofday.creator_name}
+        .favorite-item-creater-link
+          a href="/light-of-day/favorite/#{lightofday.origin_id}"  View
 .footer
   .copyright
     img.company-logo src="https://github.com/SOA-TJT/Team-Logo/blob/SOA-TJT-patch-1/Logo.png?raw=true" /

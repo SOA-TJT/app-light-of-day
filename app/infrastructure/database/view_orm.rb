@@ -7,7 +7,8 @@ module LightofDay
     # Object Relational Mapper for View Entity
     class ViewOrm < Sequel::Model(:views)
       one_to_one :inspiration,
-                  class: :'LightofDay::Database::InspirationOrm'
+                 class: :'LightofDay::Database::InspirationOrm',
+                 key: :origin_id
 
       plugin :timestamps, update_on_create: true
     end

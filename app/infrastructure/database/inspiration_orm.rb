@@ -6,9 +6,9 @@ module LightofDay
   module Database
     # Object Relational Mapper for Inspirations Entity
     class InspirationOrm < Sequel::Model(:inspirations)
-      one_to_one :link_view,
-                  class: :'LightofDay::Database::ViewOrm',
-                  key: :inspiration_id
+      one_to_one :view,
+                 class: :'LightofDay::Database::ViewOrm',
+                 key: :inspiration_id
 
       plugin :timestamps, update_on_create: true
       def self.find_or_create(inspiration_info)
