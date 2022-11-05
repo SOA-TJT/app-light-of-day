@@ -1,8 +1,3 @@
-- if !is_saved
-  form(action='/light-of-day/favorite' method='post')
-    input(type='submit' name='favorite' value='favorite')
-.view-pic 
-  img src="#{view.urls}"
 .quote-card
   .quote-title #{inspiration.quote}
   .quote-author #{inspiration.author}
@@ -16,8 +11,16 @@
   .view-topics Topics： #{view.topic.join(', ')}
   .view-url
     a href="#{view.urls}" View 
+.view-pic 
+  img src="#{view.urls}"
 .footer.poa-footer 
   .copyright 
+    - if !is_saved
+      .favorite
+        form(action='/light-of-day/favorite' method='post')
+          input(type='submit' name='favorite' value='favorite')
+          img src="https://www.freeiconspng.com/thumbs/heart-png/heart-png-15.png" alt="" srcset=""
+          span Add to Collection 
     img.company-logo src="https://github.com/SOA-TJT/Team-Logo/blob/SOA-TJT-patch-1/Logo.png?raw=true" 
     .company TJT@2022.Insipiration
 
