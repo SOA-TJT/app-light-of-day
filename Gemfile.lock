@@ -57,6 +57,7 @@ GEM
       domain_name (~> 0.5)
     http-form_data (2.3.0)
     ice_nine (0.11.2)
+    json (2.6.2)
     kwalify (0.7.2)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -134,6 +135,7 @@ DEPENDENCIES
   hirb (~> 0)
   hirb-unicode (~> 0)
   http (~> 5)
+  json (~> 2.6.2)
   minitest (~> 5)
   minitest-rg (~> 5)
   pry

@@ -1,5 +1,6 @@
 # frozen_string_literal: false
 
+require 'json'
 require 'dry-types'
 require 'dry-struct'
 
@@ -24,6 +25,26 @@ module LightofDay
         def to_attr_hash
           to_hash.except(:id, :inspiration)
         end
+
+        def context
+          arr = instance_variables.map do |attribute|
+            { attribute => instance_variable_get(attribute) }
+          end
+          arr[0].to_json
+        end
+
+        def instance_variables_hash
+          instance_variables.map { |name| [name, instance_variable_get(name)] }.to_h.to_json
+          # instance_variables.map { |name| [name, instance_variable_get(name)] }.to_h.to_json
+        end
+
+        # def to_json(*_args)
+        #   obj = {}
+        #   instance_variables.map do |var|
+        #     obj[var] = instance_variable_get(var)
+        #   end
+        #   JSON.dump(obj)
+        # end
       end
     end
   end
