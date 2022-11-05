@@ -25,9 +25,9 @@ describe 'Intergration Test of Unsplash API , FavQs API and database ' do
       # inspiration = LightofDay::FavQs::InspirationMapper.new.find_random
       rebuilt = LightofDay::Repository::For.entity(view).create(view)
 
-      _(rebuilt.width).must_equal(project.width)
-      _(rebuilt.height).must_equal(project.height)
-      _(rebuilt.topic).must_equal(project.topic)
+      _(rebuilt.width).must_equal(view.width)
+      _(rebuilt.height).must_equal(view.height)
+      _(rebuilt.topics).must_equal(view.topics)
       _(rebuilt.inspiration).must_be_kind_of(LightofDay::FavQs::Entity::Inspiration)
     end
   end
