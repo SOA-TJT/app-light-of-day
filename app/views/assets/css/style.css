@@ -132,6 +132,7 @@ body{
   font-weight: bold;
 }
 .topic-description{
+  width: 100%;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.6;
@@ -263,7 +264,7 @@ body{
   
 }
 
-input[type="radio"]{
+.topic-card input[type="radio"]{
     -webkit-appearance: none;
     appearance: none;
     height: 100%;
@@ -277,16 +278,20 @@ input[type="radio"]{
     top: 0;
     z-index: 10;
 }
-input[type="radio"]:checked{
+.topic-card input[type="radio"]:checked{
     border: 5px solid #A1B79E;
     /* transform: scale(1.05); */
 }
+
 input[type="submit"]{
     background: transparent;
     border: none;
     color: #fff;
     width: 100%;
     height: 100%;
+}
+.carousel{
+  z-index: 20;
 }
 .favorite-lists{
   margin-top: 10px;
