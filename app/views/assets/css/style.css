@@ -447,6 +447,11 @@ input[type="submit"]{
   font-size: 18px;
   display: inline-block;
 }
+.btn btn-secondary dropdown-toggle{
+  --bs-btn-padding-y: .25rem; 
+  --bs-btn-padding-x: .5rem; 
+  --bs-btn-font-size: .75rem;
+}
 
 @media (max-width: 768px) {
   .favorite-item-quote{
@@ -464,10 +469,10 @@ input[type="submit"]{
     display: flex;
     display: block;
     float: none;
-    margin-top: 40px;
+    margin-top: 50px;
   }
   .header .menuitem{
-   margin: 0 10px 0 0px;
+   margin: 0 10px 10px 0px;
   }
   .header .dropdown{
     margin-top: 180px;  

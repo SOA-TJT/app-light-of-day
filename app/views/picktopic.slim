@@ -12,6 +12,17 @@
     .clear
   .topic-choose-title Pick a Topic
 
+  .dropdown
+    button.btn.btn-secondary.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" type="button" 
+      | Sort by : 
+      ul.dropdown-menu.dropdown-menu-dark
+        li
+          a.dropdown-item href="#"  Created Time
+        li
+          a.dropdown-item href="#"  Active
+        li
+          a.dropdown-item href="#"  Popularity
+
 
   / a.btn.btn-warning(href='/favorite-list') Favorite List
 .container-fluid
