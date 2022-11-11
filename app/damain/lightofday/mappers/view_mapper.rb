@@ -71,10 +71,6 @@ module LightofDay
           @data['urls']['small']
         end
 
-        # def creator
-        #   @data['user']
-        # end
-
         def creator_name
           @data['user']['name']
         end

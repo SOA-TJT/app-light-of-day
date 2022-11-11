@@ -5,7 +5,7 @@ require_relative '../gateways/unsplash_api'
 
 module LightofDay
   module Unsplash
-    # Distribute the Data From the Quote Api
+    # Topic parse
     class TopicMapper
       def initialize(un_token, gateway_class = Unsplash::Api)
         @token = un_token
@@ -33,6 +33,8 @@ module LightofDay
             topic_id:,
             title:,
             slug:,
+            starts_at:,
+            total_photos:,
             description:,
             topic_url:
           )
@@ -50,6 +52,14 @@ module LightofDay
 
         def slug
           @data['slug']
+        end
+
+        def starts_at
+          @data['starts_at']
+        end
+
+        def total_photos
+          @data['total_photos']
         end
 
         def description

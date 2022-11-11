@@ -19,6 +19,11 @@ task :specdb do
   sh 'ruby spec/gateway_database_spec.rb'
 end
 
+desc 'run testdomain'
+task :specdomain do
+  sh 'ruby spec/domain_topics_spec.rb'
+end
+
 task :run do
   sh 'bundle exec puma'
 end

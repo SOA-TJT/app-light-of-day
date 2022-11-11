@@ -14,7 +14,7 @@ require 'vcr'
 require 'webmock'
 
 # require_relative '../lib/unsplash_api'
-require_relative '../require_app'
+require_relative '../../require_app'
 require_app
 
 TOPIC_ID = 'xjPR4hlkBGA'

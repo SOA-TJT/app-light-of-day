@@ -12,6 +12,8 @@ module LightofDay
         attribute :topic_id, Strict::String
         attribute :title, Strict::String
         attribute :slug, Strict::String
+        attribute :starts_at, Strict::Date
+        attribute :total_photos, Strict::Integer
         attribute :description, Strict::String
         attribute :topic_url, Strict::String
       end
