@@ -2,7 +2,7 @@
 
 require 'dry-types'
 require 'dry-struct'
-require_relative '../lib/topics_calculator.rb'
+require_relative '../lib/topics_calculator'
 
 module LightofDay
   module Entity
@@ -16,7 +16,7 @@ module LightofDay
       attribute :total_photos, Strict::Integer
       attribute :description, Strict::String
       attribute :topic_url, Strict::String
-
+      attribute :preview_photos, Strict::Array
       include Mixins::TopicsCalculator
     end
   end

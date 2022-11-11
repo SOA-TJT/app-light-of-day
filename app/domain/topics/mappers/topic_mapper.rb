@@ -35,7 +35,8 @@ module LightofDay
           starts_at:,
           total_photos:,
           description:,
-          topic_url:
+          topic_url:,
+          preview_photos:
         )
       end
 
@@ -67,6 +68,10 @@ module LightofDay
 
       def topic_url
         @data['links']['html']
+      end
+
+      def preview_photos
+        @data['preview_photos']
       end
     end
   end
