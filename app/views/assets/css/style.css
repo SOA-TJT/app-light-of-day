@@ -22,7 +22,7 @@ body{
   font-weight: bold;
   font-size: 1.5rem;
   margin: auto;
-  margin-top: 60px;
+  margin-top: 50px;
   text-align: center;
   display: inline-block;
   position: relative;
@@ -33,6 +33,15 @@ body{
   transform: translate(-50%, 0);
   /* width: 20%; */
   
+}
+.btn.dropdown-toggle .dropdown-item , .btn.dropdown-toggle {
+  background: #FFFFFF;
+  color:  #50885D;
+  font-weight: bold;
+}
+.btn.dropdown-toggle .dropdown-item:hover{
+   background:  #50885D;
+   color:  #F1EBEB;;
 }
 .service-logo{
   /* opacity: 0.9; */
@@ -91,11 +100,6 @@ body{
 .header{
   padding: 20px 10px;
   position: relative;
-  /* display: flex; */
-  /* background: #000; */
-  
-  /* width: 100%; */
-  /* justify-content: center; */
 }
 .container-fluid{
   margin-bottom: 80px;
@@ -263,6 +267,13 @@ body{
   /* background: #000; */
   
 }
+/* .dropdown{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: #000;
+  display:inline;
+  position: relative;
+} */
 img.d-block{
   width: 100%;
   max-height: 20vh;
@@ -458,11 +469,9 @@ input[type="submit"]{
     display: none;
 }
 .dropdown {
-  position: absolute;
-  top: 100px;
-  right: 10px;
+  margin-top: 20px;
   font-size: 18px;
-  display: inline-block;
+  display: block;
 }
 .btn btn-secondary dropdown-toggle{
   --bs-btn-padding-y: .25rem; 
@@ -490,8 +499,5 @@ input[type="submit"]{
   }
   .header .menuitem{
    margin: 0 10px 10px 0px;
-  }
-  .header .dropdown{
-    margin-top: 180px;  
   }
 }
