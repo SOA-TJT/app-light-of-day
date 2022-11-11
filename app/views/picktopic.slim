@@ -12,6 +12,16 @@
     .clear
   .topic-choose-title Pick a Topic
 
+  .dropdown
+    button.btn.btn-secondary.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" type="button" 
+      | Sort by : 
+      ul.dropdown-menu.dropdown-menu-dark
+        li
+          a.dropdown-item href="#"  Created Time
+        li
+          a.dropdown-item href="#"  Active
+        li
+          a.dropdown-item href="#"  Popularity
 
   / a.btn.btn-warning(href='/favorite-list') Favorite List
 .container-fluid
@@ -20,6 +30,23 @@
       - topics.each_with_index do |topic, idx|
         .col 
           .topic-card
+
+            .left-pic.col-md-12.col-sm-12
+              #carouselExampleFade.carousel.slide.carousel-fade data-bs-ride="carousel" 
+                .carousel-inner
+                  .carousel-item.active data-bs-interval="3000" 
+                    img.d-block.w-100 alt="..." src="assets/test.jpg" /
+                  .carousel-item data-bs-interval="3000" 
+                    img.d-block.w-100 alt="..." src="assets/test2.jpeg" /
+                  .carousel-item data-bs-interval="3000" 
+                    img.d-block.w-100 alt="..." src="assets/test3.jpeg" /
+                button.carousel-control-prev data-bs-slide="prev" data-bs-target="#carouselExampleFade" type="button" 
+                  span.carousel-control-prev-icon aria-hidden="true" 
+                  span.visually-hidden Previous
+                button.carousel-control-next data-bs-slide="next" data-bs-target="#carouselExampleFade" type="button" 
+                  span.carousel-control-next-icon aria-hidden="true" 
+                  span.visually-hidden Next
+
             input type="radio" required="required" name="topic_id" id="topic#{idx}" value="#{topic.topic_id}"
             .topic-title #{topic.title}
             .topic-description #{topic.description}
