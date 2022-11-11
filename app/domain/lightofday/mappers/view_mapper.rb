@@ -1,7 +1,7 @@
 # frozen_string_literal: false
 
 require_relative '../entities/view'
-require_relative '../gateways/unsplash_api'
+require_relative '../../../infrastructure/gateways/unsplash_api'
 require_relative 'inspiration_mapper'
 
 module LightofDay

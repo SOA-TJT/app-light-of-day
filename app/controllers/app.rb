@@ -21,7 +21,7 @@ module LightofDay
       routing.assets # load CSS
       response['Content-Type'] = 'text/html; charset=utf-8'
 
-      topics_data = LightofDay::Unsplash::TopicMapper.new(App.config.UNSPLASH_SECRETS_KEY).find_all_topics
+      topics_data = LightofDay::TopicMapper.new(App.config.UNSPLASH_SECRETS_KEY).find_all_topics
       # GET /
       routing.root do
         view 'picktopic', locals: { topics: topics_data }

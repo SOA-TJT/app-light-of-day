@@ -9,5 +9,3 @@ def require_app(folders = %w[infrastructure views domain controllers])
     require file
   end
 end
-
-# require_app
