@@ -8,6 +8,7 @@ Get a daily inspirational photo and quote on the website, and you will feel that
 - Photo -> View
 - Topic ->  Topic
 - User -> Creator
+- Quote -> Inspiration
 
 ## Our Database
 
@@ -15,10 +16,11 @@ Get a daily inspirational photo and quote on the website, and you will feel that
 
 ## Overview
 
-- You can save the pictures(with words) you like.
-- The system will recommend pictures according to your collections categories.
-- Subscribe to enjoy sharing pictures on telegram.
-- The design of Pomodoro Timer and some small functions such as to-do list is applied to the website.
+- You can save the pictures(with words) you like.(Have Been Supported)
+- Ranking your favorite topic, now you can choose your favorite topic in more flexible way. (Coming soon)
+- The system will recommend pictures according to your collections categories.(Still in Development)
+- Subscribe to enjoy sharing pictures on telegram.(Still in Development)
+- The design of Pomodoro Timer and some small functions such as to-do list is applied to the website.(Still in Development)
 
 ## Short-term usability goals
 

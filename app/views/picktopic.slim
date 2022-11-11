@@ -12,6 +12,17 @@
     .clear
   .topic-choose-title Pick a Topic
 
+  .dropdown
+    button.btn.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" type="button" 
+      | Sort by : 
+      / ul.dropdown-menu.dropdown-menu-dark
+      ul.dropdown-menu
+        li
+          a.dropdown-item href="#"  Created Time
+        li
+          a.dropdown-item href="#"  Active
+        li
+          a.dropdown-item href="#"  Popularity
 
   / a.btn.btn-warning(href='/favorite-list') Favorite List
 .container-fluid
@@ -20,11 +31,27 @@
       - topics.each_with_index do |topic, idx|
         .col 
           .topic-card
-            input type="radio" required="required" name="topic_id" id="topic#{idx}" value="#{topic.topic_id}"
-            .topic-title #{topic.title}
-            .topic-description #{topic.description}
-            a.topic-link href="#{topic.topic_url}" target="blank" Link
-            .clear
+            / .left-pic.col-md-12.col-sm-12
+            .carousel.slide.carousel-fade data-bs-ride="carousel" id="carousel#{idx}"
+              .carousel-inner
+                .carousel-item.active data-bs-interval="3000" 
+                  img.d-block.w-100 alt="..." src="https://images.unsplash.com/photo-1666797630713-f5a2e54d3d23?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" /
+                .carousel-item data-bs-interval="3000" 
+                  img.d-block.w-100 alt="..." src="https://plus.unsplash.com/premium_photo-1666432045848-3fdbb2c74531?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80" /
+                .carousel-item data-bs-interval="3000" 
+                  img.d-block.w-100 alt="..." src="https://images.unsplash.com/photo-1653979731557-530f259e0c2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" /
+              button.carousel-control-prev data-bs-slide="prev" data-bs-target="#carousel#{idx}"type="button" 
+                span.carousel-control-prev-icon aria-hidden="true" 
+                span.visually-hidden Previous
+              button.carousel-control-next data-bs-slide="next" data-bs-target="#carousel#{idx}" type="button" 
+                span.carousel-control-next-icon aria-hidden="true" 
+                span.visually-hidden Next
+            .topic-card-info
+              input type="radio" required="required" name="topic_id" id="topic#{idx}" value="#{topic.topic_id}"
+              .topic-title #{topic.title}
+              .topic-description #{topic.description}
+              a.topic-link href="#{topic.topic_url}" target="blank" Link
+              .clear
     .choose-topic
       .send-topic 
         input type="submit" value="Next Step"
