@@ -34,12 +34,12 @@ body{
   /* width: 20%; */
   
 }
-.btn.dropdown-toggle .dropdown-item , .btn.dropdown-toggle {
+.dropdown-item , .btn.dropdown-toggle {
   background: #FFFFFF;
   color:  #50885D;
   font-weight: bold;
 }
-.btn.dropdown-toggle .dropdown-item:hover{
+.dropdown-item:hover{
    background:  #50885D;
    color:  #F1EBEB;;
 }
