@@ -21,10 +21,22 @@ module LightofDay
       routing.assets # load CSS
       response['Content-Type'] = 'text/html; charset=utf-8'
 
-      topics_data = LightofDay::TopicMapper.new(App.config.UNSPLASH_SECRETS_KEY).find_all_topics
+      topics_mapper = LightofDay::TopicMapper.new(App.config.UNSPLASH_SECRETS_KEY)
+      topics_data = topics_mapper.topics
+
       # GET /
       routing.root do
         view 'picktopic', locals: { topics: topics_data }
+      end
+
+      # GET /list_topics/{sort_by}
+      routing.on 'list_topics', String do |sort_by|
+        routing.get do
+          topics_data = topics_mapper.created_time if sort_by == 'created_time'
+          topics_data = topics_mapper.activeness if sort_by == 'activeness'
+          topics_data = topics_mapper.popularity if sort_by == 'popularity'
+          view 'picktopic', locals: { topics: topics_data }
+        end
       end
 
       routing.on 'favorite-list' do
