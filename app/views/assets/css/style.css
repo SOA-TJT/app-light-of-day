@@ -489,6 +489,9 @@ input[type="submit"]{
   --bs-btn-padding-x: .5rem; 
   --bs-btn-font-size: .75rem;
 }
+.icon-pos {
+  padding: 10px 5px 0px 5px;
+}
 
 @media (max-width: 768px) {
   .favorite-item-quote{
