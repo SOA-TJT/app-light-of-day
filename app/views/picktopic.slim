@@ -50,7 +50,8 @@
               input type="radio" required="required" name="topic_id" id="topic#{idx}" value="#{topic.topic_id}"
               .topic-title #{topic.title}
               .topic-description #{topic.description}
-              .container.mt-1
+              / .container.mt-1
+              .iconset
                 button.btn.icon-pos data-bs-toggle="tooltip" title=("created time : #{topic.starts_at}") type="button" 
                   svg.bi.bi-clock fill="currentColor" height="16" viewbox=("0 0 16 16") width="16" xmlns="http://www.w3.org/2000/svg" 
                     path d=("M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z") /
