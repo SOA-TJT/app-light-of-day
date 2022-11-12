@@ -2,13 +2,17 @@
 
 require_relative '../entities/topic'
 require_relative '../../../infrastructure/gateways/unsplash_api'
+require_relative '../lib/topics_calculator'
 
 module LightofDay
   # Topic parse
   class TopicMapper
+    include Mixins::TopicsCalculator
+    attr_reader :topics
     def initialize(un_token, gateway_class = Unsplash::Api)
       @token = un_token
       @gateway = gateway_class.new('Client-ID', @token)
+      @topics = find_all_topics
     end
 
     def find_all_topics
