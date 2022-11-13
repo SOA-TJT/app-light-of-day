@@ -483,6 +483,12 @@ input[type="submit"]{
 .icon-pos {
   padding: 10px 5px 0px 5px;
 }
+.topic-pos-text {
+  color:rgb(100, 100, 100);
+  font-size: 0.8rem;
+  margin-right: 10px;
+  line-height: 22px;
+}
 .topic-card-info .btn
 {
   z-index: 20;
