@@ -485,7 +485,7 @@ input[type="submit"]{
 }
 .topic-pos-text {
   color:rgb(100, 100, 100);
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   margin-right: 10px;
   line-height: 22px;
 }
@@ -535,4 +535,15 @@ input[type="submit"]{
   .header .menuitem{
    margin: 0 10px 10px 0px;
   }
+}
+
+@media (max-width: 384px){
+  .iconset{
+    display: flex;
+    flex-direction: column;
+  }
+  .topic-pos-text{
+    text-align: center;
+  }
+
 }

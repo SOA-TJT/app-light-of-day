@@ -37,14 +37,6 @@ module LightofDay
           instance_variables.map { |name| [name, instance_variable_get(name)] }.to_h.to_json
           # instance_variables.map { |name| [name, instance_variable_get(name)] }.to_h.to_json
         end
-
-        # def to_json(*_args)
-        #   obj = {}
-        #   instance_variables.map do |var|
-        #     obj[var] = instance_variable_get(var)
-        #   end
-        #   JSON.dump(obj)
-        # end
       end
     end
   end
