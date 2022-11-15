@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
+ruby File.read('.ruby-version').strip
 
 # Configuration and Utilities
 gem 'figaro', '~> 1.2'
@@ -19,6 +20,10 @@ gem 'http', '~> 5'
 gem 'hirb', '~> 0'
 gem 'hirb-unicode', '~> 0'
 gem 'sequel', '~> 5.49'
+
+group :production do
+  gem 'pg'
+end
 
 group :development, :test do
   gem 'sqlite3', '~> 1.4'

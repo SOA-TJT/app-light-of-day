@@ -22,7 +22,7 @@ body{
   font-weight: bold;
   font-size: 1.5rem;
   margin: auto;
-  margin-top: 60px;
+  margin-top: 50px;
   text-align: center;
   display: inline-block;
   position: relative;
@@ -33,6 +33,15 @@ body{
   transform: translate(-50%, 0);
   /* width: 20%; */
   
+}
+.dropdown-item:invalid,.dropdown-item,.dropdown-item:visited , .btn.dropdown-toggle {
+  background: #FFFFFF;
+  color:  #50885D;
+  font-weight: bold;
+}
+.dropdown-item:hover{
+   background:  #50885D;
+   color:  #F1EBEB;;
 }
 .service-logo{
   /* opacity: 0.9; */
@@ -53,14 +62,10 @@ body{
   margin: 0;
   display: inline-block;
   padding: 5px 12px;
-  /* padding-top: 15px;
-  padding-bottom: 15px; */
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 1%;
   line-height: 1.6;
-  
-  /* color: rgb(235, 212, 4); */
 }
 .sv-light{
   background: #FFE600;
@@ -85,17 +90,9 @@ body{
   display: block;
   /* background: #000; */
 }
-/* .container-fluid{
-  background: rgb(0, 26, 255);
-} */
 .header{
   padding: 20px 10px;
   position: relative;
-  /* display: flex; */
-  /* background: #000; */
-  
-  /* width: 100%; */
-  /* justify-content: center; */
 }
 .container-fluid{
   margin-bottom: 80px;
@@ -104,11 +101,8 @@ body{
   display: block;
   margin: auto;
   padding: 0;
-  /* background: rgb(72, 0, 255); */
   display: flex;
   justify-content: flex-start;
-  /* justify-content: space-between; */
-  /* flex-wrap: wrap; */
 }
 .topic-card{
   background-color: #fff;
@@ -132,13 +126,15 @@ body{
   font-weight: bold;
 }
 .topic-description{
+  width: 100%;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.6;
-  padding: 10px 20px 10px 30px;
+  /* padding: 10px 20px 10px 20px; */
+  padding: 10px 20px 10px 20px;
   overflow: hidden;
-  max-height: 20vh;
-  min-height: 20vh;
+  max-height: 16vh;
+  min-height: 16vh;
   /* background: #000; */
 }
 .topic-link{
@@ -262,8 +258,21 @@ body{
   /* background: #000; */
   
 }
+/* .dropdown{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: #000;
+  display:inline;
+  position: relative;
+} */
+img.d-block{
+  width: 100%;
+  max-height: 20vh;
+  min-height: 20vh;
+  object-fit: cover;
+}
 
-input[type="radio"]{
+.topic-card input[type="radio"]{
     -webkit-appearance: none;
     appearance: none;
     height: 100%;
@@ -273,10 +282,17 @@ input[type="radio"]{
     outline: none;
     padding: 0;
     margin: 0;
+    left: 0;
+    top: 0;
+    z-index: 10;
 }
-input[type="radio"]:checked{
-    border: 4px solid #A1B79E;
+.topic-card input[type="radio"]:checked{
+    border: 5px solid #A1B79E;
     /* transform: scale(1.05); */
+}
+.topic-card-info{
+  position: relative;
+  padding: 0 0 20px 0;
 }
 input[type="submit"]{
     background: transparent;
@@ -285,6 +301,9 @@ input[type="submit"]{
     width: 100%;
     height: 100%;
 }
+/* .carousel{
+  z-index: 20;
+} */
 .favorite-lists{
   margin-top: 10px;
   margin-bottom: 80px;
@@ -440,6 +459,60 @@ input[type="submit"]{
 .favorite input[type="radio"]{
     display: none;
 }
+.dropdown {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  /* display: inline; */
+  /* background: #000; */
+  display: block;
+  width: 100%;
+  height: 10px;
+  position: relative;
+}
+.dropdown .btn{
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+.btn btn-secondary dropdown-toggle{
+  --bs-btn-padding-y: .25rem; 
+  --bs-btn-padding-x: .5rem; 
+  --bs-btn-font-size: .75rem;
+}
+.icon-pos {
+  padding: 10px 5px 0px 5px;
+}
+.topic-pos-text {
+  color:rgb(100, 100, 100);
+  font-size: 0.6rem;
+  margin-right: 10px;
+  line-height: 22px;
+}
+.topic-card-info .btn
+{
+  z-index: 20;
+  position: relative;
+  padding: 2px 6px;
+  background: #50885D;
+  color: #fff;
+  margin: 0px 5px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.iconset{
+
+  /* background: rgb(38, 0, 255); */
+  display: flex;
+
+  padding: 5px 20px 0 20px;
+}
+.iconset svg{
+  width: 16px;
+  vertical-align: middle;
+}
 
 @media (max-width: 768px) {
   .favorite-item-quote{
@@ -457,9 +530,20 @@ input[type="submit"]{
     display: flex;
     display: block;
     float: none;
-    margin-top: 40px;
+    margin-top: 50px;
   }
   .header .menuitem{
-   margin: 0 10px 0 0px;
+   margin: 0 10px 10px 0px;
   }
+}
+
+@media (max-width: 384px){
+  .iconset{
+    display: flex;
+    flex-direction: column;
+  }
+  .topic-pos-text{
+    text-align: center;
+  }
+
 }

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'spec_helper'
+require_relative 'helpers/spec_helper'
 
 describe 'Tests Unsplash API library' do
   VCR.configure do |c|

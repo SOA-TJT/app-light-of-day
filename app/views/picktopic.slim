@@ -12,6 +12,17 @@
     .clear
   .topic-choose-title Pick a Topic
 
+  .dropdown
+    button.btn.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" type="button" 
+      | Sort by : 
+      / ul.dropdown-menu.dropdown-menu-dark
+    ul.dropdown-menu
+      li
+        a.dropdown-item href="/list_topics/created_time"  Created Time
+      li
+        a.dropdown-item href="/list_topics/activeness"  Active
+      li
+        a.dropdown-item href="/list_topics/popularity"  Popularity
 
   / a.btn.btn-warning(href='/favorite-list') Favorite List
 .container-fluid
@@ -20,11 +31,42 @@
       - topics.each_with_index do |topic, idx|
         .col 
           .topic-card
-            input type="radio" required="required" name="topic_id" id="topic#{idx}" value="#{topic.topic_id}"
-            .topic-title #{topic.title}
-            .topic-description #{topic.description}
-            a.topic-link href="#{topic.topic_url}" target="blank" Link
-            .clear
+            / .left-pic.col-md-12.col-sm-12
+            .carousel.slide.carousel-fade data-bs-ride="carousel" id="carousel#{idx}"
+              .carousel-inner
+                / #{topic.preview_photos}.delete(#{topic.preview_photos.first})
+                .carousel-item.active data-bs-interval="100" 
+                  img.d-block.w-100 alt="..." src="#{topic.preview_photos.first['urls']['small']}" /
+                - topic.preview_photos.each_with_index do |prephoto, idxx|
+                  .carousel-item data-bs-interval="3000" 
+                    img.d-block.w-100 alt="..." src="#{prephoto['urls']['small']}" /
+              button.carousel-control-prev data-bs-slide="prev" data-bs-target="#carousel#{idx}"type="button" 
+                span.carousel-control-prev-icon aria-hidden="true" 
+                span.visually-hidden Previous
+              button.carousel-control-next data-bs-slide="next" data-bs-target="#carousel#{idx}" type="button" 
+                span.carousel-control-next-icon aria-hidden="true" 
+                span.visually-hidden Next
+            .topic-card-info
+              input type="radio" required="required" name="topic_id" id="topic#{idx}" value="#{topic.topic_id}"
+              .topic-title #{topic.title}
+              .topic-description #{topic.description}
+              / .container.mt-1
+              .iconset
+                button.btn.icon-pos data-bs-toggle="tooltip" title=("created time : #{topic.starts_at}") type="button" 
+                  svg.bi.bi-clock fill="currentColor" height="16" viewbox=("0 0 16 16") width="16" xmlns="http://www.w3.org/2000/svg" 
+                    path d=("M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z") /
+                    path d=("M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z") /
+                div.topic-pos-text #{topic.starts_at}
+                button.btn.icon-pos data-bs-toggle="tooltip" title=("popularity : #{topic.total_photos}") type="button" 
+                  svg.bi.bi-fire fill="currentColor" height="16" viewbox=("0 0 16 16") width="16" xmlns="http://www.w3.org/2000/svg" 
+                    path d=("M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16Zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15Z") /
+                div.topic-pos-text #{topic.total_photos}
+              javascript:
+                | const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+                | const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+              a.topic-link href="#{topic.topic_url}" target="blank" Link
+              .clear
     .choose-topic
       .send-topic 
         input type="submit" value="Next Step"
@@ -33,4 +75,3 @@
   .copyright 
     img.company-logo src="https://github.com/SOA-TJT/Team-Logo/blob/SOA-TJT-patch-1/Logo.png?raw=true"
     .company TJT@2022.Insipiration
-

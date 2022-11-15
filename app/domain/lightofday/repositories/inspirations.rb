@@ -24,7 +24,6 @@ module LightofDay
         )
       end
 
-      # not sure this function is required: 要他要，記得刪註解
       def self.db_find_or_create(entity)
         Database::InspirationOrm.find_or_create(entity.to_attr_hash)
       end

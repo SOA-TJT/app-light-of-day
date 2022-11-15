@@ -1,7 +1,7 @@
 # frozen_string_literal: false
 
 require_relative '../entities/view'
-require_relative '../gateways/unsplash_api'
+require_relative '../../../infrastructure/gateways/unsplash_api'
 require_relative 'inspiration_mapper'
 
 module LightofDay
@@ -70,10 +70,6 @@ module LightofDay
         def urls_small
           @data['urls']['small']
         end
-
-        # def creator
-        #   @data['user']
-        # end
 
         def creator_name
           @data['user']['name']
