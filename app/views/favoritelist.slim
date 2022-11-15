@@ -12,6 +12,18 @@
   .clear
 
 .favorite-lists.container
+  - if flash[:notice]   
+    .favorite-item.row.grey
+      .left-pic.col-md-6.col-sm-12
+        img alt="" src="https://images.unsplash.com/photo-1487621167305-5d248087c724?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80" srcset="" /
+      .right-inspiration.col-md-6.col-sm-12
+        .favorite-item-quote
+          = flash[:notice]
+        .favorite-inspiration-author Find Your Favorite Author
+        .favorite-item-creater Find a Photo Creator
+        .favorite-item-creater-link
+          a href="/light-of-day/"  Add some Topic
+      
   - favoriteList.each_with_index do |lightofday, idx|
     .favorite-item.row
       .left-pic.col-md-6.col-sm-12

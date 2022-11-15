@@ -312,6 +312,25 @@ input[type="submit"]{
   margin-bottom: 80px;
   width: 90%;
 }
+.favorite-item.row.grey::before{
+  content: '';
+  position: absolute;
+  background: rgba(93, 85, 120, 0.3);
+  left: 0;
+  right: 0;
+  width: 100%;
+  height:100%;
+  z-index: 10;
+}
+ .favorite-item.row.grey .favorite-inspiration-author{
+  margin-bottom:15px ;
+ }
+.favorite-item.row.grey  .favorite-item-creater{
+  margin-bottom: 40px;
+ }
+/* .favorite-item.row.grey{
+  padding: 0px 0px 30px 0;
+} */
 .left-pic{
   overflow: hidden;
   min-height: 10vh;
@@ -338,7 +357,7 @@ input[type="submit"]{
   width: 100%;
 }
 .favorite-item{
-  
+  position: relative;
   background: #fff;
 }
 .favorite-item-quote{

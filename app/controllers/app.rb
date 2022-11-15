@@ -11,8 +11,11 @@ module LightofDay
     plugin :assets, css: 'style.css', path: 'app/views/assets/'
     plugin :common_logger, $stderr
     plugin :halt
+    plugin :flash
+    plugin :all_verbs
     plugin :status_handler
 
+    use Rack::MethodOverride
     status_handler(404) do
       view('404')
     end
@@ -41,7 +44,16 @@ module LightofDay
 
       routing.on 'favorite-list' do
         routing.is do
-          favorite_list = Repository::For.klass(Unsplash::Entity::View).all
+          session[:watching] ||= []
+
+          # Load previously viewed projects
+          favorite_list = Repository::For.klass(Unsplash::Entity::View)
+                                         .find_origin_ids(session[:watching])
+
+          session[:watching] = favorite_list.map(&:origin_id)
+
+          flash.now[:notice] = 'Make some collections to get started' if favorite_list.none?
+          # favorite_list = Repository::For.klass(Unsplash::Entity::View).all
           view 'favoritelist', locals: { favoriteList: favorite_list }
         end
       end
@@ -76,14 +88,6 @@ module LightofDay
           routing.is do
             # POST /light-of-day/favorite/
             routing.post do
-              # view_id = routing.params['view_id']
-              # puts view_data
-              # puts 'store view & quote data' # TODO: Jerry
-              # # Add project to database
-              # Repository::For.entity(view_data).create(view_data)
-
-              # Redirect viewer to favorite page
-              # above is jerry
               fin = JSON.parse(routing.params['favorite'])
               ins_record = LightofDay::FavQs::Entity::Inspiration.new(
                 id: fin['@attributes']['inspiration']['@attributes']['id'],
@@ -106,6 +110,9 @@ module LightofDay
                 creator_image: fin['@attributes']['creator_image'],
                 inspiration: ins_record
               )
+              session[:watching] ||= []
+              session[:watching].insert(0, view_record.origin_id).uniq!
+
               Repository::For.entity(view_record).create(view_record)
               view_id = routing.params['view_data']
               routing.halt 404 unless view_id

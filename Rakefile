@@ -24,6 +24,14 @@ task :specdomain do
   sh 'ruby spec/domain_topics_spec.rb'
 end
 
+desc 'Generate Base64 for secret used in Rack :session'
+task :new_session_secret do
+  require 'Base64'
+  require 'SecureRandom'
+  secret = SecureRandom.random_bytes(64).then { Base64.urlsafe_encode64(_1) }
+  puts "SESSION_SECRET:#{secret}"
+end
+
 task :run do
   sh 'bundle exec puma'
 end

@@ -10,6 +10,7 @@ gem 'rake'
 # Web Application
 gem 'json', '~> 2.6.2'
 gem 'puma', '~> 5'
+gem 'rack-session', '~> 0.3'
 gem 'roda', '~> 3'
 gem 'slim', '~> 4'
 

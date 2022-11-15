@@ -14,6 +14,12 @@ module LightofDay
         find_origin_id(entity.origin_id)
       end
 
+      def self.find_origin_ids(origin_ids)
+        origin_ids.map do |origin_id|
+          find_origin_id(origin_id)
+        end.compact
+      end
+
       def self.find_origin_id(origin_id)
         db_record = Database::ViewOrm.first(origin_id:)
         rebuild_entity(db_record)

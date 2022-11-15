@@ -4,6 +4,7 @@ require 'roda'
 require 'yaml'
 require 'figaro'
 require 'sequel'
+require 'rack/session'
 
 module LightofDay
   # Configuration for the App
@@ -21,6 +22,7 @@ module LightofDay
       Figaro.load
 
       def self.config = Figaro.env
+      use Rack::Session::Cookie, secret: config.SESSION_SECRET
       configure :development, :test do
         ENV['DATABASE_URL'] = "sqlite://#{config.DB_FILENAME}"
       end
