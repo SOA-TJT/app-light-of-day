@@ -54,6 +54,13 @@ module LightofDay
 
           flash.now[:notice] = 'Make some collections to get started' if favorite_list.none?
           # favorite_list = Repository::For.klass(Unsplash::Entity::View).all
+          # test by hsuan
+          routing.delete do
+            # fullname = "#{owner_name}/#{project_name}"
+            my_favorite = favorite_list.map(&:origin_id)
+            session[:watching].delete(my_favorite)
+            routing.redirect 'favorite-list/'
+          end
           view 'favoritelist', locals: { favoriteList: favorite_list }
         end
       end
