@@ -2,6 +2,7 @@
 
 require 'roda'
 require 'slim'
+require 'slim/include'
 require 'json'
 
 module LightofDay
@@ -71,7 +72,11 @@ module LightofDay
           routing.post do
             topic_id = routing.params['topic_id']
             topic_data = topics_data.find { |topic| topic.topic_id == topic_id }
-            routing.halt 404 unless topic_data
+            if topic_data.nil?
+              flash[:error] = '  Please pick a topic !'
+              routing.redirect '/'
+            end
+            # routing.halt 404 unless topic_data
             routing.redirect "light-of-day/topic/#{topic_data.slug}"
           end
         end
