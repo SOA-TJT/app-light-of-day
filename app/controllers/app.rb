@@ -7,7 +7,7 @@ require 'json'
 
 module LightofDay
   # Web App
-  class App < Roda
+  class App < Roda # rubocop:disable Metrics/ClassLength
     plugin :render, engine: 'slim', views: 'app/views'
     plugin :assets, css: 'style.css', path: 'app/views/assets/'
     plugin :common_logger, $stderr
@@ -55,13 +55,7 @@ module LightofDay
 
           flash.now[:notice] = 'Make some collections to get started' if favorite_list.none?
           # favorite_list = Repository::For.klass(Unsplash::Entity::View).all
-          # test by hsuan
-          routing.delete do
-            # fullname = "#{owner_name}/#{project_name}"
-            my_favorite = favorite_list.map(&:origin_id)
-            session[:watching].delete(my_favorite)
-            routing.redirect 'favorite-list/'
-          end
+  
           view 'favoritelist', locals: { favoriteList: favorite_list }
         end
       end
@@ -138,6 +132,12 @@ module LightofDay
               lightofday_data = Repository::For.klass(Unsplash::Entity::View).find_origin_id(view_id)
               # routing.halt 404 unless view_data && inspiration_data
               view 'view', locals: { view: lightofday_data, inspiration: lightofday_data.inspiration, is_saved: true }
+            end
+            # test by hsuan
+            routing.delete do
+              origin_id = view_id.to_s
+              session[:watching].delete(origin_id)
+              routing.redirect 'favorite-list/'
             end
           end
         end
