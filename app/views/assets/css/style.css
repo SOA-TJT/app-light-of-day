@@ -548,6 +548,24 @@ input[type="submit"]{
   width: 16px;
   vertical-align: middle;
 }
+.topic-alert{
+  z-index: 100;
+  width: 96%;
+  position: absolute;
+  top: 1%;
+  left: 2%;
+  text-align: center;
+  background: rgba(250, 189, 189, 0.761);
+}
+.add-successfully-alert{
+  z-index: 100;
+  width: 96%;
+  position: absolute;
+  top: 1%;
+  left: 2%;
+  text-align: center;
+  background: #cfdfcdf1;
+}
 
 @media (max-width: 768px) {
   .favorite-item-quote{

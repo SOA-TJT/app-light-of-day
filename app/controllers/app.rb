@@ -73,7 +73,7 @@ module LightofDay
             topic_id = routing.params['topic_id']
             topic_data = topics_data.find { |topic| topic.topic_id == topic_id }
             if topic_data.nil?
-              flash[:error] = '  Please pick a topic !'
+              flash[:error] = ' Please pick a topic !'
               routing.redirect '/'
             end
             # routing.halt 404 unless topic_data
@@ -127,7 +127,8 @@ module LightofDay
 
               Repository::For.entity(view_record).create(view_record)
               view_id = routing.params['view_data']
-              routing.halt 404 unless view_id
+              flash[:notice] = ' Add successfully to your favorite !'
+              # routing.halt 404 unless view_id
               routing.redirect "favorite/#{view_id}"
             end
           end
