@@ -53,9 +53,9 @@ module LightofDay
 
           session[:watching] = favorite_list.map(&:origin_id)
 
-          flash.now[:notice] = 'Make some collections to get started' if favorite_list.none?
+          flash.now[:notice] = '  Make some collections to get started' if favorite_list.none?
           # favorite_list = Repository::For.klass(Unsplash::Entity::View).all
-  
+
           view 'favoritelist', locals: { favoriteList: favorite_list }
         end
       end

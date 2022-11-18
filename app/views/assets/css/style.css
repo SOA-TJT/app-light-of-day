@@ -550,10 +550,10 @@ input[type="submit"]{
 }
 .topic-alert{
   z-index: 100;
-  width: 96%;
+  width: 80%;
   position: absolute;
   top: 1%;
-  left: 2%;
+  left: 10%;
   text-align: center;
   background: rgba(250, 189, 189, 0.761);
 }
