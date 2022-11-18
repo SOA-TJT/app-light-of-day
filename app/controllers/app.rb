@@ -8,8 +8,8 @@ require 'json'
 module LightofDay
   # Web App
   class App < Roda # rubocop:disable Metrics/ClassLength
-    plugin :render, engine: 'slim', views: 'app/views'
-    plugin :assets, css: 'style.css', path: 'app/views/assets/'
+    plugin :render, engine: 'slim', views: 'app/presentation/views_html'
+    plugin :assets, css: 'style.css', path: 'app/presentation/assets/'
     plugin :common_logger, $stderr
     plugin :halt
     plugin :flash
@@ -26,11 +26,13 @@ module LightofDay
       response['Content-Type'] = 'text/html; charset=utf-8'
 
       topics_mapper = LightofDay::TopicMapper.new(App.config.UNSPLASH_SECRETS_KEY)
+
       topics_data = topics_mapper.topics
+      view_topic = Views::TopicList.new(topics_data)
 
       # GET /
       routing.root do
-        view 'picktopic', locals: { topics: topics_data }
+        view 'picktopic', locals: { topics: view_topic }
       end
 
       # GET /list_topics/{sort_by}
@@ -39,7 +41,8 @@ module LightofDay
           topics_data = topics_mapper.created_time if sort_by == 'created_time'
           topics_data = topics_mapper.activeness if sort_by == 'activeness'
           topics_data = topics_mapper.popularity if sort_by == 'popularity'
-          view 'picktopic', locals: { topics: topics_data }
+          view_topic = Views::TopicList.new(topics_data)
+          view 'picktopic', locals: { topics: view_topic }
         end
       end
 
@@ -54,9 +57,9 @@ module LightofDay
           session[:watching] = favorite_list.map(&:origin_id)
 
           flash.now[:notice] = '  Make some collections to get started' if favorite_list.none?
-          # favorite_list = Repository::For.klass(Unsplash::Entity::View).all
 
-          view 'favoritelist', locals: { favoriteList: favorite_list }
+          view_favorite_list = Views::FavoritecList.new(favorite_list)
+          view 'favoritelist', locals: { favoriteList: view_favorite_list }
         end
       end
 
@@ -70,7 +73,6 @@ module LightofDay
               flash[:error] = ' Please pick a topic !'
               routing.redirect '/'
             end
-            # routing.halt 404 unless topic_data
             routing.redirect "light-of-day/topic/#{topic_data.slug}"
           end
         end
@@ -82,11 +84,8 @@ module LightofDay
             routing.halt 404 unless topic_data
             view_data = LightofDay::Unsplash::ViewMapper.new(App.config.UNSPLASH_SECRETS_KEY,
                                                              topic_data.topic_id).find_a_photo
-            puts view_data.instance_variables
-            # @wait_data << view_data
-            # puts @wait_data.length
-            # Repository::For.entity(view_data).create(view_data)
-            view 'view', locals: { view: view_data, is_saved: false }
+            view_lightofday = Views::LightofDay.new(view_data)
+            view 'view', locals: { view: view_lightofday, is_saved: false }
           end
         end
 
@@ -130,8 +129,8 @@ module LightofDay
             # GET /light-of-day/favorite/{view_id}
             routing.get do
               lightofday_data = Repository::For.klass(Unsplash::Entity::View).find_origin_id(view_id)
-              # routing.halt 404 unless view_data && inspiration_data
-              view 'view', locals: { view: lightofday_data, inspiration: lightofday_data.inspiration, is_saved: true }
+              view_lightofday = Views::LightofDay.new(lightofday_data)
+              view 'view', locals: { view: view_lightofday, is_saved: true }
             end
             # test by hsuan
             routing.delete do

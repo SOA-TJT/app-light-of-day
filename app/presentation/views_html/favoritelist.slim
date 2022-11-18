@@ -24,17 +24,17 @@
         .favorite-item-creater-link
           a href="/light-of-day/"  Add some Topic
       
-  - favoriteList.each_with_index do |lightofday, idx|
+  - favoriteList.each do |lightofday|
     .favorite-item.row
       .left-pic.col-md-6.col-sm-12
         img alt="" src="#{lightofday.urls_small}" srcset="" /
       .right-inspiration.col-md-6.col-sm-12
         .favorite-item-quote
-          | #{lightofday.inspiration.quote}
-        .favorite-inspiration-author By #{lightofday.inspiration.author}
+          | #{lightofday.quote}
+        .favorite-inspiration-author By #{lightofday.quote_author}
         .favorite-item-creater #{lightofday.creator_name}
         .favorite-item-creater-link
-          a href="/light-of-day/favorite/#{lightofday.origin_id}"  View
+          a href="/light-of-day/favorite/#{lightofday.view_id}"  View
         / delete fail, still try my best:(
         .favorite-item-delete
           form role="form" action="/favorite/" method="post" 
