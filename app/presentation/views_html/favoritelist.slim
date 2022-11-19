@@ -12,13 +12,13 @@
   .clear
 
 .favorite-lists.container
-  - if flash[:notice]   
+  - if flash[:error]  
     .favorite-item.row.grey
       .left-pic.col-md-6.col-sm-12
         img alt="" src="https://images.unsplash.com/photo-1487621167305-5d248087c724?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80" srcset="" /
       .right-inspiration.col-md-6.col-sm-12
         .favorite-item-quote
-          = flash[:notice]
+          = flash[:error]
         .favorite-inspiration-author Find Your Favorite Author
         .favorite-item-creater Find a Photo Creator
         .favorite-item-creater-link

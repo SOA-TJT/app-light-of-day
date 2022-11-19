@@ -56,7 +56,7 @@ module LightofDay
 
           session[:watching] = favorite_list.map(&:origin_id)
 
-          flash.now[:notice] = '  Make some collections to get started' if favorite_list.none?
+          flash.now[:error] = '  Make some collections to get started' if favorite_list.none?
 
           view_favorite_list = Views::FavoritecList.new(favorite_list)
           view 'favoritelist', locals: { favoriteList: view_favorite_list }
@@ -134,9 +134,9 @@ module LightofDay
             # test by hsuan
             # Delete /light-of-day/favorite/{view_id}
             routing.delete do
-              origin_id = "#{view_id}"
+              origin_id = view_id.to_s
               session[:watching].delete(origin_id)
-              routing.redirect "/favorite-list"
+              routing.redirect '/favorite-list'
             end
             # GET /light-of-day/favorite/{view_id}
             routing.get do

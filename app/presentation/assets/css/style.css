@@ -401,6 +401,7 @@ input[type="submit"]{
   line-height: 1.2rem;
   font-weight: bolder;
   border: 2px solid #000000;
+  z-index: 101;
 }
 /* add by hsuan*/
 .favorite-item-delete{
