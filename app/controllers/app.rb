@@ -120,7 +120,7 @@ module LightofDay
 
               begin
                 Repository::For.entity(view_record).create(view_record)
-              rescue StandardError => e
+              rescue StandardError => err # rubocop:disable Lint/UselessAssignment, Naming/RescuedExceptionsVariableName
                 logger.error e.backtrace.join("\n")
                 flash[:error] = '  Having trouble accessing the database'
               end
