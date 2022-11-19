@@ -37,7 +37,7 @@
           a href="/light-of-day/favorite/#{lightofday.view_id}"  View
         / delete fail, still try my best:(
         .favorite-item-delete
-          form role="form" action="/favorite/" method="post" 
+          form role="form" action="/light-of-day/favorite/#{lightofday.view_id}" method="post" 
             input type='hidden' name='_method' value='delete'
             button type="submit" class="btn btn-sm btn-link"
                 svg.bi.bi-trash3-fill fill="#000" height="16" viewbox=("0 0 16 16") width="16" xmlns="http://www.w3.org/2000/svg" 

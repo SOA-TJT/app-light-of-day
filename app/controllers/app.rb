@@ -118,7 +118,12 @@ module LightofDay
               session[:watching] ||= []
               session[:watching].insert(0, view_record.origin_id).uniq!
 
-              Repository::For.entity(view_record).create(view_record)
+              begin
+                Repository::For.entity(view_record).create(view_record)
+              rescue StandardError => e
+                logger.error e.backtrace.join("\n")
+                flash[:error] = '  Having trouble accessing the database'
+              end
               view_id = routing.params['view_data']
               flash[:notice] = ' Add successfully to your favorite !'
               # routing.halt 404 unless view_id
@@ -126,17 +131,28 @@ module LightofDay
             end
           end
           routing.on String do |view_id|
+            # test by hsuan
+            # Delete /light-of-day/favorite/{view_id}
+            routing.delete do
+              origin_id = "#{view_id}"
+              session[:watching].delete(origin_id)
+              routing.redirect "/favorite-list"
+            end
             # GET /light-of-day/favorite/{view_id}
             routing.get do
-              lightofday_data = Repository::For.klass(Unsplash::Entity::View).find_origin_id(view_id)
+              begin
+                lightofday_data = Repository::For.klass(Unsplash::Entity::View).find_origin_id(view_id)
+                if lightofday_data.nil?
+                  flash[:error] = '  Data not found'
+                  routing.redirect '/'
+                end
+              rescue StandardError
+                flash[:error] = '  Having trouble accessing the database'
+                routing.redirect '/'
+              end
+
               view_lightofday = Views::LightofDay.new(lightofday_data)
               view 'view', locals: { view: view_lightofday, is_saved: true }
-            end
-            # test by hsuan
-            routing.delete do
-              origin_id = view_id.to_s
-              session[:watching].delete(origin_id)
-              routing.redirect 'favorite-list/'
             end
           end
         end
