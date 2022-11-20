@@ -11,9 +11,13 @@ describe 'Test Topic Mapper and Gateway' do
     VcrHelper.configure_vcr_for_unsplash
     DatabaseHelper.wipe_database
 
-    unsplash_topic = LightofDay::Unsplash::TopicMapper
+    # unsplash_topic = LightofDay::Unsplash::TopicMapper
+    #                  .new(UNSPLAH_TOKEN)
+    #                  .find_all_topics
+    unsplash_topic = LightofDay::TopicMapper
                      .new(UNSPLAH_TOKEN)
                      .find_all_topics
+    puts unsplash_topic
 
     topic = LightofDay::Repository::For.entity(unsplash_topic)
                                        .create(unsplash_topic)
@@ -26,7 +30,7 @@ describe 'Test Topic Mapper and Gateway' do
   end
 
   it 'HAPPY: should get topics' do
-    topic = LightofDay::Unsplash::TopicMapper
+    topic = LightofDay::TopicMapper
             .new(UNSPLAH_TOKEN)
             .find_all_topics
     rebuilt = LightofDay::Repository::For.entity(topic)

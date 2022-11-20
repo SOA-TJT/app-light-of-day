@@ -9,6 +9,7 @@ module LightofDay
   class TopicMapper
     include Mixins::TopicsCalculator
     attr_reader :topics
+
     def initialize(un_token, gateway_class = Unsplash::Api)
       @token = un_token
       @gateway = gateway_class.new('Client-ID', @token)
