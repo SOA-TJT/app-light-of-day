@@ -20,7 +20,8 @@
         form(action='/light-of-day/favorite' method='post')
           input type="radio" required="required" name="view_data" checked="checked" id="topic#{view.topics}" value="#{view.view_id}"
           input(type='submit' name='favorite' value="#{view.context}")
-          img src="https://www.freeiconspng.com/thumbs/heart-png/heart-png-15.png" alt="" srcset=""
+          i class="fa-solid fa-heart"
+          / img src="https://www.freeiconspng.com/thumbs/heart-png/heart-png-15.png" alt="" srcset=""
           span Add to Collection 
     img.company-logo src="https://github.com/SOA-TJT/Team-Logo/blob/SOA-TJT-patch-1/Logo.png?raw=true" 
     .company TJT@2022.Insipiration

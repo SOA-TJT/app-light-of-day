@@ -9,7 +9,7 @@ module LightofDay
   # Web App
   class App < Roda # rubocop:disable Metrics/ClassLength
     plugin :render, engine: 'slim', views: 'app/presentation/views_html'
-    plugin :assets, css: 'style.css', path: 'app/presentation/assets/'
+    plugin :assets, path: 'app/presentation/assets', css: 'style.css', js: 'main.js'
     plugin :common_logger, $stderr
     plugin :halt
     plugin :flash

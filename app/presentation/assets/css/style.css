@@ -480,10 +480,13 @@ input[type="submit"]{
     top: 0;
     /* background: #000; */
 }
-.favorite img{
-  width: 16px;
-  height: 16px;
+.favorite i{
+  font-size: 20px;
+  color: rgb(240, 101, 101);
   vertical-align: middle;
+}
+.favorite:hover{
+  border-color: rgb(91, 11, 11);
 }
 .favorite input[type="submit"]:active{
   background-color: rgba(250, 189, 189, 0.3);
