@@ -315,7 +315,7 @@ input[type="submit"]{
 .favorite-item.row.grey::before{
   content: '';
   position: absolute;
-  background: rgba(93, 85, 120, 0.3);
+  background: rgba(64, 59, 80, 0.695);
   left: 0;
   right: 0;
   width: 100%;
