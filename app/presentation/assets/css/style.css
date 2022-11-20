@@ -401,6 +401,20 @@ input[type="submit"]{
   line-height: 1.2rem;
   font-weight: bolder;
   border: 2px solid #000000;
+  z-index: 101;
+}
+/* add by hsuan*/
+.favorite-item-delete{
+  
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 8px 4px;
+  letter-spacing: .1rem;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  font-weight: bolder;
+  
 }
 .favorite-item.row{
   padding: 0;
@@ -534,6 +548,24 @@ input[type="submit"]{
 .iconset svg{
   width: 16px;
   vertical-align: middle;
+}
+.topic-alert{
+  z-index: 100;
+  width: 80%;
+  position: absolute;
+  top: 1%;
+  left: 10%;
+  text-align: center;
+  background: rgba(250, 189, 189, 0.761);
+}
+.add-successfully-alert{
+  z-index: 100;
+  width: 80%;
+  position: absolute;
+  top: 1%;
+  left: 10%;
+  text-align: center;
+  background: #cfdfcdf1;
 }
 
 @media (max-width: 768px) {

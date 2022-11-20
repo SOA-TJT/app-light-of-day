@@ -60,7 +60,7 @@ module LightofDay
         end
 
         def topics
-          @data['topic_submissions'].keys.join(',')
+          @data['topic_submissions'] ? @data['topic_submissions'].keys.join(',') : ''
         end
 
         def urls

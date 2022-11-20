@@ -1,6 +1,6 @@
 .quote-card
-  .quote-title #{view.inspiration.quote}
-  .quote-author #{view.inspiration.author}
+  .quote-title #{view.quote}
+  .quote-author #{view.quote_author}
 .service-logo.poa-header 
   a href="/"
     .sv-light Light 
@@ -18,9 +18,7 @@
     - if !is_saved
       .favorite
         form(action='/light-of-day/favorite' method='post')
-          / taylor test
-          input type="radio" required="required" name="view_data" checked="checked" id="topic#{view.topics}" value="#{view.origin_id}"
-          / taylor test end
+          input type="radio" required="required" name="view_data" checked="checked" id="topic#{view.topics}" value="#{view.view_id}"
           input(type='submit' name='favorite' value="#{view.context}")
           img src="https://www.freeiconspng.com/thumbs/heart-png/heart-png-15.png" alt="" srcset=""
           span Add to Collection 

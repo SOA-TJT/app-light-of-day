@@ -15,7 +15,6 @@
   .dropdown
     button.btn.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" type="button" 
       | Sort by : 
-      / ul.dropdown-menu.dropdown-menu-dark
     ul.dropdown-menu
       li
         a.dropdown-item href="/list_topics/created_time"  Created Time
@@ -23,34 +22,29 @@
         a.dropdown-item href="/list_topics/activeness"  Active
       li
         a.dropdown-item href="/list_topics/popularity"  Popularity
-
-  / a.btn.btn-warning(href='/favorite-list') Favorite List
 .container-fluid
   form role="form" action="/light-of-day" method="post" 
     .row.row-cols-auto.row-cols-md-2.row-cols-lg-3.topic-section
-      - topics.each_with_index do |topic, idx|
+      - topics.each do |topic|
         .col 
           .topic-card
-            / .left-pic.col-md-12.col-sm-12
-            .carousel.slide.carousel-fade data-bs-ride="carousel" id="carousel#{idx}"
+            .carousel.slide.carousel-fade data-bs-ride="carousel" id="carousel#{topic.idx}"
               .carousel-inner
-                / #{topic.preview_photos}.delete(#{topic.preview_photos.first})
                 .carousel-item.active data-bs-interval="100" 
-                  img.d-block.w-100 alt="..." src="#{topic.preview_photos.first['urls']['small']}" /
-                - topic.preview_photos.each_with_index do |prephoto, idxx|
+                  img.d-block.w-100 alt="..." src="#{topic.preview_photos_first_url}" /
+                - topic.preview_photos_url.each do |prephoto|
                   .carousel-item data-bs-interval="3000" 
-                    img.d-block.w-100 alt="..." src="#{prephoto['urls']['small']}" /
-              button.carousel-control-prev data-bs-slide="prev" data-bs-target="#carousel#{idx}"type="button" 
+                    img.d-block.w-100 alt="..." src="#{prephoto}" /
+              button.carousel-control-prev data-bs-slide="prev" data-bs-target="#carousel#{topic.idx}"type="button" 
                 span.carousel-control-prev-icon aria-hidden="true" 
                 span.visually-hidden Previous
-              button.carousel-control-next data-bs-slide="next" data-bs-target="#carousel#{idx}" type="button" 
+              button.carousel-control-next data-bs-slide="next" data-bs-target="#carousel#{topic.idx}" type="button" 
                 span.carousel-control-next-icon aria-hidden="true" 
                 span.visually-hidden Next
             .topic-card-info
-              input type="radio" required="required" name="topic_id" id="topic#{idx}" value="#{topic.topic_id}"
+              input type="radio" name="topic_id" id="topic#{topic.idx}" value="#{topic.topic_id}"
               .topic-title #{topic.title}
               .topic-description #{topic.description}
-              / .container.mt-1
               .iconset
                 button.btn.icon-pos data-bs-toggle="tooltip" title=("created time : #{topic.starts_at}") type="button" 
                   svg.bi.bi-clock fill="currentColor" height="16" viewbox=("0 0 16 16") width="16" xmlns="http://www.w3.org/2000/svg" 
