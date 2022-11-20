@@ -34,7 +34,6 @@ module LightofDay
         raise 'Views has already exists' if find(entity)
 
         db_view = PersistView.new(entity).call
-        # db_view = PersistView.new(entity).create_view
         rebuild_entity(db_view)
       end
 
