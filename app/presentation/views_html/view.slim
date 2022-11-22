@@ -1,6 +1,34 @@
 .quote-card
   .quote-title #{view.quote}
   .quote-author #{view.quote_author}
+
+.pomodoro
+  .clock
+    .clock-display
+      #leftTime.clock-time 25:00
+      .pomodoro-play-control
+        button#buttonPlay.btn-controller
+          i#playIcon.fa-regular.fa-circle-play
+        button#buttonReset.btn-controller
+          i.fas.fa-sync aria-hidden="true" 
+  .period
+    .work-period
+      #work-title.work-period-title Work Time
+      .add-minus-menu
+        button#work-decrease.decrease
+          i.fa-solid.fa-minus
+        #work-period-time.work-period-time 25
+        button#work-increase.increase
+          i.fa-solid.fa-plus
+    .rest-period
+      #rest-title.rest-period-title Rest Time
+      .add-minus-menu
+        button#rest-decrease.decrease
+          i.fa-solid.fa-minus
+        #rest-period-time.rest-period-time 5
+        button#rest-increase.increase
+          i.fa-solid.fa-plus
+
 .service-logo.poa-header 
   a href="/"
     .sv-light Light 

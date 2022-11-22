@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -217,11 +218,11 @@ body{
   max-width: 90%;
 }
 .quote-title{
-  font-size: 24px;
+  font-size: 1.6rem;
 }
-/* .quote-author{
-
-} */
+.quote-author{
+  font-size: 1rem;
+}
 
 .poa-footer{
   position: absolute;
@@ -234,7 +235,7 @@ body{
 }
 .view-info-card{
   position: absolute;
-  bottom: 20%;
+  bottom: 15%;
   left: 5%;
   background: rgb(255, 255, 255);
   padding:10px 10px 0px 10px;
@@ -571,7 +572,141 @@ input[type="submit"]{
   background: #cfdfcdf1;
 }
 
+
+
+
+
+
+
+
+.pomodoro{
+  padding: 25px 20px;
+  background: rgb(255, 255, 255);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 30%;
+  display: inline-block;
+  width: 40%;
+  max-width: 360px;
+  margin: 0 auto;
+  box-shadow: 0px 0px 10px 10px rgba(0,0,0,0.5);
+  border-radius: 10px;
+  /* opacity: 0.95; */
+  background: hsla(0,0%,100%,.8);
+  /* overflow: hidden; */
+}
+
+
+.clock-display{
+  display: flex;
+  justify-content: center;
+}
+.pomodoro .add-minus-menu{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+.pomodoro .clock,.pomodoro .work-period,.pomodoro .rest-period{
+  display: block;
+}
+
+.pomodoro .clock-time,.pomodoro .work-period-time,.pomodoro .rest-period-time{
+  display: block;
+  text-align: center;
+  letter-spacing: 2%;
+  font-family: 'Sawarabi Gothic', sans-serif;
+  /* background: rgb(255, 255, 255); */
+}
+
+.pomodoro .work-period-time,.pomodoro .rest-period-time{
+  font-size: 2rem;
+}
+.pomodoro .clock-time{
+  font-size: 4rem;
+  color: rgb(42, 42, 42);
+  line-height: 1.4;
+  /* background: #000; */
+  /* box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.5); */
+}
+.pomodoro .clock-title,.pomodoro .work-period-title, .pomodoro .rest-period-title{
+  display: block;
+  text-align: left;
+  margin:auto;
+  font-size: 1.25rem;
+  margin-bottom: 5px;
+  padding-bottom: 2px;
+  /* border-bottom: 5px solid #ffd500; */
+  /* background: rgb(255, 255, 255); */
+  padding: 0 10px;
+  line-height: 1.6;
+  letter-spacing: 2%;
+  color: rgb(73, 73, 73);
+  border-radius: 4px;
+  font-family: 'Sawarabi Gothic', sans-serif;
+}
+.pomodoro .period{
+  display: flex;
+  justify-content: space-around;
+}
+.pomodoro-play-control{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pomodoro .add-minus-menu .decrease,
+.pomodoro .add-minus-menu .increase,
+.pomodoro .btn-controller{
+  font-family: 'Sawarabi Gothic', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  font-size: 2rem;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 2px 3px rgba(0,0,0,0.24);
+  margin: 0 6px;
+  background: rgb(255, 254, 250);
+  /* box-shadow: inset 0.2rem 0.2rem 0.5rem  #c8d0e7, inset -0.2rem -0.2rem 0.5rem #FFFFFF; */
+  /* background: rgb(255, 255, 255); */
+}
+
+.pomodoro .btn-controller{
+  width: 50px;
+  height: 50px;
+}
+.fa-solid{
+  color: #223226;
+  font-size: 1.6rem;
+}
+.pomodoro-play-control .fas,.pomodoro-play-control .fa-regular{
+  padding: 10px;
+  font-size: 2rem;
+  color: #223226;
+  vertical-align: middle;
+
+}
+.pomodoro .add-minus-menu .decrease:hover,
+.pomodoro .add-minus-menu .increase:hover,
+.pomodoro .btn-controller:hover{
+  box-shadow: 0 .5px 1.5px rgba(0,0,0,0.3), 0 0.5px 1px rgba(0,0,0,0.4);
+}
+
+
+
+.work-active{
+  background-color: rgb(155, 220, 157);
+}
+.rest-active{
+  background-color: rgb(232, 195, 195);
+}
+
 @media (max-width: 768px) {
+    *{
+    font-size: 14px;
+  }
   .favorite-item-quote{
   white-space: unset;
   text-overflow: unset;
@@ -592,9 +727,17 @@ input[type="submit"]{
   .header .menuitem{
    margin: 0 10px 10px 0px;
   }
+  .pomodoro{
+    width: 70%;
+  }
 }
 
+
+
 @media (max-width: 384px){
+  *{
+    font-size: 12px;
+  }
   .iconset{
     display: flex;
     flex-direction: column;
@@ -602,5 +745,39 @@ input[type="submit"]{
   .topic-pos-text{
     text-align: center;
   }
+  .pomodoro{
+    width: 90%;
+  }
 
 }
+
+
+/* @media (max-width: 768px) {
+  .favorite-item-quote{
+  white-space: unset;
+  text-overflow: unset;
+}
+  .header .service-logo{
+    position: relative;
+    display: block;
+    left: unset;
+    right: unset;
+
+  }
+  .header .menu{
+    display: flex;
+    display: block;
+    float: none;
+    margin-top: 40px;
+  }
+  .header .menuitem{
+   margin: 0 10px 0 0px;
+  }
+  .pomodoro{
+    width: 70%;
+  }
+} */
+/* @media (max-width: 384px)and(min-width: 768px){
+
+}  */
+
