@@ -85,10 +85,16 @@ module LightofDay
           # GET /light-of-day/topic/{topic}
           routing.get do
             topic_data = topics_data.find { |topic| topic.slug == topic_slug }
-            routing.halt 404 unless topic_data
-            view_data = LightofDay::Unsplash::ViewMapper.new(App.config.UNSPLASH_SECRETS_KEY,
-                                                             topic_data.topic_id).find_a_photo
-            view_lightofday = Views::LightofDay.new(view_data)
+            view_data = Service::FindLightofDay.new.call(topic_data)
+
+            if view_data.failure?
+              flash[:error] = view_data.failure
+              view_lightofday = []
+            else
+              view_data = view_data.value!
+              view_lightofday = Views::LightofDay.new(view_data)
+            end
+
             view 'view', locals: { view: view_lightofday, is_saved: false }
           end
         end
