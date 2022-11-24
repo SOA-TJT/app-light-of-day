@@ -125,15 +125,13 @@ module LightofDay
             end
             # GET /light-of-day/favorite/{view_id}
             routing.get do
-              begin
-                lightofday_data = Repository::For.klass(Unsplash::Entity::View).find_origin_id(view_id)
-                if lightofday_data.nil?
-                  flash[:error] = '  Data not found'
-                  routing.redirect '/'
-                end
-              rescue StandardError
-                flash[:error] = '  Having trouble accessing the database'
-                routing.redirect '/'
+              lightofday_get = Service::GetLightofDay.new.call(view_id)
+
+              if lightofday_get.failure?
+                flash[:error] = lightofday_get.failure
+              else
+                lightofday_data = lightofday_get.value!
+                flash.now[:error] = '  Data not found' if lightofday_get.nil?
               end
 
               view_lightofday = Views::LightofDay.new(lightofday_data)
