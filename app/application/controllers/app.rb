@@ -51,14 +51,18 @@ module LightofDay
           session[:watching] ||= []
 
           # Load previously viewed projects
-          favorite_list = Repository::For.klass(Unsplash::Entity::View)
-                                         .find_origin_ids(session[:watching])
+          result = Service::ListFavorite.new.call(session[:watching])
 
-          session[:watching] = favorite_list.map(&:origin_id)
+          if result.failure?
+            flash[:error] = result.failure
+            view_favorite_list = []
+          else
+            favorite_list = result.value!
+            flash.now[:error] = '  Make some collections to get started' if favorite_list.none?
 
-          flash.now[:error] = '  Make some collections to get started' if favorite_list.none?
-
-          view_favorite_list = Views::FavoritecList.new(favorite_list)
+            session[:watching] = favorite_list.map(&:origin_id)
+            view_favorite_list = Views::FavoritecList.new(favorite_list)
+          end
           view 'favoritelist', locals: { favoriteList: view_favorite_list }
         end
       end
