@@ -84,7 +84,9 @@ module LightofDay
         end
 
         def inspiration
-          @inspiration_mapper.find_random
+          inspiration = @inspiration_mapper.find_random
+          inspiration = @inspiration_mapper.find_random while @inspiration_mapper.count_quote(inspiration.quote) == false # rubocop:disable Layout/LineLength
+          inspiration
           # InspirationMapper.build_entity
         end
       end
