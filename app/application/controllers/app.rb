@@ -107,20 +107,16 @@ module LightofDay
               session[:watching] ||= []
               session[:watching].insert(0, view_record.origin_id).uniq!
 
-              begin
-                Repository::For.entity(view_record).create(view_record)
-              rescue StandardError => err # rubocop:disable Lint/UselessAssignment, Naming/RescuedExceptionsVariableName
-                logger.error e.backtrace.join("\n")
-                flash[:error] = '  Having trouble accessing the database'
-              end
+              # store lightofday to DB
+              lightofday_made = Service::StoreLightofDay.new.call(view_record)
+              flash[:error] = lightofday_made.failure if lightofday_made.failure?
+
               view_id = routing.params['view_data']
               flash[:notice] = ' Add successfully to your favorite !'
-              # routing.halt 404 unless view_id
               routing.redirect "favorite/#{view_id}"
             end
           end
           routing.on String do |view_id|
-            # test by hsuan
             # Delete /light-of-day/favorite/{view_id}
             routing.delete do
               origin_id = view_id.to_s
