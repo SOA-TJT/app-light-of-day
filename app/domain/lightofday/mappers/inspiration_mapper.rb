@@ -16,6 +16,10 @@ module LightofDay
         DataMapper.new(data).build_entity
       end
 
+      def count_quote(data)
+        data.length < 100 && data.length > 20
+      end
+
       # Distribute the data into Inspiration Entity
       class DataMapper
         def initialize(data)
