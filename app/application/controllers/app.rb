@@ -97,28 +97,7 @@ module LightofDay
           routing.is do
             # POST /light-of-day/favorite/
             routing.post do
-              fin = JSON.parse(routing.params['favorite'])
-              ins_record = LightofDay::FavQs::Entity::Inspiration.new(
-                id: fin['@attributes']['inspiration']['@attributes']['id'],
-                origin_id: fin['@attributes']['inspiration']['@attributes']['origin_id'],
-                topics: fin['@attributes']['inspiration']['@attributes']['topics'],
-                author: fin['@attributes']['inspiration']['@attributes']['author'],
-                quote: fin['@attributes']['inspiration']['@attributes']['quote']
-              )
-
-              view_record = LightofDay::Unsplash::Entity::View.new(
-                id: fin['@attributes']['id'],
-                origin_id: fin['@attributes']['origin_id'],
-                topics: fin['@attributes']['topics'],
-                width: fin['@attributes']['width'],
-                height: fin['@attributes']['height'],
-                urls: fin['@attributes']['urls'],
-                urls_small: fin['@attributes']['urls_small'],
-                creator_name: fin['@attributes']['creator_name'],
-                creator_bio: fin['@attributes']['creator_bio'],
-                creator_image: fin['@attributes']['creator_image'],
-                inspiration: ins_record
-              )
+              view_record = Service::ParseLightofday.new.call(routing.params['favorite']).value!
               session[:watching] ||= []
               session[:watching].insert(0, view_record.origin_id).uniq!
 
