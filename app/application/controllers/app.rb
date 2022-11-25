@@ -7,7 +7,7 @@ require 'json'
 
 module LightofDay
   # Web App
-  class App < Roda # rubocop:disable Metrics/ClassLength
+  class App < Roda
     plugin :render, engine: 'slim', views: 'app/presentation/views_html'
     plugin :assets, path: 'app/presentation/assets', css: 'style.css', js: 'main.js'
     plugin :common_logger, $stderr
@@ -25,10 +25,21 @@ module LightofDay
       routing.assets # load CSS
       response['Content-Type'] = 'text/html; charset=utf-8'
 
-      topics_mapper = LightofDay::TopicMapper.new(App.config.UNSPLASH_SECRETS_KEY)
+      # topics_mapper = LightofDay::TopicMapper.new(App.config.UNSPLASH_SECRETS_KEY)
 
-      topics_data = topics_mapper.topics
-      view_topic = Views::TopicList.new(topics_data)
+      # topics_data = topics_mapper.topics
+      # view_topic = Views::TopicList.new(topics_data)
+      topics_mapper = Service::ListTopics.new
+      topics_result = topics_mapper.call('normal')
+      if topics_result.failure?
+        flash[:error] = topics_result.failure
+        view_topic = []
+      else
+        topics_result = topics_result.value!
+        # print topics_result.find_all_topics
+        # view_topic = topics_result
+        view_topic = Views::TopicList.new(topics_result)
+      end
 
       # GET /
       routing.root do
@@ -38,10 +49,23 @@ module LightofDay
       # GET /list_topics/{sort_by}
       routing.on 'list_topics', String do |sort_by|
         routing.get do
-          topics_data = topics_mapper.created_time if sort_by == 'created_time'
-          topics_data = topics_mapper.activeness if sort_by == 'activeness'
-          topics_data = topics_mapper.popularity if sort_by == 'popularity'
-          view_topic = Views::TopicList.new(topics_data)
+          # topics_data = topics_mapper.created_time if sort_by == 'created_time'
+          # topics_data = topics_mapper.activeness if sort_by == 'activeness'
+          # topics_data = topics_mapper.popularity if sort_by == 'popularity'
+          # topics_result = Service::ListTopics.new.call('created_time') if sort_by == 'created_time'
+          # topics_result = Service::ListTopics.new.call('activeness') if sort_by == 'activeness'
+          # topics_result = Service::ListTopics.new.call('popularity') if sort_by == 'popularity'
+          topics_result = topics_mapper.call(sort_by)
+          if topics_result.failure?
+            flash[:error] = topics_result.failure
+            view_topic = []
+          else
+            topics_result = topics_result.value!
+            # print topics_result.find_all_topics
+            # view_topic = topics_result
+            view_topic = Views::TopicList.new(topics_result)
+          end
+          # view_topic = Views::TopicList.new(topics_data)
           view 'picktopic', locals: { topics: view_topic }
         end
       end
@@ -72,19 +96,29 @@ module LightofDay
           # POST /light-of-day/
           routing.post do
             topic_id = routing.params['topic_id']
-            topic_data = topics_data.find { |topic| topic.topic_id == topic_id }
-            if topic_data.nil?
-              flash[:error] = ' Please pick a topic !'
+
+            slug = topics_mapper.find_slug(topic_id)
+            if slug.failure?
+              flash[:error] = slug.failure
               routing.redirect '/'
             end
-            routing.redirect "light-of-day/topic/#{topic_data.slug}"
+            slug = slug.value!
+            # topic_data = topics_data.find { |topic| topic.topic_id == topic_id }
+            # if slug.nil?
+            #   flash[:error] = ' Please pick a topic !'
+            #   routing.redirect '/'
+            # end
+            # routing.redirect "light-of-day/topic/#{topic_data.slug}"
+            routing.redirect "light-of-day/topic/#{slug}"
           end
         end
 
         routing.on 'topic', String do |topic_slug|
           # GET /light-of-day/topic/{topic}
           routing.get do
-            topic_data = topics_data.find { |topic| topic.slug == topic_slug }
+            # topic_data = topics_data.find { |topic| topic.slug == topic_slug }
+            topic_data = topics_mapper.find_topic(topic_slug)
+            topic_data = topic_data.value!
             view_data = Service::FindLightofDay.new.call(topic_data)
 
             if view_data.failure?

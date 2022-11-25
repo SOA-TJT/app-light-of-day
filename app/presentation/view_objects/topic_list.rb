@@ -9,10 +9,9 @@ module Views
       @topics = topics.map.with_index { |topic, i| Topic.new(topic, i) }
     end
 
-    def each
-      @topics.each do |topic|
-        yield topic
-      end
+    def each(&)
+      # @topics.each(&)
+      @topics.each(&)
     end
   end
 end

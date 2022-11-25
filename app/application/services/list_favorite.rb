@@ -11,7 +11,6 @@ module LightofDay
       def call(favorite)
         favorite_list = Repository::For.klass(Unsplash::Entity::View)
                                        .find_origin_ids(favorite)
-
         Success(favorite_list)
       rescue StandardError
         Failure('Could not access database')

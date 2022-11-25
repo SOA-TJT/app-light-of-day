@@ -14,7 +14,7 @@ module LightofDay
 
         Success(lightofday_data)
       rescue StandardError
-        Failure('  Having trouble accessing the database')
+        Failure('Having trouble accessing the database')
       end
     end
   end
