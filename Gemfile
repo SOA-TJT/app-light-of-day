@@ -44,6 +44,11 @@ group :test do
   gem 'simplecov', '~> 0'
   gem 'vcr', '~> 6'
   gem 'webmock', '~> 3'
+
+  gem 'headless', '~> 2.3'
+  gem 'page-object', '~> 2.3'
+  gem 'watir', '~> 7.0'
+  gem 'webdrivers', '~> 5.0'
 end
 
 group :development do
@@ -54,8 +59,8 @@ end
 gem 'pry'
 
 # Validation
-gem 'dry-struct'
-gem 'dry-types'
+gem 'dry-struct', '~> 1'
+gem 'dry-types', '~> 1'
 
 # Controllers and services
 gem 'dry-monads', '~> 1.4'

@@ -7,7 +7,7 @@ require 'webmock'
 module VcrHelper
   CASSETTES_FOLDER = 'spec/fixtures/cassettes'
   CASSETTE_FILE = 'unsplash_api'
-  def self.configure_vcr_for_unsplash
+  def self.configure_vcr_for_unsplash(recording: :new_episodes)
     VCR.configure do |c|
       c.filter_sensitive_data('<UNSPLAH_TOKEN>') { UNSPLAH_TOKEN }
       c.filter_sensitive_data('<UNSPLAH_TOKEN_ESC>') { CGI.escape(UNSPLAH_TOKEN) }
