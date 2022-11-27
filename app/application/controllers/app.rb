@@ -58,16 +58,14 @@ module LightofDay
       routing.on 'favorite-list' do
         routing.is do
           session[:watching] ||= []
-
-          # Load previously viewed projects
+          # Load previously viewed Views
           result = Service::ListFavorite.new.call(session[:watching])
-
           if result.failure?
             flash[:error] = result.failure
             view_favorite_list = []
           else
             favorite_list = result.value!
-            flash.now[:error] = '  Make some collections to get started' if favorite_list.none?
+            flash.now[:error] = 'Make some collections to get started' if favorite_list.none?
 
             session[:watching] = favorite_list.map(&:origin_id)
             view_favorite_list = Views::FavoritecList.new(favorite_list)
@@ -124,7 +122,7 @@ module LightofDay
               flash[:error] = lightofday_made.failure if lightofday_made.failure?
 
               view_id = routing.params['view_data']
-              flash[:notice] = ' Add successfully to your favorite !'
+              flash[:notice] = 'Add successfully to your favorite !'
               routing.redirect "favorite/#{view_id}"
             end
           end
@@ -143,7 +141,7 @@ module LightofDay
                 flash[:error] = lightofday_get.failure
               else
                 lightofday_data = lightofday_get.value!
-                flash.now[:error] = '  Data not found' if lightofday_get.nil?
+                flash.now[:error] = 'Data not found' if lightofday_get.nil?
               end
 
               view_lightofday = Views::LightofDay.new(lightofday_data)
