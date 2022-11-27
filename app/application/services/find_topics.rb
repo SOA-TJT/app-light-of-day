@@ -12,16 +12,6 @@ module LightofDay
       end
 
       def call(type)
-        # topics_mapper = LightofDay::TopicMapper.new(App.config.UNSPLASH_SECRETS_KEY)
-        # data = if type == 'normal'
-        #          topics_mapper.topics
-        #        elsif type == 'created_time'
-        #          topics_mapper.created_time
-        #        elsif type == 'activeness'
-        #          topics_mapper.activeness
-        #        else
-        #          topics_mapper.popularity
-        #        end
         data = if type == 'normal'
                  @topics_mapper.topics
                elsif type == 'created_time'
@@ -31,9 +21,6 @@ module LightofDay
                else
                  @topics_mapper.popularity
                end
-        # print topics_mapper.topics
-        # topics_data = topics_mapper.topics
-        # view_topic = Views::TopicList.new(topics_mapper.topics)
         Success(data)
       rescue StandardError
         Failure('Having trouble accessing the topics data')
