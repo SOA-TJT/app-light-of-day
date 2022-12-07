@@ -25,8 +25,8 @@ module LightofDay
       routing.assets # load CSS
       response['Content-Type'] = 'text/html; charset=utf-8'
 
-      topics_mapper = Service::ListTopics.new
-      topics_result = topics_mapper.call('normal')
+      # topics_mapper = Service::FindTopics.new
+      topics_result = Service::ListTopics.new.call('normal')
       if topics_result.failure?
         flash[:error] = topics_result.failure
         view_topic = []
@@ -43,7 +43,7 @@ module LightofDay
       # GET /list_topics/{sort_by}
       routing.on 'list_topics', String do |sort_by|
         routing.get do
-          topics_result = topics_mapper.call(sort_by)
+          topics_result = Service::ListTopics.new.call(sort_by)
           if topics_result.failure?
             flash[:error] = topics_result.failure
             view_topic = []
@@ -80,7 +80,7 @@ module LightofDay
           routing.post do
             topic_id = routing.params['topic_id']
 
-            slug = topics_mapper.find_slug(topic_id)
+            slug = Service::FindSlug.new.call(topic_id)
             if slug.failure?
               flash[:error] = slug.failure
               routing.redirect '/'
@@ -93,7 +93,7 @@ module LightofDay
         routing.on 'topic', String do |topic_slug|
           # GET /light-of-day/topic/{topic}
           routing.get do
-            topic_data = topics_mapper.find_topic(topic_slug)
+            topic_data = Service::FindTopics.new.call(topic_slug)
             topic_data = topic_data.value!
             view_data = Service::FindLightofDay.new.call(topic_data)
 
