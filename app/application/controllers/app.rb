@@ -31,6 +31,7 @@ module LightofDay
         flash[:error] = topics_result.failure
         view_topic = []
       else
+        puts topics_result
         topics_result = topics_result.value!
         view_topic = Views::TopicList.new(topics_result)
       end
