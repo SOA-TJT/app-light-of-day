@@ -15,7 +15,7 @@ module LightofDay
 
       def request_store_lightofday(input)
         result = Gateway::Api.new(LightofDay::App.config)
-                             .view_storage
+                             .view_storage(input)
 
         result.success? ? Success(result.payload) : Failure(result.message)
       rescue StandardError
