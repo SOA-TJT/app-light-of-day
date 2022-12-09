@@ -33,8 +33,8 @@ module LightofDay
         @request.view(origin_id)
       end
 
-      def view_storage
-        @request.view_storage
+      def view_storage(json)
+        @request.view_storage(json)
       end
 
       # HTTP request transmitter
@@ -66,8 +66,8 @@ module LightofDay
           call_api('get', ['light-of-day', 'view', origin_id])
         end
 
-        def view_storage
-          call_api('post', %w[light-of-day view])
+        def view_storage(json)
+          call_api('post', %w[light-of-day view], json)
         end
 
         private
