@@ -102,9 +102,11 @@ module LightofDay
               flash[:error] = view_data.failure
               view_lightofday = []
             else
-              # puts view_data.value!.to_json
-              view_data = view_data.value!
-              view_lightofday = Views::LightofDay.new(view_data)
+              jsondata = view_data.value![0]
+              # puts jsondata.class
+              # puts jsondata
+              view_data = view_data.value![1]
+              view_lightofday = Views::LightofDay.new(view_data, jsondata)
             end
 
             view 'view', locals: { view: view_lightofday, is_saved: false }
@@ -116,8 +118,14 @@ module LightofDay
             # POST /light-of-day/favorite/
             routing.post do
               # puts routing.params['favorite']
-              puts routing.params['favorite'].to_json
-              puts JSON.parse(routing.params['favorite'].to_json)['origin_id']
+              # puts routing.params['favorite'].to_json.origin_id
+              # testrep = Representer::ViewLightofDay.new(OpenStruct.new)
+              #                                      .from_json(routing.params['favorite'].to_json)
+              # puts testrep.origin_id
+              tmpval = JSON.parse(routing.params['favorite'])
+              puts tmpval.class
+              puts tmpval
+              puts tmpval['origin_id']
               view_record = Service::ParseLightofday.new.call(routing.params['favorite']).value!
               session[:watching] ||= []
               session[:watching].insert(0, view_record.origin_id).uniq!

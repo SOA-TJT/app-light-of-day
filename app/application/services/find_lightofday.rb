@@ -15,7 +15,8 @@ module LightofDay
 
       def request_lightofday(input)
         result = Gateway::Api.new(LightofDay::App.config)
-          .random_view(input)
+                             .random_view(input)
+        # puts 'result =', result
 
         result.success? ? Success(result.payload) : Failure(result.message)
       rescue StandardError => e
@@ -26,8 +27,8 @@ module LightofDay
 
       def reify_lightofday(lightofday_json)
         Representer::ViewLightofDay.new(OpenStruct.new)
-                           .from_json(lightofday_json)
-                           .then { |lightofday| Success(lightofday) }
+                                   .from_json(lightofday_json)
+                                   .then { |lightofday| Success([lightofday_json, lightofday]) }
       rescue StandardError
         Failure('Error in the lightofday -- please try again')
       end
