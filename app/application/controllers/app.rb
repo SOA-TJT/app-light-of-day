@@ -81,22 +81,22 @@ module LightofDay
           routing.post do
             topic_id = routing.params['topic_id']
 
-            slug = Service::FindSlug.new.call(topic_id)
-            if slug.failure?
-              flash[:error] = slug.failure
-              routing.redirect '/'
-            end
-            slug = slug.value!
-            routing.redirect "light-of-day/topic/#{slug}"
+            # slug = Service::FindSlug.new.call(topic_id)
+            # if slug.failure?
+            #   flash[:error] = slug.failure
+            #   routing.redirect '/'
+            # end
+            # slug = slug.value!
+            routing.redirect "light-of-day/topic/#{topic_id}"
           end
         end
 
-        routing.on 'topic', String do |topic_slug|
-          # GET /light-of-day/topic/{topic}
+        routing.on 'topic', String do |topic_id|
+          # GET /light-of-day/topic/{topic_id}
           routing.get do
-            topic_data = Service::FindTopics.new.call(topic_slug)
-            topic_data = topic_data.value!
-            view_data = Service::FindLightofDay.new.call(topic_data)
+            # topic_data = Service::FindTopics.new.call(topic_slug)
+            # topic_data = topic_data.value!
+            view_data = Service::FindLightofDay.new.call(topic_id)
 
             if view_data.failure?
               flash[:error] = view_data.failure
