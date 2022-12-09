@@ -102,6 +102,7 @@ module LightofDay
               flash[:error] = view_data.failure
               view_lightofday = []
             else
+              # puts view_data.value!.to_json
               view_data = view_data.value!
               view_lightofday = Views::LightofDay.new(view_data)
             end
@@ -114,6 +115,9 @@ module LightofDay
           routing.is do
             # POST /light-of-day/favorite/
             routing.post do
+              # puts routing.params['favorite']
+              puts routing.params['favorite'].to_json
+              puts JSON.parse(routing.params['favorite'].to_json)['origin_id']
               view_record = Service::ParseLightofday.new.call(routing.params['favorite']).value!
               session[:watching] ||= []
               session[:watching].insert(0, view_record.origin_id).uniq!

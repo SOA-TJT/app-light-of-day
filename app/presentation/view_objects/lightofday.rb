@@ -14,7 +14,8 @@ module Views
       @topics = lightofday.topics
       @urls = lightofday.urls
       @urls_small = lightofday.urls_small
-      @context = lightofday.context
+      @context = lightofday.to_json
+      # @context = lightofday.to_context
       @view_id = lightofday.origin_id
     end
   end
