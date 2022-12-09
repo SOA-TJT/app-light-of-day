@@ -50,7 +50,7 @@ module LightofDay
             view_topic = []
           else
             topics_result = topics_result.value!
-            view_topic = Views::TopicList.new(topics_result)
+            view_topic = Views::TopicList.new(topics_result.topics)
           end
           view 'picktopic', locals: { topics: view_topic }
         end
