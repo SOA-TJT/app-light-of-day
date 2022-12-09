@@ -123,18 +123,19 @@ module LightofDay
               #                                      .from_json(routing.params['favorite'].to_json)
               # puts testrep.origin_id
               tmpval = JSON.parse(routing.params['favorite'])
-              puts tmpval.class
+              # puts tmpval.class
               puts tmpval
-              puts tmpval['origin_id']
-              view_record = Service::ParseLightofday.new.call(routing.params['favorite']).value!
+              # puts tmpval['origin_id']
+              # view_record = Service::ParseLightofday.new.call(routing.params['favorite']).value!
               session[:watching] ||= []
-              session[:watching].insert(0, view_record.origin_id).uniq!
+              session[:watching].insert(0, tmpval['origin_id']).uniq!
 
               # store lightofday to DB
-              lightofday_made = Service::StoreLightofDay.new.call(view_record)
+              lightofday_made = Service::StoreLightofDay.new.call(tmpval)
               flash[:error] = lightofday_made.failure if lightofday_made.failure?
 
-              view_id = routing.params['view_data']
+              # view_id = routing.params['view_data']
+              view_id = tmpval['origin_id']
               flash[:notice] = 'Add successfully to your favorite !'
               routing.redirect "favorite/#{view_id}"
             end
@@ -148,16 +149,19 @@ module LightofDay
             end
             # GET /light-of-day/favorite/{view_id}
             routing.get do
+              puts view_id
               lightofday_get = Service::GetLightofDay.new.call(view_id)
-
+              puts lightofday_get
               if lightofday_get.failure?
                 flash[:error] = lightofday_get.failure
               else
-                lightofday_data = lightofday_get.value!
+                jsondata = lightofday_get.value![0]
+                lightofday_data = lightofday_get.value![1]
+                puts lightofday_data
                 flash.now[:error] = 'Data not found' if lightofday_get.nil?
               end
-
-              view_lightofday = Views::LightofDay.new(lightofday_data)
+              
+              view_lightofday = Views::LightofDay.new(lightofday_data, jsondata)
               view 'view', locals: { view: view_lightofday, is_saved: true }
             end
           end
