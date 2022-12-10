@@ -67,7 +67,8 @@ module LightofDay
         end
 
         def view_storage(json)
-          call_api('post', %w[light-of-day view], json)
+          call_api('post', %w[light-of-day view], 'list' => Value::WatchedList.to_encoded(json))
+          # call_api('post', %w[light-of-day view], json)
         end
 
         private
