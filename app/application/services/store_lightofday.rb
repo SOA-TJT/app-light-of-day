@@ -14,6 +14,9 @@ module LightofDay
       private
 
       def request_store_lightofday(input)
+        url = input.map { |key, value| "#{key}=#{value}" }.join('&')
+                   .then { |str| str ? '?' + str : '' }
+        puts 'test url:', url
         result = Gateway::Api.new(LightofDay::App.config)
                              .view_storage(input)
 
