@@ -58,7 +58,7 @@ module LightofDay
         end
 
         def favorite_list(list)
-          call_api('get', ['light-of-day'], 'list' => list) # may need to change
+          call_api('get', ['light-of-day'], 'list' => Value::WatchedList.to_encoded(list))
         end
 
         def view(origin_id)

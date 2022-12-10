@@ -61,11 +61,12 @@ module LightofDay
           session[:watching] ||= []
           # Load previously viewed Views
           result = Service::ListFavorite.new.call(session[:watching])
+          # puts result.value!.lightofdays
           if result.failure?
             flash[:error] = result.failure
             view_favorite_list = []
           else
-            favorite_list = result.value!
+            favorite_list = result.value!.lightofdays
             flash.now[:error] = 'Make some collections to get started' if favorite_list.none?
 
             session[:watching] = favorite_list.map(&:origin_id)
@@ -132,7 +133,7 @@ module LightofDay
 
               # store lightofday to DB
               lightofday_made = Service::StoreLightofDay.new.call(tmpval)
-              puts lightofday_made.failure?
+              # puts lightofday_made.failure?
               flash[:error] = lightofday_made.failure if lightofday_made.failure?
 
               # view_id = routing.params['view_data']
@@ -150,7 +151,7 @@ module LightofDay
             end
             # GET /light-of-day/favorite/{view_id}
             routing.get do
-              puts view_id
+              # puts view_id
               lightofday_get = Service::GetLightofDay.new.call(view_id)
               # puts lightofday_get
               if lightofday_get.failure?
