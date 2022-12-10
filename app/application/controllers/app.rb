@@ -124,7 +124,7 @@ module LightofDay
               # puts testrep.origin_id
               tmpval = JSON.parse(routing.params['favorite'])
               # puts tmpval.class
-              puts tmpval
+              # puts tmpval
               # puts tmpval['origin_id']
               # view_record = Service::ParseLightofday.new.call(routing.params['favorite']).value!
               session[:watching] ||= []
@@ -132,6 +132,7 @@ module LightofDay
 
               # store lightofday to DB
               lightofday_made = Service::StoreLightofDay.new.call(tmpval)
+              puts lightofday_made.failure?
               flash[:error] = lightofday_made.failure if lightofday_made.failure?
 
               # view_id = routing.params['view_data']
@@ -151,13 +152,13 @@ module LightofDay
             routing.get do
               puts view_id
               lightofday_get = Service::GetLightofDay.new.call(view_id)
-              puts lightofday_get
+              # puts lightofday_get
               if lightofday_get.failure?
                 flash[:error] = lightofday_get.failure
               else
                 jsondata = lightofday_get.value![0]
                 lightofday_data = lightofday_get.value![1]
-                puts lightofday_data
+                # puts lightofday_data
                 flash.now[:error] = 'Data not found' if lightofday_get.nil?
               end
               

@@ -14,10 +14,10 @@ module LightofDay
       private
 
       def request_store_lightofday(input)
-        
         result = Gateway::Api.new(LightofDay::App.config)
                              .view_storage(input)
-        puts result
+
+        puts result.message
         result.success? ? Success(result.payload) : Failure(result.message)
       rescue StandardError
         Failure('Cannot store lightofday right now; please try again later')
