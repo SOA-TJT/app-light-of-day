@@ -11,6 +11,7 @@ module LightofDay
     plugin :render, engine: 'slim', views: 'app/presentation/views_html'
     plugin :assets, path: 'app/presentation/assets', css: 'style.css', js: 'main.js'
     plugin :common_logger, $stderr
+    plugin :caching
     plugin :halt
     plugin :flash
     plugin :all_verbs
@@ -37,6 +38,10 @@ module LightofDay
 
       # GET /
       routing.root do
+        # Only use browser caching in production
+        App.configure :production do
+          response.expires 60, public: true
+        end
         view 'picktopic', locals: { topics: view_topic }
       end
 
@@ -104,7 +109,6 @@ module LightofDay
               view_data = view_data.value![1]
               view_lightofday = Views::LightofDay.new(view_data, jsondata)
             end
-
             view 'view', locals: { view: view_lightofday, is_saved: false }
           end
         end
@@ -144,8 +148,12 @@ module LightofDay
                 lightofday_data = lightofday_get.value![1]
                 flash.now[:error] = 'Data not found' if lightofday_get.nil?
               end
-              
+
               view_lightofday = Views::LightofDay.new(lightofday_data, jsondata)
+              # Only use browser caching in production
+              App.configure :production do
+                response.expires 60, public: true
+              end
               view 'view', locals: { view: view_lightofday, is_saved: true }
             end
           end
