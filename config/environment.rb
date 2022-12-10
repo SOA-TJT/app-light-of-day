@@ -23,13 +23,7 @@ module LightofDay
 
       def self.config = Figaro.env
       use Rack::Session::Cookie, secret: config.SESSION_SECRET
-      configure :development, :test do
-        ENV['DATABASE_URL'] = "sqlite://#{config.DB_FILENAME}"
-      end
 
-      # Database Setup
-      DB = Sequel.connect(ENV.fetch('DATABASE_URL')) # rubocop:disable Lint/ConstantDefinitionInBlock
-      def self.DB = DB # rubocop:disable Naming/MethodName
     end
   end
 end
