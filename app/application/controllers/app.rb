@@ -25,14 +25,14 @@ module LightofDay
       routing.assets # load CSS
       response['Content-Type'] = 'text/html; charset=utf-8'
 
-      topics_mapper = Service::ListTopics.new
-      topics_result = topics_mapper.call('normal')
+      # topics_mapper = Service::FindTopics.new
+      topics_result = Service::ListTopics.new.call('normal')
       if topics_result.failure?
         flash[:error] = topics_result.failure
         view_topic = []
       else
         topics_result = topics_result.value!
-        view_topic = Views::TopicList.new(topics_result)
+        view_topic = Views::TopicList.new(topics_result.topics)
       end
 
       # GET /
@@ -43,13 +43,13 @@ module LightofDay
       # GET /list_topics/{sort_by}
       routing.on 'list_topics', String do |sort_by|
         routing.get do
-          topics_result = topics_mapper.call(sort_by)
+          topics_result = Service::ListTopics.new.call(sort_by)
           if topics_result.failure?
             flash[:error] = topics_result.failure
             view_topic = []
           else
             topics_result = topics_result.value!
-            view_topic = Views::TopicList.new(topics_result)
+            view_topic = Views::TopicList.new(topics_result.topics)
           end
           view 'picktopic', locals: { topics: view_topic }
         end
@@ -64,7 +64,7 @@ module LightofDay
             flash[:error] = result.failure
             view_favorite_list = []
           else
-            favorite_list = result.value!
+            favorite_list = result.value!.lightofdays
             flash.now[:error] = 'Make some collections to get started' if favorite_list.none?
 
             session[:watching] = favorite_list.map(&:origin_id)
@@ -79,30 +79,30 @@ module LightofDay
           # POST /light-of-day/
           routing.post do
             topic_id = routing.params['topic_id']
-
-            slug = topics_mapper.find_slug(topic_id)
-            if slug.failure?
-              flash[:error] = slug.failure
-              routing.redirect '/'
-            end
-            slug = slug.value!
-            routing.redirect "light-of-day/topic/#{slug}"
+            # slug = Service::FindSlug.new.call(topic_id)
+            # if slug.failure?
+            #   flash[:error] = slug.failure
+            #   routing.redirect '/'
+            # end
+            # slug = slug.value!
+            routing.redirect "light-of-day/topic/#{topic_id}"
           end
         end
 
-        routing.on 'topic', String do |topic_slug|
-          # GET /light-of-day/topic/{topic}
+        routing.on 'topic', String do |topic_id|
+          # GET /light-of-day/topic/{topic_id}
           routing.get do
-            topic_data = topics_mapper.find_topic(topic_slug)
-            topic_data = topic_data.value!
-            view_data = Service::FindLightofDay.new.call(topic_data)
+            # topic_data = Service::FindTopics.new.call(topic_slug)
+            # topic_data = topic_data.value!
+            view_data = Service::FindLightofDay.new.call(topic_id)
 
             if view_data.failure?
               flash[:error] = view_data.failure
               view_lightofday = []
             else
-              view_data = view_data.value!
-              view_lightofday = Views::LightofDay.new(view_data)
+              jsondata = view_data.value![0]
+              view_data = view_data.value![1]
+              view_lightofday = Views::LightofDay.new(view_data, jsondata)
             end
 
             view 'view', locals: { view: view_lightofday, is_saved: false }
@@ -113,15 +113,16 @@ module LightofDay
           routing.is do
             # POST /light-of-day/favorite/
             routing.post do
-              view_record = Service::ParseLightofday.new.call(routing.params['favorite']).value!
+              tmpval = JSON.parse(routing.params['favorite'])
+              # view_record = Service::ParseLightofday.new.call(routing.params['favorite']).value!
               session[:watching] ||= []
-              session[:watching].insert(0, view_record.origin_id).uniq!
+              session[:watching].insert(0, tmpval['origin_id']).uniq!
 
               # store lightofday to DB
-              lightofday_made = Service::StoreLightofDay.new.call(view_record)
+              lightofday_made = Service::StoreLightofDay.new.call(tmpval)
               flash[:error] = lightofday_made.failure if lightofday_made.failure?
 
-              view_id = routing.params['view_data']
+              view_id = tmpval['origin_id']
               flash[:notice] = 'Add successfully to your favorite !'
               routing.redirect "favorite/#{view_id}"
             end
@@ -136,15 +137,15 @@ module LightofDay
             # GET /light-of-day/favorite/{view_id}
             routing.get do
               lightofday_get = Service::GetLightofDay.new.call(view_id)
-
               if lightofday_get.failure?
                 flash[:error] = lightofday_get.failure
               else
-                lightofday_data = lightofday_get.value!
+                jsondata = lightofday_get.value![0]
+                lightofday_data = lightofday_get.value![1]
                 flash.now[:error] = 'Data not found' if lightofday_get.nil?
               end
-
-              view_lightofday = Views::LightofDay.new(lightofday_data)
+              
+              view_lightofday = Views::LightofDay.new(lightofday_data, jsondata)
               view 'view', locals: { view: view_lightofday, is_saved: true }
             end
           end

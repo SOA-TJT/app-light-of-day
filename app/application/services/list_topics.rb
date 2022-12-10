@@ -5,17 +5,17 @@ require 'dry/transaction'
 module LightofDay
   module Service
     # Retrieves array of all listed project entities
-    class ListFavorite
+    class ListTopics
       include Dry::Transaction
 
-      step :get_api_favorite
-      step :reify_favorite
+      step :get_api_topics
+      step :reify_topics
 
       private
 
-      def get_api_favorite(favorite_list)
+      def get_api_topics(type)
         Gateway::Api.new(LightofDay::App.config)
-                    .favorite_list(favorite_list)
+                    .topics(type)
                     .then do |result|
           # puts result
           result.success? ? Success(result.payload) : Failure(result.message)
@@ -24,14 +24,13 @@ module LightofDay
         Failure('Could not access our API')
       end
 
-      def reify_favorite(input_json)
-        Representer::FavoriteList.new(OpenStruct.new)
-                           .from_json(input_json)
-                           .then { |favorite| Success(favorite) }
+      def reify_topics(topics_json)
+        Representer::Topics.new(OpenStruct.new)
+                           .from_json(topics_json)
+                           .then { |topics| Success(topics) }
       rescue StandardError
         Failure('Could not parse response from API')
       end
     end
   end
 end
-

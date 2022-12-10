@@ -5,7 +5,7 @@ module Views
   class LightofDay
     attr_reader :idx, :quote, :quote_author, :creator_name, :topics, :urls, :urls_small, :context, :view_id
 
-    def initialize(lightofday, idx = nil)
+    def initialize(lightofday, jsondata, idx = nil)
       @idx = idx
       @lightofday = lightofday
       @quote = lightofday.inspiration.quote
@@ -14,7 +14,8 @@ module Views
       @topics = lightofday.topics
       @urls = lightofday.urls
       @urls_small = lightofday.urls_small
-      @context = lightofday.context
+      @context = jsondata
+      # @context = lightofday.to_context
       @view_id = lightofday.origin_id
     end
   end

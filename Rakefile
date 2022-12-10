@@ -33,11 +33,11 @@ task :new_session_secret do
 end
 
 task :run do
-  sh 'bundle exec puma'
+  sh 'bundle exec puma -p 9000'
 end
 
 task :rerun do
-  sh "rerun -c --ignore 'coverage/*' -- bundle exec puma"
+  sh "rerun -c --ignore 'coverage/*' -- bundle exec puma -p 9000"
 end
 
 namespace :db do
