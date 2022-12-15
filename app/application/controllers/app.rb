@@ -75,26 +75,20 @@ module LightofDay
       end
 
       routing.on 'light-of-day' do
-        routing.is do
-          # POST /light-of-day/
-          routing.post do
-            topic_id = routing.params['topic_id']
-            # slug = Service::FindSlug.new.call(topic_id)
-            # if slug.failure?
-            #   flash[:error] = slug.failure
-            #   routing.redirect '/'
-            # end
-            # slug = slug.value!
-            routing.redirect "light-of-day/topic/#{topic_id}"
-          end
-        end
+        #   routing.is do
+        #     # POST /light-of-day/
+        #     routing.post do
+        #       topic_id = routing.params['topic_id']
+        #       routing.redirect "light-of-day/topic/#{topic_id}"
+        #     end
+        #   end
 
-        routing.on 'topic', String do |topic_id|
+        routing.on 'topic' do
           # GET /light-of-day/topic/{topic_id}
-          routing.get do
+          routing.post do
             # topic_data = Service::FindTopics.new.call(topic_slug)
             # topic_data = topic_data.value!
-            view_data = Service::FindLightofDay.new.call(topic_id)
+            view_data = Service::FindLightofDay.new.call(routing.params['topic_id'])
 
             if view_data.failure?
               flash[:error] = view_data.failure
@@ -108,6 +102,26 @@ module LightofDay
             view 'view', locals: { view: view_lightofday, is_saved: false }
           end
         end
+
+        # routing.on 'topic', String do |topic_id|
+        #   # GET /light-of-day/topic/{topic_id}
+        #   routing.get do
+        #     # topic_data = Service::FindTopics.new.call(topic_slug)
+        #     # topic_data = topic_data.value!
+        #     view_data = Service::FindLightofDay.new.call(topic_id)
+
+        #     if view_data.failure?
+        #       flash[:error] = view_data.failure
+        #       view_lightofday = []
+        #     else
+        #       jsondata = view_data.value![0]
+        #       view_data = view_data.value![1]
+        #       view_lightofday = Views::LightofDay.new(view_data, jsondata)
+        #     end
+
+        #     view 'view', locals: { view: view_lightofday, is_saved: false }
+        #   end
+        # end
 
         routing.on 'favorite' do
           routing.is do
@@ -144,7 +158,7 @@ module LightofDay
                 lightofday_data = lightofday_get.value![1]
                 flash.now[:error] = 'Data not found' if lightofday_get.nil?
               end
-              
+
               view_lightofday = Views::LightofDay.new(lightofday_data, jsondata)
               view 'view', locals: { view: view_lightofday, is_saved: true }
             end
