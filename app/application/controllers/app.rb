@@ -88,6 +88,10 @@ module LightofDay
           routing.post do
             # topic_data = Service::FindTopics.new.call(topic_slug)
             # topic_data = topic_data.value!
+            if routing.params['topic_id'].nil?
+              flash[:error] = 'Could not find light of day'
+              routing.redirect '/'
+            end
             view_data = Service::FindLightofDay.new.call(routing.params['topic_id'])
 
             if view_data.failure?
