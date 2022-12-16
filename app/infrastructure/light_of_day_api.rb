@@ -98,8 +98,26 @@ module LightofDay
           code.between?(SUCCESS_CODES.first, SUCCESS_CODES.last)
         end
 
+        def failure?
+          !success?
+        end
+
+        def ok?
+          code == 200
+        end
+
+        def added?
+          code == 201
+        end
+
+        def processing?
+          code == 202
+        end
+
+
         def message
-          payload['message']
+          # payload['message']
+          JSON.parse(payload)['message']
         end
 
         def payload
