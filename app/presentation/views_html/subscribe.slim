@@ -1,0 +1,22 @@
+.service-logo.poa-header 
+  a href="/"
+    .sv-light Light 
+    .sv-of of 
+    .sv-day Day
+
+.subscribe-container
+  form role="form" action="/subscribe/" method="post" 
+    .mb-3
+      label.form-label(for='exampleInputEmail1') Email address
+      input.form-control(type='email' aria-describedby='emailHelp' name='email_input')
+    .mb-3
+      select.form-select(aria-label='Select Topic' name='topic_input')
+        - topics.each do |topic|
+          option(value="#{topic.topic_id}") #{topic.title}
+    button.btn.btn-primary(type='submit') Submit
+
+.footer.poa-footer 
+  .copyright 
+    img.company-logo src="https://github.com/SOA-TJT/Team-Logo/blob/SOA-TJT-patch-1/Logo.png?raw=true" 
+    .company TJT@2022.Insipiration
+

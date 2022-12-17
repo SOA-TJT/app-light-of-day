@@ -40,6 +40,23 @@ module LightofDay
         view 'picktopic', locals: { topics: view_topic }
       end
 
+      routing.on 'subscribe' do
+        routing.is do
+          view 'subscribe', locals: { topics: view_topic }
+        end
+        routing.on do
+          routing.post do
+            subscribe_data = Service::Subscribe.new.call(routing.params)
+            puts subscribe_data
+            if subscribe_data.failure?
+              flash[:error] = subscribe_data.failure
+            else
+              routing.redirect '/'
+            end
+          end
+        end
+      end
+
       # GET /list_topics/{sort_by}
       routing.on 'list_topics', String do |sort_by|
         routing.get do

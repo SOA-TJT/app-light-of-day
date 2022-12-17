@@ -37,6 +37,10 @@ module LightofDay
         @request.view_storage(json)
       end
 
+      def subscribe(email, topic_id)
+        @request.subscribe(email, topic_id)
+      end
+
       # HTTP request transmitter
       class Requset
         def initialize(config)
@@ -69,6 +73,11 @@ module LightofDay
         def view_storage(json)
           call_api('post', %w[light-of-day view], 'list' => Value::WatchedList.to_encoded(json))
           # call_api('post', %w[light-of-day view], json)
+        end
+
+        def subscribe(email, topic_id)
+          puts email + topic_id
+          call_api('post', ['subscribe'], { email:, topic_id: })
         end
 
         private
