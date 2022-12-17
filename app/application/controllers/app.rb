@@ -93,21 +93,21 @@ module LightofDay
               routing.redirect '/'
             end
             view_data = Service::FindLightofDay.new.call(routing.params['topic_id'])
-
+            puts view_data
             if view_data.failure?
               flash[:error] = view_data.failure
               view_lightofday = []
             else
-              
+              jsondata = view_data.value![0]
+              # view_data = view_data.value![1]
+              puts view_data.value![1]
+              lightofday_data = OpenStruct.new(view_data.value![1])
+
               if view_data.processing?
                 flash[:notice] = 'Light of Day is being generated, ' \
                                 'please check back in a moment.'
                 routing.redirect '/'
               end
-
-              jsondata = view_data.value![0]
-              # view_data = view_data.value![1]
-              lightofday_data = OpenStruct.new(view_data.value![1])
 
               view_data = lightofday_data
 
