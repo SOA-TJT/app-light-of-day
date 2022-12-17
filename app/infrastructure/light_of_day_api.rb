@@ -92,7 +92,7 @@ module LightofDay
       # Decorates HTTP responses with success/error
       class Response < SimpleDelegator
         NotFound = Class.new(StandardError)
-        SUCCESS_CODES = (200..299)
+        SUCCESS_CODES = 200..299
 
         def success?
           code.between?(SUCCESS_CODES.first, SUCCESS_CODES.last)
