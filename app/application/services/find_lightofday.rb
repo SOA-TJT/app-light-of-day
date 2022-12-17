@@ -18,17 +18,20 @@ module LightofDay
                              .random_view(input)
         # puts 'result =', result
 
-        result.success? ? Success(result.payload) : Failure(result.message)
+        result.success? ? Success(result) : Failure(result.message)
       rescue StandardError => e
         puts e.inspect
         puts e.backtrace
         Failure('Cannot find lightofday right now; please try again later')
       end
 
-      def reify_lightofday(lightofday_json)
-        Representer::ViewLightofDay.new(OpenStruct.new)
-                                   .from_json(lightofday_json)
-                                   .then { |lightofday| Success([lightofday_json, lightofday]) }
+      def reify_lightofday(result)
+        unless result.processing?
+          Representer::ViewLightofDay.new(OpenStruct.new)
+                                    .from_json(result.payload)
+                                    .then { |lightofday| Success([result.payload, lightofday]) }
+        end
+        Success(result)
       rescue StandardError
         Failure('Error in the lightofday -- please try again')
       end

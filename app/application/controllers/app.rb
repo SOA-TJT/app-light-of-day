@@ -98,14 +98,16 @@ module LightofDay
               flash[:error] = view_data.failure
               view_lightofday = []
             else
-              jsondata = view_data.value![0]
-              # view_data = view_data.value![1]
-              lightofday_data = OpenStruct.new(view_data.value![1])
-              if lightofday_data.response.processing?
+              
+              if view_data.processing?
                 flash[:notice] = 'Light of Day is being generated, ' \
                                 'please check back in a moment.'
                 routing.redirect '/'
               end
+
+              jsondata = view_data.value![0]
+              # view_data = view_data.value![1]
+              lightofday_data = OpenStruct.new(view_data.value![1])
 
               view_data = lightofday_data
 
