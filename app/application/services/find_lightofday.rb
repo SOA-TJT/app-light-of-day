@@ -16,12 +16,10 @@ module LightofDay
       def request_lightofday(input)
         result = Gateway::Api.new(LightofDay::App.config)
                              .random_view(input)
-        # puts 'result =', result
+        puts 'result =', result
 
         result.success? ? Success(result) : Failure(result.message)
-      rescue StandardError => e
-        puts e.inspect
-        puts e.backtrace
+      rescue StandardError
         Failure('Cannot find lightofday right now; please try again later')
       end
 
