@@ -486,6 +486,9 @@ input[type="submit"]{
   color: rgb(240, 101, 101);
   vertical-align: middle;
 }
+.favorite .green {
+  color: #50885D;
+}
 .favorite:hover{
   border-color: rgb(91, 11, 11);
 }
