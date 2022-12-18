@@ -37,6 +37,10 @@ module LightofDay
         @request.view_storage(json)
       end
 
+      def subscribe(email, topic_id)
+        @request.subscribe(email, topic_id)
+      end
+
       # HTTP request transmitter
       class Requset
         def initialize(config)
@@ -71,6 +75,11 @@ module LightofDay
           # call_api('post', %w[light-of-day view], json)
         end
 
+        def subscribe(email, topic_id)
+          puts email + topic_id
+          call_api('post', ['subscribe'], { email:, topic_id: })
+        end
+
         private
 
         def params_str(params)
@@ -92,14 +101,32 @@ module LightofDay
       # Decorates HTTP responses with success/error
       class Response < SimpleDelegator
         NotFound = Class.new(StandardError)
-        SUCCESS_CODES = (200..299)
+        SUCCESS_CODES = 200..299
 
         def success?
           code.between?(SUCCESS_CODES.first, SUCCESS_CODES.last)
         end
 
+        def failure?
+          !success?
+        end
+
+        def ok?
+          code == 200
+        end
+
+        def added?
+          code == 201
+        end
+
+        def processing?
+          code == 202
+        end
+
+
         def message
-          payload['message']
+          # payload['message']
+          JSON.parse(payload)['message']
         end
 
         def payload

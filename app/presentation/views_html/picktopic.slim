@@ -23,7 +23,7 @@
       li
         a.dropdown-item href="/list_topics/popularity"  Popularity
 .container-fluid
-  form role="form" action="/light-of-day" method="post" 
+  form role="form" action="/light-of-day/topic/" method="get" 
     .row.row-cols-auto.row-cols-md-2.row-cols-lg-3.topic-section
       - topics.each do |topic|
         .col 
@@ -61,5 +61,9 @@
       .clear
 .footer
   .copyright 
+    .favorite
+      a(href="/subscribe")
+        i class="fa-solid fa-bookmark green"
+        span Subscribe 
     img.company-logo src="https://github.com/SOA-TJT/Team-Logo/blob/SOA-TJT-patch-1/Logo.png?raw=true"
     .company TJT@2022.Insipiration
