@@ -12,8 +12,8 @@ module LightofDay
         result = Gateway::Api.new(LightofDay::App.config)
                              .subscribe(params['email_input'], params['topic_input'])
         result.success? ? Success(result) : Failure(result)
-      # rescue StandardError
-      #   Failure('Having trouble when subscribing')
+      rescue StandardError
+        Failure('Having trouble when subscribing')
       end
     end
   end

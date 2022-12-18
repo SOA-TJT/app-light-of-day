@@ -48,6 +48,13 @@ module LightofDay
           routing.post do
             subscribe_data = Service::Subscribe.new.call(routing.params)
             puts subscribe_data
+
+            if subscribe_data.value!.processing?
+              flash[:notice] = 'Email Address Verification Request is sending to your email, ' \
+                               'please check your email in a moment.'
+              routing.redirect '/'
+            end
+
             if subscribe_data.failure?
               flash[:error] = subscribe_data.failure
             else
