@@ -179,9 +179,16 @@ module LightofDay
               lightofday_made = Service::StoreLightofDay.new.call(tmpval)
               flash[:error] = lightofday_made.failure if lightofday_made.failure?
 
-              view_id = tmpval['origin_id']
-              flash[:notice] = 'Add successfully to your favorite !'
-              routing.redirect "favorite/#{view_id}"
+              puts "lightofday_made:", lightofday_made
+              if lightofday_made.value!.processing?
+                flash[:notice] = 'Light of Day is being stored, ' \
+                                 'please check back in a moment.'
+                routing.redirect "/" # need to be modify
+              else
+                view_id = tmpval['origin_id']
+                flash[:notice] = 'Add successfully to your favorite !'
+                routing.redirect "favorite/#{view_id}"
+              end
             end
           end
           routing.on String do |view_id|

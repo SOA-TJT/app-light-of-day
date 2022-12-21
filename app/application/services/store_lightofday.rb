@@ -21,15 +21,19 @@ module LightofDay
                              .view_storage(input)
 
         puts result.message
-        result.success? ? Success(result.payload) : Failure(result.message)
+        puts result.payload
+        result.success? ? Success(result) : Failure(result.message)
       rescue StandardError
         Failure('Cannot store lightofday right now; please try again later')
       end
 
-      def reify_lightofday(lightofday_json)
-        Representer::ViewLightofDay.new(OpenStruct.new)
-                                   .from_json(lightofday_json)
-                                   .then { |lightofday| Success(lightofday) }
+      def reify_lightofday(input)
+        unless input.processing?
+          Representer::ViewLightofDay.new(OpenStruct.new)
+                                    .from_json(input.payload)
+                                    .then { |lightofday| Success(lightofday) }
+        end
+        Success(input)
       rescue StandardError
         Failure('Error in store lightofday -- please try again')
       end
