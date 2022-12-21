@@ -176,6 +176,7 @@ module LightofDay
               session[:watching].insert(0, tmpval['origin_id']).uniq!
 
               # store lightofday to DB
+              puts "tmp:", tmpval
               lightofday_made = Service::StoreLightofDay.new.call(tmpval)
               flash[:error] = lightofday_made.failure if lightofday_made.failure?
 
@@ -183,7 +184,7 @@ module LightofDay
               if lightofday_made.value!.processing?
                 flash[:notice] = 'Light of Day is being stored, ' \
                                  'please check back in a moment.'
-                routing.redirect "/" # need to be modify
+                # routing.redirect "/" # need to be modify
               else
                 view_id = tmpval['origin_id']
                 flash[:notice] = 'Add successfully to your favorite !'
