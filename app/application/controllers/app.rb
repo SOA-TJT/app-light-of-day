@@ -180,13 +180,18 @@ module LightofDay
               lightofday_made = Service::StoreLightofDay.new.call(tmpval)
               flash[:error] = lightofday_made.failure if lightofday_made.failure?
 
-              puts 'lightofday_made:', lightofday_made
+              puts 'lightofday_made:', lightofday_made.value!
 
               flash.now[:notice] = 'Light of Day is being stored' if lightofday_made.value!.processing?
 
               view_id = tmpval['origin_id']
               # flash[:notice] = 'Add successfully to your favorite !'
-              routing.redirect "favorite/#{view_id}"
+
+              processing = Views::LightofdayProcessing.new(
+                App.config, lightofday_made.value!
+              )
+              view 'loading', locals: { is_saved: true, processing: }
+              # routing.redirect "favorite/#{view_id}"
             end
           end
           routing.on String do |view_id|

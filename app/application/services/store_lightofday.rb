@@ -30,8 +30,8 @@ module LightofDay
       def reify_lightofday(input)
         unless input.processing?
           Representer::ViewLightofDay.new(OpenStruct.new)
-                                    .from_json(input.payload)
-                                    .then { |lightofday| Success(lightofday) }
+                                     .from_json(input.payload)
+                                     .then { |lightofday| Success(lightofday) }
         end
         Success(input)
       rescue StandardError
