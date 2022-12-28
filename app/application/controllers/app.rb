@@ -181,15 +181,13 @@ module LightofDay
               flash[:error] = lightofday_made.failure if lightofday_made.failure?
 
               puts "lightofday_made:", lightofday_made
-              if lightofday_made.value!.processing?
-                flash[:notice] = 'Light of Day is being stored, ' \
-                                 'please check back in a moment.'
-                # routing.redirect "/" # need to be modify
-              else
-                view_id = tmpval['origin_id']
-                flash[:notice] = 'Add successfully to your favorite !'
-                routing.redirect "favorite/#{view_id}"
-              end
+              
+              flash.now[:notice] =  'Light of Day is being stored' if lightofday_made.value!.processing?
+              
+              view_id = tmpval['origin_id']
+              # flash[:notice] = 'Add successfully to your favorite !'
+              routing.redirect "favorite/#{view_id}"
+              
             end
           end
           routing.on String do |view_id|
@@ -211,6 +209,10 @@ module LightofDay
               end
 
               view_lightofday = Views::LightofDay.new(lightofday_data, jsondata)
+
+              processing = Views::LightofdayProcessing.new(
+              App.config, appraisal.response
+              )
               view 'view', locals: { view: view_lightofday, is_saved: true }
             end
           end
