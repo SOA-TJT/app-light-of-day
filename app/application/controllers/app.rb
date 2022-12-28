@@ -158,11 +158,11 @@ module LightofDay
               # end
 
               # view_data = lightofday_data
-              
+
               view_lightofday = Views::LightofDay.new(view_data, jsondata)
             end
 
-            view 'view', locals: { view: view_lightofday, is_saved: false }
+            view 'random_view', locals: { view: view_lightofday, is_saved: false }
           end
         end
 
@@ -176,18 +176,17 @@ module LightofDay
               session[:watching].insert(0, tmpval['origin_id']).uniq!
 
               # store lightofday to DB
-              puts "tmp:", tmpval
+              puts 'tmp:', tmpval
               lightofday_made = Service::StoreLightofDay.new.call(tmpval)
               flash[:error] = lightofday_made.failure if lightofday_made.failure?
 
-              puts "lightofday_made:", lightofday_made
-              
-              flash.now[:notice] =  'Light of Day is being stored' if lightofday_made.value!.processing?
-              
+              puts 'lightofday_made:', lightofday_made
+
+              flash.now[:notice] = 'Light of Day is being stored' if lightofday_made.value!.processing?
+
               view_id = tmpval['origin_id']
               # flash[:notice] = 'Add successfully to your favorite !'
               routing.redirect "favorite/#{view_id}"
-              
             end
           end
           routing.on String do |view_id|
@@ -211,9 +210,9 @@ module LightofDay
               view_lightofday = Views::LightofDay.new(lightofday_data, jsondata)
 
               processing = Views::LightofdayProcessing.new(
-              App.config, appraisal.response
+                App.config, appraisal.response
               )
-              view 'view', locals: { view: view_lightofday, is_saved: true }
+              view 'view', locals: { view: view_lightofday, is_saved: true, processing: }
             end
           end
         end
