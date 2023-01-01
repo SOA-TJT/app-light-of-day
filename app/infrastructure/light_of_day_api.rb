@@ -16,6 +16,14 @@ module LightofDay
         @request.get_root.success?
       end
 
+      def focus_storage(rest_time, work_time)
+        @request.focus_storage(rest_time, work_time)
+      end
+
+      def week_focus
+        @request.week_focus
+      end
+
       def topics(sort)
         puts 'Test'
         @request.topics(sort)
@@ -80,6 +88,14 @@ module LightofDay
           call_api('post', ['subscribe'], { email:, topic_id: })
         end
 
+        def focus_storage(rest_time, work_time)
+          call_api('get', ['focus', rest_time, work_time])
+        end
+
+        def week_focus
+          call_api('get', %w[focus week-statistic])
+        end
+
         private
 
         def params_str(params)
@@ -122,7 +138,6 @@ module LightofDay
         def processing?
           code == 202
         end
-
 
         def message
           # payload['message']

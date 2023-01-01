@@ -130,9 +130,36 @@ module LightofDay
         #     view 'view', locals: { view: view_lightofday, is_saved: false }
         #   end
         # end
+        routing.on 'topic', String, String do |rest_time, work_time|
+          routing.get do
+            puts 'rest_time:', rest_time
+            puts 'work_time:', work_time
+            focus_made = Service::StoreFocus.new.call(rest_time:, work_time:)
+            flash[:error] = focus_made.failure if focus_made.failure?
+
+            if routing.params['topic_id'].nil?
+              flash[:error] = 'Could not find light of day'
+              routing.redirect '/'
+            end
+            view_data = Service::FindLightofDay.new.call(routing.params['topic_id'])
+            puts view_data
+            if view_data.failure?
+              flash[:error] = view_data.failure
+              view_lightofday = []
+            else
+              jsondata = view_data.value![0]
+              view_data = view_data.value![1]
+
+              view_lightofday = Views::LightofDay.new(view_data, jsondata)
+            end
+
+            view 'view', locals: { view: view_lightofday, is_saved: false }
+          end
+        end
 
         routing.on 'topic/' do
           # GET /light-of-day/topic/?target={topic_id}
+
           routing.get do
             # topic_data = Service::FindTopics.new.call(topic_slug)
             # topic_data = topic_data.value!
@@ -194,6 +221,24 @@ module LightofDay
               # routing.redirect "favorite/#{view_id}"
             end
           end
+          routing.on String, String, String do |view_id, rest_time, work_time|
+            # GET /light-of-day/favorite/{view_id}
+            routing.get do
+              focus_made = Service::StoreFocus.new.call(rest_time:, work_time:)
+              lightofday_get = Service::GetLightofDay.new.call(view_id)
+              if lightofday_get.failure?
+                flash[:error] = lightofday_get.failure
+              else
+                jsondata = lightofday_get.value![0]
+                lightofday_data = lightofday_get.value![1]
+                flash.now[:error] = 'Data not found' if lightofday_get.nil?
+              end
+
+              view_lightofday = Views::LightofDay.new(lightofday_data, jsondata)
+
+              view 'view', locals: { view: view_lightofday, is_saved: true }
+            end
+          end
           routing.on String do |view_id|
             # Delete /light-of-day/favorite/{view_id}
             routing.delete do
@@ -218,6 +263,21 @@ module LightofDay
             end
           end
         end
+      end
+
+      routing.on 'focus' do
+        # focus_data = Service::ListFocus.new.call
+        focus_data = Service::AnalyzeFocus.new.call
+        puts focus_data.failure
+        if focus_data.failure?
+          flash[:error] = focus_data.failure
+          focus_data = []
+        else
+          focus_data = focus_data.value!
+          puts 'focus_data', focus_data
+          view_focus = Views::FocusList.new(focus_data.dailyfocuses)
+        end
+        view 'focus', locals: { view_focus: }
       end
     end
   end

@@ -52,6 +52,7 @@ function reset(){
 
 buttonPlay.addEventListener('click',()=>{
   console.log(timeLeft);
+  safe_time();
   isPlay=!isPlay;
   if(isPlay){
     if((!workTitle.classList.contains('work-active'))&& !restTitle.classList.contains('rest-active')){
@@ -72,6 +73,7 @@ buttonPlay.addEventListener('click',()=>{
               restTitle.classList.add('rest-active'); 
           }
           else{
+            
               timeLeft=parseInt(workTime.innerText)*60; 
               workTitle.classList.add('work-active');
               restTitle.classList.remove('rest-active'); 
@@ -127,3 +129,20 @@ restIncrease.addEventListener('click',()=>{
 restDecrease.addEventListener('click',()=>{
   handleIncrease(restTime,-1);
 });
+
+safe_time=()=>{
+  topic_id=document.getElementById('topic_id').getAttribute("value")
+  console.log(topic_id);
+  if (window.location.href.includes('topic')){
+    url_arr=window.location.href.split('/')
+    redirect = url_arr.slice(0,5).join('/')+'/'+restTime.innerText +'/' + workTime.innerText+'/'+(url_arr.reverse()).slice(0,1)
+    console.log(redirect)
+    window.location = redirect
+    // window.location = window.location.href.split('/').slice(0,6).join('/')+'/' +restTime.innerText +'/' + workTime.innerText;
+  }
+  else{
+    console.log(window.location.href.split('/').slice(0,6).join('/')+'/' +restTime.innerText +'/' + workTime.innerText)
+    window.location = window.location.href.split('/').slice(0,6).join('/')+'/' +restTime.innerText +'/' + workTime.innerText;
+  }
+}
+
