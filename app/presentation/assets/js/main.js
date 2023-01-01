@@ -1,9 +1,123 @@
+
+calculate_focus=()=>{
+
+  let delayed;
+const ctx = document.getElementById("example").getContext("2d");
+let dates = document.getElementsByClassName('focus-date');
+console.log(dates);
+let date_arr = Array.prototype.map.call(dates, function(obj) {
+  return obj.innerText;
+});;
+date_arr.shift();
+let times = document.getElementsByClassName('focus-time');
+// console.log(times);
+let times_arr = Array.prototype.map.call(times, function(obj) {
+  return obj.innerText.split(' ')[0];
+});;
+times_arr.shift();
+console.log(times_arr)
+let rest_times = document.getElementsByClassName('rest-time');
+// console.log(times);
+let rest_times_arr = Array.prototype.map.call(rest_times, function(obj) {
+  return obj.innerText.split(' ')[0];
+});;
+rest_times_arr.shift();
+console.log(rest_times_arr)
+
+const myChart = new Chart(ctx, {
+  type: "bar",
+  data: {
+    labels: date_arr,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "top",
+        },
+        title: {
+          display: true,
+          text: "Chart.js Bar Chart",
+        },
+      },
+    },
+    datasets: [
+      {
+        label: "Work Time",
+        data: times_arr,
+        backgroundColor: ["rgba(166, 187, 141,1)"],
+        borderColor: ["rgba(166, 187, 141,1)"],
+        borderWidth: 0.5,
+        borderRadius: 10,
+        borderSkipped: false,
+      },
+      {
+        label: "Rest Time",
+        data: rest_times_arr,
+        backgroundColor: ["rgb(234, 231, 177)"],
+        borderColor: ["rgb(234, 231, 177)"],
+        borderWidth: 0.5,
+        borderRadius: 10,
+        borderSkipped: false,
+      },
+    ],
+  },
+  options: {
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          color: "#fff",
+        },
+      },
+      y: {
+        grid: {
+          drawBorder: true,
+          color: "rgba(166, 187, 141,1)",
+        },
+        ticks: {
+          color: "#fff",
+        },
+      },
+    },
+    y: {
+      beginAtZero: true,
+    },
+    animation: {
+      onComplete: () => {
+        delayed = true;
+      },
+      delay: (context) => {
+        let delay = 0;
+        if (
+          context.type === "data" &&
+          context.mode === "default" &&
+          !delayed
+        ) {
+          delay = context.dataIndex * 300 + context.datasetIndex * 100;
+        }
+        return delay;
+      },
+    },
+    plugins: {
+      legend: {
+        labels: {
+          color: "#fff",
+        },
+      },
+    },
+  },
+});
+}
+
 $(document).ready(function(){
   $(".alert").fadeTo(2000,500).slideUp(500, function() {
     $(".alert").slideUp(500);
   });
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
   const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+  calculate_focus();
 });
 
 //  pomodoro

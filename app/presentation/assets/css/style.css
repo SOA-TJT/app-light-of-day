@@ -761,7 +761,11 @@ input[type="submit"]{
   color: #000;
   text-decoration: none;
 }
-
+.focus-set .chart{
+  background: #000;
+  padding: 10px 5px;
+  border-radius: 10px;
+}
 /* @media (max-width: 768px) {
   .favorite-item-quote{
   white-space: unset;
