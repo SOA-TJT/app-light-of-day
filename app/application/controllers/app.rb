@@ -162,7 +162,7 @@ module LightofDay
               view_lightofday = Views::LightofDay.new(view_data, jsondata)
             end
 
-            view 'random_view', locals: { view: view_lightofday, is_saved: false }
+            view 'view', locals: { view: view_lightofday, is_saved: false }
           end
         end
 
@@ -190,7 +190,7 @@ module LightofDay
               processing = Views::LightofdayProcessing.new(
                 App.config, lightofday_made.value!
               )
-              view 'loading', locals: { is_saved: true, processing: }
+              view 'loading', locals: { is_saved: true, processing:, view_id: }
               # routing.redirect "favorite/#{view_id}"
             end
           end
@@ -214,10 +214,7 @@ module LightofDay
 
               view_lightofday = Views::LightofDay.new(lightofday_data, jsondata)
 
-              processing = Views::LightofdayProcessing.new(
-                App.config, appraisal.response
-              )
-              view 'view', locals: { view: view_lightofday, is_saved: true, processing: }
+              view 'view', locals: { view: view_lightofday, is_saved: true }
             end
           end
         end

@@ -759,6 +759,9 @@ input[type="submit"]{
   margin: auto;
   padding: 100px 0;
 }
+.hidden{
+  display: none;
+}
 
 /* @media (max-width: 768px) {
   .favorite-item-quote{

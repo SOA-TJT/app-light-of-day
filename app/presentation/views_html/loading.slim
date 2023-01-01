@@ -41,6 +41,7 @@
     a href="#{view.urls}" View 
 / .view-pic 
 /   img src="#{view.urls}"
+#view_id class="hidden" #{view_id}
 .footer.poa-footer
   //to do
   - if processing.in_progress?
@@ -74,7 +75,9 @@
            // Reload page at 100%
            if (message == "100") {
              setTimeout(function () {
-                // window.location = window.location.href
+               view_id=document.getElementById("view_id").innerText 
+               console.log(view_id)
+                window.location = window.location.href +'/' + view_id
              }, 1000);
            }
          }
