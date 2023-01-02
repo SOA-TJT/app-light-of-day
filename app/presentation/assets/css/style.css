@@ -208,7 +208,7 @@ body{
   top: 20px;
   opacity: .9;
 }
-.quote-card{
+/* .quote-card{
   position: absolute;
   left: 5%;
   top: 15%;
@@ -222,6 +222,51 @@ body{
 }
 .quote-author{
   font-size: 1rem;
+} */
+.quote-card{
+  position: absolute;
+  left: 5%;
+  top: 15%;
+  background-color: #fff;
+  padding: 20px 20px 30px 30px;
+  border-radius: 10px;
+  min-width: 100px;
+  margin-right: 20px;
+  /* width: 90%; */
+  max-width: 800px;
+  overflow: hidden;
+}
+.quote-card:before{
+   position: absolute;
+  /* font-family: 'FontAwesome'; */
+  top: 0px;
+  left: 20px;
+  font-family: Georgia, serif;
+  content: "“";
+  /* content:"\f10d"; */
+  font-size: 12rem;
+  color: rgba(0,0,0,0.2);
+}
+.quote-card:after{
+   content: "";
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    border-bottom: 3px solid #585858;
+    height: 3px;
+    width: 40%;
+    max-width: 200px;
+    min-width: 30px;
+}
+.quote-title{
+  font-size: 1.4rem;
+  color: #262626;
+}
+.quote-author{
+  font-size: 1rem;
+  color: #585858;
+  margin-top: 5px;
 }
 
 .poa-footer{
@@ -233,7 +278,7 @@ body{
 .transparent{
   background: transparent;
 }
-.view-info-card{
+/* .view-info-card{
   position: absolute;
   bottom: 15%;
   left: 5%;
@@ -254,6 +299,46 @@ body{
   padding:5px 10px;
   position: relative;
   right: 0;
+} */
+
+.view-info-card{
+  position: absolute;
+  bottom: 15%;
+  left: 5%;
+  background: rgb(255, 255, 255);
+  padding:10px 10px 0px 10px;
+  border-radius: 10px;
+  letter-spacing: 1%;
+  line-height: 1.6;
+  opacity: .9;
+  overflow: hidden;
+  max-width: 800px;
+  margin-right: 20px;
+  border: 2px solid #fff;
+}
+.view-info-card .view-creator,
+.view-info-card .view-topics{
+  letter-spacing: 0.5px;
+}
+.view-url{
+  text-align: right;
+  /* background-color: #585858; */
+  background: #262626;
+  /* background-color: #A1B79E; */
+  margin-top: 5px;
+  margin-right: -10px;
+  margin-left: -10px;
+  padding:5px 10px;
+  position: relative;
+  right: 0;
+}
+.view-url a{
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: .5px;
+  display: inline-block;
+  color: #fff;
+  line-height: 1.6;
 }
 .col,.row,.row-cols-sm-1,.row-cols-md-2,.row-cols-lg-3{
   padding: 0;
