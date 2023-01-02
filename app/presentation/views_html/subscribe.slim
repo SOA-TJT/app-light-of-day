@@ -1,19 +1,35 @@
-.service-logo.poa-header 
-  a href="/"
-    .sv-light Light 
-    .sv-of of 
-    .sv-day Day
+.header
+  .service-logo
+    a[href="/"] 
+      .sv-light Light
+      .sv-of of
+      .sv-day Day
+  .menu
+    .menuitem
+      a href="/"  topic
+    .menuitem
+      a href="/favorite-list"  favorite
+    .menuitem
+      a href="/focus"  focus
+  .clear
 
 .subscribe-container
+  .subscription-description
+    .subscribe-icon 
+      i class="fa-solid fa-paper-plane"
+    .subscribe-title Subscribe to Light of Day
+    .subscribe-text You want to Receieve an Elegant View ? Include a inspiring Quote make you dash faster? Join Light of Day and subscribe Right Now.
   form role="form" action="/subscribe/" method="post" 
     .mb-3
       label.form-label(for='exampleInputEmail1') Email address
       input.form-control(type='email' aria-describedby='emailHelp' name='email_input')
     .mb-3
+      label.form-label Subscribe A Topic
       select.form-select(aria-label='Select Topic' name='topic_input')
         - topics.each do |topic|
           option(value="#{topic.topic_id}") #{topic.title}
-    button.btn.btn-primary(type='submit') Submit
+    .text-center
+      button.btn.btn-sub(type='submit') Submit
 
 .footer.poa-footer 
   .copyright 

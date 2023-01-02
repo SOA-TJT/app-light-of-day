@@ -796,7 +796,44 @@ input[type="submit"]{
 /* @media (max-width: 384px)and(min-width: 768px){
 
 }  */
-
+.subscribe-container .subscribe-title{
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.subscription-description{
+  width: 80%;
+  margin: auto;
+}
+.subscribe-icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.subscribe-icon i{
+  font-size: 4rem;
+  text-align: center;
+}
+.subscribe-text{
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #5c5c5c;
+  text-align: center;
+}
+.btn-sub{
+  margin: auto;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+  color: rgb(255, 255, 255);
+  background: #000;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.subscribe-container,
 .focus-set{
   background: rgb(255, 255, 255);
   width: 100%;
