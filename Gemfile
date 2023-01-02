@@ -24,15 +24,6 @@ gem 'http', '~> 5'
 # Database
 gem 'hirb', '~> 0'
 gem 'hirb-unicode', '~> 0'
-gem 'sequel', '~> 5.49'
-
-group :production do
-  gem 'pg'
-end
-
-group :development, :test do
-  gem 'sqlite3', '~> 1.4'
-end
 
 # Coding Style
 group :development do
