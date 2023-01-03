@@ -265,10 +265,12 @@ body{
 }
 .quote-title{
   font-size: 1.4rem;
+  line-height: 1.25;
   color: #262626;
 }
 .quote-author{
   font-size: 1rem;
+  line-height: 1.25;
   color: #585858;
   margin-top: 5px;
 }
