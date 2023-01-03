@@ -110,6 +110,13 @@ const myChart = new Chart(ctx, {
   },
 });
 }
+fix_high=()=>{
+  let windowsVH = window.innerHeight / 100;
+    document.querySelector('.view-pic').style.setProperty('--vh', windowsVH + 'px');
+    window.addEventListener('resize', function() {
+        document.querySelector('.view-pic').style.setProperty('--vh', windowsVH + 'px');
+    });
+}
 
 $(document).ready(function(){
   $(".alert").fadeTo(2000,500).slideUp(500, function() {
@@ -118,6 +125,7 @@ $(document).ready(function(){
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
   const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
   calculate_focus();
+  fix_high();
 });
 
 //  pomodoro
