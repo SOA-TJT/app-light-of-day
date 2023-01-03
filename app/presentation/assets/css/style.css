@@ -175,10 +175,12 @@ body{
 }
 .company-logo{
   width: 40px;
+  max-width: 10%;
   vertical-align: middle;
 }
 .company{
   display: inline-block;
+  font-size: .8rem;
 }
 .footer{
   z-index: 100;
@@ -569,9 +571,12 @@ input[type="submit"]{
     /* background: #000; */
 }
 .favorite i{
-  font-size: 20px;
+  font-size: 1.2rem;
   color: rgb(240, 101, 101);
   vertical-align: middle;
+}
+.favorite span{
+  font-size: .8rem;
 }
 .favorite:hover{
   border-color: rgb(91, 11, 11);
