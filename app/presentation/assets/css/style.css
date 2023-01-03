@@ -799,53 +799,7 @@ input[type="submit"]{
   background-color: rgb(232, 195, 195);
 }
 
-@media (max-width: 768px) {
-    *{
-    font-size: 14px;
-  }
-  .favorite-item-quote{
-  white-space: unset;
-  text-overflow: unset;
-}
-  .header .service-logo{
-    position: relative;
-    display: block;
-    left: unset;
-    right: unset;
 
-  }
-  .header .menu{
-    display: flex;
-    display: block;
-    float: none;
-    margin-top: 50px;
-  }
-  .header .menuitem{
-   margin: 0 10px 10px 0px;
-  }
-  .pomodoro{
-    width: 70%;
-  }
-}
-
-
-
-@media (max-width: 384px){
-  *{
-    font-size: 12px;
-  }
-  .iconset{
-    display: flex;
-    flex-direction: column;
-  }
-  .topic-pos-text{
-    text-align: center;
-  }
-  .pomodoro{
-    width: 90%;
-  }
-
-}
 
 .hidden{
   display: none;
@@ -932,7 +886,7 @@ input[type="submit"]{
   background: rgb(255, 255, 255);
   width: 100%;
   max-width: 800px;
-  margin: auto;
+  margin: 10px auto 40px auto;
   padding: 30px 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.2);
@@ -995,3 +949,52 @@ input[type="submit"]{
 .focus-card:nth-child(1) .rest-time{
   color: rgb(255, 255, 255);
 } */
+
+
+@media (max-width: 768px) {
+    *{
+    font-size: 14px;
+  }
+  .favorite-item-quote{
+  white-space: unset;
+  text-overflow: unset;
+}
+  .header .service-logo{
+    position: relative;
+    display: block;
+    left: unset;
+    right: unset;
+
+  }
+  .header .menu{
+    display: flex;
+    display: block;
+    float: none;
+    margin-top: 50px;
+  }
+  .header .menuitem{
+   margin: 0 10px 10px 0px;
+  }
+  .pomodoro{
+    width: 70%;
+  }
+}
+
+
+
+@media (max-width: 384px){
+  *{
+    font-size: 12px;
+  }
+  .iconset{
+    display: flex;
+    flex-direction: column;
+  }
+  .topic-pos-text{
+    text-align: center;
+  }
+  .pomodoro{
+    width: 90%;
+  }
+
+}
