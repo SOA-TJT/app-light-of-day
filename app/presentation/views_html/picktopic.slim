@@ -12,8 +12,35 @@
     .menuitem
       a href="/focus"  focus
     .clear
-  .topic-choose-title Pick a Topic
 
+.brief
+  .brief-title
+    | Light of Day
+  .brief-subtitle
+    | The Best Promodoro App
+  .brief-description
+    .line
+      i.fa-solid.fa-circle-notch
+      .text
+        | Choose a topic of picture you like
+    .line
+      i.fa-solid.fa-circle-notch
+      .text
+        |  Enjoy your focus time with our elegant views and inspirations 
+    .line
+      i.fa-solid.fa-circle-notch
+      .text
+        |  Add your favorite view and inspiration set to your collection 
+    .line
+      i.fa-solid.fa-circle-notch
+      .text
+        |  Subscribe Light of Day to receive your special quote and view everyday 
+    .line
+      i.fa-solid.fa-circle-notch
+      .text
+        |  Analysis your focus time of one week and cheer the highlight moment you achieve. 
+.container-fluid
+  .topic-choose-title Pick a Topic
   .dropdown
     button.btn.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" type="button" 
       | Sort by : 
@@ -24,6 +51,7 @@
         a.dropdown-item href="/list_topics/activeness"  Active
       li
         a.dropdown-item href="/list_topics/popularity"  Popularity
+
 .container-fluid
   form role="form" action="/light-of-day/topic/" method="get" 
     .row.row-cols-auto.row-cols-md-2.row-cols-lg-3.topic-section
