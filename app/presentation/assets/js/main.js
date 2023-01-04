@@ -109,12 +109,22 @@ const myChart = new Chart(ctx, {
   },
 });
 }
-fix_high=()=>{
-  let windowsVH = window.innerHeight / 100;
-    document.querySelector('.view-pic').style.setProperty('--vh', windowsVH + 'px');
-    window.addEventListener('resize', function() {
-        document.querySelector('.view-pic').style.setProperty('--vh', windowsVH + 'px');
-    });
+// fix_high=()=>{
+//   let windowsVH = window.innerHeight / 100;
+//     document.querySelector('.view-pic').style.setProperty('--vh', windowsVH + 'px');
+//     window.addEventListener('resize', function() {
+//         document.querySelector('.view-pic').style.setProperty('--vh', windowsVH + 'px');
+//     });
+// }
+function setCorrectViewHeight() {
+  const windowsVH = window.innerHeight / 100
+  console.log(windowsVH)
+  document.getElementsByClassName('view-pic')[0].style.setProperty('--vh', windowsVH + 'px')
+}
+
+export default function safariHacks() {
+  setCorrectViewHeight()
+  window.addEventListener('resize', setCorrectViewHeight)
 }
 
 $(document).ready(function(){
@@ -124,7 +134,8 @@ $(document).ready(function(){
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
   const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
   calculate_focus();
-  fix_high();
+  // fix_high();
+  safariHacks();
 });
 
 //  pomodoro
