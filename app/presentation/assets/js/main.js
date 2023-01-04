@@ -122,10 +122,16 @@ function setCorrectViewHeight() {
   document.getElementsByClassName('view-pic')[0].style.setProperty('--vh', windowsVH + 'px')
 }
 
-export default function safariHacks() {
-  setCorrectViewHeight()
-  window.addEventListener('resize', setCorrectViewHeight)
-}
+window.addEventListener('resize', ()=>{
+  if (vw === window.innerWidth) {
+    return;
+  }
+ 
+  vw = window.innerWidth;
+  setCorrectViewHeight();
+});
+ 
+setCorrectViewHeight();
 
 $(document).ready(function(){
   $(".alert").fadeTo(2000,500).slideUp(500, function() {
@@ -135,7 +141,6 @@ $(document).ready(function(){
   const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
   calculate_focus();
   // fix_high();
-  safariHacks();
 });
 
 //  pomodoro
