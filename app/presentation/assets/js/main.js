@@ -1,7 +1,6 @@
 
 calculate_focus=()=>{
-
-  let delayed;
+let delayed;
 const ctx = document.getElementById("example").getContext("2d");
 let dates = document.getElementsByClassName('focus-date');
 console.log(dates);
