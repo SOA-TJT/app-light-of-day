@@ -55,4 +55,18 @@
           
     img.company-logo src="https://github.com/SOA-TJT/Team-Logo/blob/SOA-TJT-patch-1/Logo.png?raw=true" 
     .company TJT@2022.Insipiration
-
+javascript:
+  function setCorrectViewHeight() {
+    const windowsVH = window.innerHeight / 100
+    console.log(windowsVH)
+    document.getElementsByClassName('view-pic')[0].style.setProperty('--vh', windowsVH + 'px')
+  }
+  window.addEventListener('resize', ()=>{
+    if (vw === window.innerWidth) {
+      return;
+    }
+  
+    vw = window.innerWidth;
+    setCorrectViewHeight();
+  });
+  setCorrectViewHeight();
