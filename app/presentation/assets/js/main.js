@@ -116,6 +116,7 @@ const myChart = new Chart(ctx, {
 //         document.querySelector('.view-pic').style.setProperty('--vh', windowsVH + 'px');
 //     });
 // }
+
 function setCorrectViewHeight() {
   const windowsVH = window.innerHeight / 100
   console.log(windowsVH)
@@ -131,7 +132,7 @@ window.addEventListener('resize', ()=>{
   setCorrectViewHeight();
 });
  
-setCorrectViewHeight();
+// setCorrectViewHeight();
 
 $(document).ready(function(){
   $(".alert").fadeTo(2000,500).slideUp(500, function() {
