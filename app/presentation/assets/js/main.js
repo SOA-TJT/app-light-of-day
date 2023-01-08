@@ -191,7 +191,7 @@ function reset(){
 
 buttonPlay.addEventListener('click',()=>{
   console.log(timeLeft);
-  safe_time();
+  // safe_time();
   isPlay=!isPlay;
   if(isPlay){
     if((!workTitle.classList.contains('work-active'))&& !restTitle.classList.contains('rest-active')){
@@ -212,7 +212,7 @@ buttonPlay.addEventListener('click',()=>{
               restTitle.classList.add('rest-active'); 
           }
           else{
-            
+              safe_time();
               timeLeft=parseInt(workTime.innerText)*60; 
               workTitle.classList.add('work-active');
               restTitle.classList.remove('rest-active'); 
